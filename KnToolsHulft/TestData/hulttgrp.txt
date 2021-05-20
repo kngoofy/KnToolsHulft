@@ -1,0 +1,23 @@
+﻿#
+# ID=GRP1
+#
+
+GRP=GRP1
+SERVER DEF
+  grp1host1
+  grp1host2
+DEFEND
+COMMENT=コメント1
+END
+
+#
+# ID=GRP2
+#
+
+GRP=GRP2
+SERVER DEF
+  grp2host1
+  grp2host2
+DEFEND
+COMMENT=コメント2
+END
