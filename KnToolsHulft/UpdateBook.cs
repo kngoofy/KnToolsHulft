@@ -15,47 +15,135 @@ namespace KnToolsHulft
     {
 
         //コンストラクタ
+        public UpdateBook( string outputFile, List<HulftSndDef> sndLists)
+        {
+            try
+            {
+                var book = WorkbookFactory.Create(outputFile);
+                // 各シートを埋める
+                UpdateSndBook(book, sndLists);
+
+                // UpdateしたExcelファイルを閉じる
+                using (var fs = new FileStream(outputFile, FileMode.Create))
+                {
+                    book.Write(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        //コンストラクタ
+        public UpdateBook( string outputFile, List<HulftRcvDef> rcvLists)
+        {
+            try
+            {
+                var book = WorkbookFactory.Create(outputFile);
+                // 各シートを埋める
+                UpdateRcvBook(book, rcvLists);
+
+                // UpdateしたExcelファイルを閉じる
+                using (var fs = new FileStream(outputFile, FileMode.Create))
+                {
+                    book.Write(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        //コンストラクタ
+        public UpdateBook(string outputFile, List<HulftHstDef> hstLists)
+        {
+            try
+            {
+                var book = WorkbookFactory.Create(outputFile);
+                // 各シートを埋める
+                UpdateHstBook(book, hstLists);
+
+                // UpdateしたExcelファイルを閉じる
+                using (var fs = new FileStream(outputFile, FileMode.Create))
+                {
+                    book.Write(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        //コンストラクタ
+        public UpdateBook(string outputFile, List<HulftTGrpDef> tgrpLists)
+        {
+            try
+            {
+                var book = WorkbookFactory.Create(outputFile);
+                // 各シートを埋める
+                UpdateTGrpBook(book, tgrpLists);
+
+                // UpdateしたExcelファイルを閉じる
+                using (var fs = new FileStream(outputFile, FileMode.Create))
+                {
+                    book.Write(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        //コンストラクタ
         public UpdateBook(string templateFile, string outputFile
-            //, List<HulftSndDef> sndlLsts,
-            //List<HulftRcvDef> rcvLists,
-            //List<HulftTGrpDef> tgrpLists,
-            //List<HulftHstDef> hstLists
-            )
+        , List<HulftSndDef> sndLists
+        , List<HulftRcvDef> rcvLists
+        , List<HulftTGrpDef> tgrpLists
+        , List<HulftHstDef> hstLists
+        )
         {
 
-            string sndFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hultsnd.txt";
-            if (!System.IO.File.Exists(sndFile))
-            {
-                return;
-            }
-            string rcvFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hultrcv.txt";
-            if (!System.IO.File.Exists(rcvFile))
-            {
-                return;
-            }
-            string hstFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hulthst.txt";
-            if (!System.IO.File.Exists(hstFile))
-            {
-                return;
-            }
-            string tgrpFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hulttgrp.txt";
-            if (!System.IO.File.Exists(tgrpFile))
-            {
-                return;
-            }
+            //string sndFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hultsnd.txt";
+            //if (!System.IO.File.Exists(sndFile))
+            //{
+            //    return;
+            //}
+            //string rcvFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hultrcv.txt";
+            //if (!System.IO.File.Exists(rcvFile))
+            //{
+            //    return;
+            //}
+            //string hstFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hulthst.txt";
+            //if (!System.IO.File.Exists(hstFile))
+            //{
+            //    return;
+            //}
+            //string tgrpFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hulttgrp.txt";
+            //if (!System.IO.File.Exists(tgrpFile))
+            //{
+            //{
+            //    return;
+            //}
 
-            //
-            var sndData = new BuildHulftSndDef();
-            List<HulftSndDef> sndDatas = sndData.ReadBuildHulftSndDef(sndFile);
+            ////
+            //var sndData = new BuildHulftSndDef();
+            //List<HulftSndDef> sndDatas = sndData.ReadBuildHulftSndDef(sndFile);
 
-            var rcvData = new BuildHulftRcvDef();
-            List<HulftRcvDef> rcvDatas = rcvData.ReadBuildHulftRcvDef(rcvFile);
+            //var rcvData = new BuildHulftRcvDef();
+            //List<HulftRcvDef> rcvDatas = rcvData.ReadBuildHulftRcvDef(rcvFile);
 
-            var tgrpData = new BuildHulftTGrpDef();
-            List<HulftTGrpDef> tgrpDatas = tgrpData.ReadBuildHulftTGrpDef(tgrpFile);
+            //var tgrpData = new BuildHulftTGrpDef();
+            //List<HulftTGrpDef> tgrpDatas = tgrpData.ReadBuildHulftTGrpDef(tgrpFile);
 
-            var hstData = new BuildHulftHstDef();
-            List<HulftHstDef> hstDatas = hstData.ReadBuildHulftHstDef(hstFile);
+            //var hstData = new BuildHulftHstDef();
+            //List<HulftHstDef> hstDatas = hstData.ReadBuildHulftHstDef(hstFile);
 
             // Bookの中身を埋める
             try
@@ -66,10 +154,10 @@ namespace KnToolsHulft
                 // セルに充てるスタイルの組み立て
                 //Dictionary<String, ICellStyle> styles = MyCreateStyles.createStyles(book);
                 // 各シートを埋める
-                UpdateSndBook(book, sndDatas);
-                UpdateRcvBook(book, rcvDatas);
-                UpdateHstBook(book, hstDatas);
-                UpdateTGrpBook(book, tgrpDatas);
+                UpdateSndBook(book, sndLists);
+                UpdateRcvBook(book, rcvLists);
+                UpdateHstBook(book, hstLists);
+                UpdateTGrpBook(book, tgrpLists);
 
                 // UpdateしたExcelファイルを閉じる
                 using (var fs = new FileStream(outputFile, FileMode.Create))
@@ -255,7 +343,7 @@ namespace KnToolsHulft
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
             var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
             cell.SetCellType(CellType.String);
-            cell.SetCellValue(string.Join(",",value));
+            cell.SetCellValue(string.Join(",", value));
             cell.CellStyle = style;
         }
     }

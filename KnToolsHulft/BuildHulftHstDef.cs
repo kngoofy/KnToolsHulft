@@ -13,6 +13,11 @@ namespace KnToolsHulft
 
         public List<HulftHstDef> ReadBuildHulftHstDef(string file)
         {
+            /**
+               <summary>
+                HULFT配信定義のフラットテキストを読んで、HulftHstDefクラスのListを生成して返す。
+               </summary> 
+            */
 
             List<HulftHstDef> hulftHstDefs = new List<HulftHstDef>();
             HulftHstDef hulftdef = new HulftHstDef();
