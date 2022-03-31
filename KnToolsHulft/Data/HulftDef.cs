@@ -50,7 +50,7 @@ namespace KnToolsHulft.Data
         /// クラスのプロパティからStringのListを組み立てて返すメソッド
         /// </summary>
         /// <returns>stringのList</returns>
-        public List<string> getListValues()
+        public List<string> GetListValues()
         {
             var list = new List<string>
             {
@@ -66,9 +66,9 @@ namespace KnToolsHulft.Data
         /// 選択したプロパティ値をstringの配列で返すメソッド
         /// </summary>
         /// <returns>stringの配列</returns>
-        public string[] getValueArray()
+        public string[] GetValueArray()
         {
-            return getListValues().ToArray();
+            return GetListValues().ToArray();
         }
 
         /// <summary>

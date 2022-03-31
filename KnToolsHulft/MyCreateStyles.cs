@@ -17,12 +17,12 @@ namespace KnToolsHulft
         /// </summary>
         /// <param name="wb">Excelのブックオブジェクト</param>
         /// <returns>生成したスタイル Dictionaryオブジェクト</returns>
-        public static Dictionary<String, ICellStyle> createStyles(IWorkbook wb)
+        public static Dictionary<String, ICellStyle> CreateStyles(IWorkbook wb)
         {
             //
             Dictionary<String, ICellStyle> styles = new Dictionary<String, ICellStyle>();
 
-            short borderColor = IndexedColors.Grey50Percent.Index;
+            //short borderColor = IndexedColors.Grey50Percent.Index;
             IDataFormat df = wb.CreateDataFormat();
 
             ICellStyle style;

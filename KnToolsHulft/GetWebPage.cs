@@ -15,8 +15,8 @@ namespace KnToolsHulft
 {
     class GetWebPage
     {
-        private static HttpClient client;
-        private HttpClient _httpClient = new HttpClient();
+        private static readonly HttpClient client=null;
+        private readonly HttpClient _httpClient = new HttpClient();
 
         /*
         public string GetWebData()
@@ -40,13 +40,10 @@ namespace KnToolsHulft
 
         public async Task<string> GetPageAsync(string urlstr)
         {
-
             var str = await _httpClient.GetStringAsync(urlstr);
-       
-
             return str;
         }
-        public static async Task GetDownloadFileAsync(string uri)
+        public static async Task GetDownloadFileAsync(/*string uri*/)
         {
             try
             {
@@ -76,6 +73,7 @@ namespace KnToolsHulft
             catch (Exception ex)
             {
                 // エラー処理
+                Console.WriteLine(ex);
             }
         }
 

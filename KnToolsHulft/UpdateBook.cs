@@ -8,14 +8,21 @@ using NPOI.SS.UserModel;
 
 using NPOI.XSSF.UserModel;
 using KnToolsHulft.Data;
+using NPOI.SS.Util;
 
 namespace KnToolsHulft
 {
+    /// <summary>
+    /// ExcelBookの各Sheetにデータを埋め、書式を組み立てるクラス 
+    /// </summary>
     public class UpdateBook
     {
-
-        //コンストラクタ
-        public UpdateBook( string outputFile, List<HulftSndDef> sndLists)
+        /// <summary>
+        /// コンストラクタ 
+        /// </summary>
+        /// <param name="outputFile">ExcelBookファイル名</param>
+        /// <param name="sndLists">HULFT配信定義を組み立てたList</param>
+        public UpdateBook(string outputFile, List<HulftSndDef> sndLists)
         {
             try
             {
@@ -35,8 +42,12 @@ namespace KnToolsHulft
             }
         }
 
-        //コンストラクタ
-        public UpdateBook( string outputFile, List<HulftRcvDef> rcvLists)
+        /// <summary>
+        /// コンストラクタ 
+        /// </summary>
+        /// <param name="outputFile">ExcelBookファイル名</param>
+        /// <param name="rcvLists">HULFT集信定義を組み立てたList</param>
+        public UpdateBook(string outputFile, List<HulftRcvDef> rcvLists)
         {
             try
             {
@@ -57,7 +68,11 @@ namespace KnToolsHulft
 
         }
 
-        //コンストラクタ
+        /// <summary>
+        /// コンストラクタ 
+        /// </summary>
+        /// <param name="outputFile">ExcelBookファイル名</param>
+        /// <param name="hstLists">HULFTホスト定義を組み立てたList</param>
         public UpdateBook(string outputFile, List<HulftHstDef> hstLists)
         {
             try
@@ -79,7 +94,11 @@ namespace KnToolsHulft
 
         }
 
-        //コンストラクタ
+        /// <summary>
+        /// コンストラクタ 
+        /// </summary>
+        /// <param name="outputFile">ExcelBookファイル名</param>
+        /// <param name="tgrpLists">HULFT転送グループを組み立てたList</param>
         public UpdateBook(string outputFile, List<HulftTGrpDef> tgrpLists)
         {
             try
@@ -101,55 +120,20 @@ namespace KnToolsHulft
 
         }
 
-        //コンストラクタ
-        public UpdateBook(string templateFile, string outputFile
-        , List<HulftSndDef> sndLists
-        , List<HulftRcvDef> rcvLists
-        , List<HulftTGrpDef> tgrpLists
-        , List<HulftHstDef> hstLists
-        )
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="outputFile">ExcelBookファイル名</param>
+        /// <param name="sndLists">HULFT配信定義を組み立てたList</param>
+        /// <param name="rcvLists">HULFT集信定義を組み立てたList</param>
+        /// <param name="tgrpLists">HULFT転送グループ定義を組み立てたList</param>
+        /// <param name="hstLists">HULFTホスト定義を組み立てたList</param>
+        public UpdateBook(string outputFile, List<HulftSndDef> sndLists, List<HulftRcvDef> rcvLists, List<HulftTGrpDef> tgrpLists, List<HulftHstDef> hstLists)
         {
-
-            //string sndFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hultsnd.txt";
-            //if (!System.IO.File.Exists(sndFile))
-            //{
-            //    return;
-            //}
-            //string rcvFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hultrcv.txt";
-            //if (!System.IO.File.Exists(rcvFile))
-            //{
-            //    return;
-            //}
-            //string hstFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hulthst.txt";
-            //if (!System.IO.File.Exists(hstFile))
-            //{
-            //    return;
-            //}
-            //string tgrpFile = @"E:\02.Kazu-Development\visualstudio\KnToolsHulft\KnToolsHulft\TestData\hulttgrp.txt";
-            //if (!System.IO.File.Exists(tgrpFile))
-            //{
-            //{
-            //    return;
-            //}
-
-            ////
-            //var sndData = new BuildHulftSndDef();
-            //List<HulftSndDef> sndDatas = sndData.ReadBuildHulftSndDef(sndFile);
-
-            //var rcvData = new BuildHulftRcvDef();
-            //List<HulftRcvDef> rcvDatas = rcvData.ReadBuildHulftRcvDef(rcvFile);
-
-            //var tgrpData = new BuildHulftTGrpDef();
-            //List<HulftTGrpDef> tgrpDatas = tgrpData.ReadBuildHulftTGrpDef(tgrpFile);
-
-            //var hstData = new BuildHulftHstDef();
-            //List<HulftHstDef> hstDatas = hstData.ReadBuildHulftHstDef(hstFile);
-
             // Bookの中身を埋める
             try
             {
-                var book = WorkbookFactory.Create(templateFile);
-
+                var book = WorkbookFactory.Create(outputFile);
 
                 // セルに充てるスタイルの組み立て
                 //Dictionary<String, ICellStyle> styles = MyCreateStyles.createStyles(book);
@@ -172,12 +156,18 @@ namespace KnToolsHulft
             }
         }
 
+        /// <summary>
+        /// Sndシートのデータ埋めと書式あてこみメソッド
+        /// </summary>
+        /// <param name="book">ExcelBookオブジェクト</param>
+        /// <param name="lists">HULFT配信定義データオブジェクト</param>
+        /// <returns></returns>
         public bool UpdateSndBook(IWorkbook book, List<HulftSndDef> lists)
         {
             var sheet = book.GetSheet(ConstHulft.SHEETNAME_SND);
 
             // セルに充てるスタイルの組み立て
-            Dictionary<String, ICellStyle> styles = MyCreateStyles.createStyles(book);
+            Dictionary<String, ICellStyle> styles = MyCreateStyles.CreateStyles(book);
 
             // 左上にシート名を
             WriteCell(sheet, styles["indexLabel"], (0, 0), ConstHulft.SHEETNAME_SND);
@@ -185,7 +175,7 @@ namespace KnToolsHulft
             // データヘッダーの組み立て
             var header = new HulftSndDef("Header");
             //var headerArray = header.getValueArray();
-            var headerList = header.getListValues();
+            var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
             (int y, int x) p = (2, 1);
@@ -194,12 +184,13 @@ namespace KnToolsHulft
             {
                 WriteCell(sheet, styles["indexLabel"], (p.y, p.x + x), headerList[x]);
             }
+            sheet.SetAutoFilter(new CellRangeAddress(p.y, p.y, p.x, p.x+ headerList.Count-1));
 
             // データブロックの書き出し
             p = (3, 1);
             for (int y = 0; y < lists.Count; y++)
             {
-                var dataList = lists[y].getListValues();
+                var dataList = lists[y].GetListValues();
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
@@ -211,12 +202,18 @@ namespace KnToolsHulft
             return true;
         }
 
+        /// <summary>
+        /// Rcvシートのデータ埋めと書式あてこみメソッド
+        /// </summary>
+        /// <param name="book">ExcelBookオブジェクト</param>
+        /// <param name="lists">HULFT集信定義データオブジェクト</param>
+        /// <returns></returns>
         public bool UpdateRcvBook(IWorkbook book, List<HulftRcvDef> lists)
         {
             var sheet = book.GetSheet(ConstHulft.SHEETNAME_RCV);
 
             // セルに充てるスタイルの組み立て
-            Dictionary<String, ICellStyle> styles = MyCreateStyles.createStyles(book);
+            Dictionary<String, ICellStyle> styles = MyCreateStyles.CreateStyles(book);
 
             // 左上にシート名を
             WriteCell(sheet, styles["indexLabel"], (0, 0), ConstHulft.SHEETNAME_RCV);
@@ -224,7 +221,7 @@ namespace KnToolsHulft
             // データヘッダーの組み立て
             var header = new HulftRcvDef("Header");
             //var headerArray = header.getValueArray();
-            var headerList = header.getListValues();
+            var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
             (int y, int x) p = (2, 1);
@@ -233,12 +230,13 @@ namespace KnToolsHulft
             {
                 WriteCell(sheet, styles["indexLabel"], (p.y, p.x + x), headerList[x]);
             }
+            sheet.SetAutoFilter(new CellRangeAddress(p.y, p.y, p.x, p.x + headerList.Count - 1));
 
             // データブロックの書き出し
             p = (3, 1);
             for (int y = 0; y < lists.Count; y++)
             {
-                var dataList = lists[y].getListValues();
+                var dataList = lists[y].GetListValues();
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
@@ -250,20 +248,26 @@ namespace KnToolsHulft
             return true;
         }
 
+        /// <summary>
+        /// Hstシートのデータ埋めと書式あてこみメソッド
+        /// </summary>
+        /// <param name="book">ExcelBookオブジェクト</param>
+        /// <param name="lists">HULFTホスト定義データオブジェクト</param>
+        /// <returns></returns>
         public bool UpdateHstBook(IWorkbook book, List<HulftHstDef> lists)
         {
             var sheet = book.GetSheet(ConstHulft.SHEETNAME_HST);
 
             // セルに充てるスタイルの組み立て
-            Dictionary<String, ICellStyle> styles = MyCreateStyles.createStyles(book);
+            Dictionary<String, ICellStyle> styles = MyCreateStyles.CreateStyles(book);
 
             // 左上にシート名を
-            WriteCell(sheet, styles["indexLabel"], (0, 0), ConstHulft.SHEETNAME_RCV);
+            WriteCell(sheet, styles["indexLabel"], (0, 0), ConstHulft.SHEETNAME_HST);
 
             // データヘッダーの組み立て
             var header = new HulftHstDef("Header");
             //var headerArray = header.getValueArray();
-            var headerList = header.getListValues();
+            var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
             (int y, int x) p = (2, 1);
@@ -272,12 +276,13 @@ namespace KnToolsHulft
             {
                 WriteCell(sheet, styles["indexLabel"], (p.y, p.x + x), headerList[x]);
             }
+            sheet.SetAutoFilter(new CellRangeAddress(p.y, p.y, p.x, p.x + headerList.Count - 1));
 
             // データブロックの書き出し
             p = (3, 1);
             for (int y = 0; y < lists.Count; y++)
             {
-                var dataList = lists[y].getListValues();
+                var dataList = lists[y].GetListValues();
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
@@ -289,20 +294,26 @@ namespace KnToolsHulft
             return true;
         }
 
+        /// <summary>
+        /// TGrpシートのデータ埋めと書式あてこみメソッド
+        /// </summary>
+        /// <param name="book">ExcelBookオブジェクト</param>
+        /// <param name="lists">HULFT転送グループ定義データオブジェクト</param>
+        /// <returns></returns>
         public bool UpdateTGrpBook(IWorkbook book, List<HulftTGrpDef> lists)
         {
             var sheet = book.GetSheet(ConstHulft.SHEETNAME_GRP);
 
             // セルに充てるスタイルの組み立て
-            Dictionary<String, ICellStyle> styles = MyCreateStyles.createStyles(book);
+            Dictionary<String, ICellStyle> styles = MyCreateStyles.CreateStyles(book);
 
             // 左上にシート名を
-            WriteCell(sheet, styles["indexLabel"], (0, 0), ConstHulft.SHEETNAME_RCV);
+            WriteCell(sheet, styles["indexLabel"], (0, 0), ConstHulft.SHEETNAME_GRP);
 
             // データヘッダーの組み立て
             var header = new HulftTGrpDef("Header");
             //var headerArray = header.getValueArray();
-            var headerList = header.getListValues();
+            var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
             (int y, int x) p = (2, 1);
@@ -311,13 +322,14 @@ namespace KnToolsHulft
             {
                 WriteCell(sheet, styles["indexLabel"], (p.y, p.x + x), headerList[x]);
             }
+            sheet.SetAutoFilter(new CellRangeAddress(p.y, p.y, p.x, p.x + headerList.Count - 1));
 
             // データブロックの書き出し
             p = (3, 1);
             for (int y = 0; y < lists.Count; y++)
             {
                 //var dataList = lists[y].getListValues();
-                var dataList = lists[y].getListListValues();
+                var dataList = lists[y].GetListListValues();
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
@@ -329,7 +341,13 @@ namespace KnToolsHulft
             return true;
         }
 
-
+        /// <summary>
+        /// セルに書き込むメッソド
+        /// </summary>
+        /// <param name="sheet">シートオブジェクト</param>
+        /// <param name="style">セルスタイル</param>
+        /// <param name="s">座標</param>
+        /// <param name="value">文字列の値</param>
         public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, string value)
         {
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
@@ -338,6 +356,14 @@ namespace KnToolsHulft
             cell.SetCellValue(value);
             cell.CellStyle = style;
         }
+
+        /// <summary>
+        /// セルに書き込むメッソド
+        /// </summary>
+        /// <param name="sheet">シートオブジェクト</param>
+        /// <param name="style">セルスタイル</param>
+        /// <param name="s">座標</param>
+        /// <param name="value">文字列のList</param>
         public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, List<string> value)
         {
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);

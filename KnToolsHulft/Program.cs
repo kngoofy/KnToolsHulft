@@ -34,7 +34,7 @@ namespace KnToolsHulft
 
             // コマンドラインのオプションパラメータの解釈
             args = args.Concat(new string[] { "" }).ToArray(); // オプションのみと　そもそも入っていないの識別
-            var options = new string[] { "-snd", "-rcv", "-hst", "-tgrp", "-o" ,"-h" };
+            var options = new string[] { "-snd", "-rcv", "-hst", "-tgrp", "-o", "-h" };
             var target = options.ToDictionary(p => p.Substring(1), p => args.SkipWhile(a => a != p).Skip(1).FirstOrDefault());
 
             //Hulft Excelシートのテンプレートをまず作成する。オプションで生成Book名指定している場合はそこに
@@ -46,7 +46,7 @@ namespace KnToolsHulft
 
             //まずテンプレートExcelBookとして生成する。
             var makeSheet = new CreateNewTemplateBook(OutPutBookName);
-
+            //return;
 
             //下記の処理で、生成したテンプレートExcelBookにシートにデータを積み込み、書式を付ける。
 
@@ -96,7 +96,7 @@ namespace KnToolsHulft
         }
 
 
-        public void nop()
+        public void Nop()
         {
             //パラメータなし引数は値がnullでないかでチェック
             //if (result["hoge"] != null) Console.WriteLine("hogeがあります");

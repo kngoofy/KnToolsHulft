@@ -51,7 +51,7 @@ namespace KnToolsHulft.Data
         }
 
         //newにした
-        public new List<string> getListValues()
+        public new List<string> GetListValues()
         {
             var list = new List<string>
             {
@@ -63,7 +63,7 @@ namespace KnToolsHulft.Data
             //base.getValueArray();
             return list;
         }
-        public List<string> getListListValues()
+        public List<string> GetListListValues()
         {
             var list = new List<string>
             {

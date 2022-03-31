@@ -74,7 +74,7 @@ namespace KnToolsHulft.Data
         }
 
         // newにした
-        public new List<string> getListValues()
+        public new List<string> GetListValues()
         {
             var list = new List<string>
             {

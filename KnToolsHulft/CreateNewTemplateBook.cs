@@ -39,7 +39,7 @@ namespace KnToolsHulft
                 //Hulft定義Bookのテンプレートを新規に作成
                 IWorkbook book = new XSSFWorkbook();
 
-                Dictionary<String, ICellStyle> styles = MyCreateStyles.createStyles(book);
+                Dictionary<String, ICellStyle> styles = MyCreateStyles.CreateStyles(book);
 
                 //定型シートを作成
                 book.CreateSheet(ConstHulft.SHEETNAME_IDX);
@@ -55,7 +55,7 @@ namespace KnToolsHulft
                 var sheetHst = book.GetSheet(ConstHulft.SHEETNAME_HST);
 
                 //定型シートの中身を整える
-                FormatSheetIdx(book, styles, sheetIdx);
+                FormatSheetIdx(/*book,*/ styles, sheetIdx);
                 FormatSheetSnd(styles, sheetSnd);
                 FormatSheetRcv(styles, sheetRcv);
                 FormatSheetGrp(styles, sheetGrp);
@@ -82,14 +82,14 @@ namespace KnToolsHulft
         /// <param name="styles">使用するスタイルのDictionary</param>
         /// <param name="sheet">ExcelSheetのIクラス</param>
         /// <returns>Bool True or False</returns>
-        public bool FormatSheetIdx(IWorkbook book, Dictionary<String, ICellStyle> styles, ISheet sheet)
+        public bool FormatSheetIdx(/*IWorkbook book,*/ Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
 
             //メモリ線を非表示
             sheet.DisplayGridlines = false;
 
             //TopLeft シートタイトル埋め込み
-            WriteCell(sheet, styles["topleft"], (0, 0), "HULFT定義BookのIndex");
+            WriteCell(sheet, styles["topleft"], (0, 0), ConstHulft.SHEETNAME_IDX);
 
             //Sheetのインデックス埋め込み
             var titles = new List<(int no, string name)> {
@@ -100,18 +100,24 @@ namespace KnToolsHulft
             };
 
             //
-            (int y, int x) p = (1, 1);
+            (int y, int x) = (1, 1);
 
-            foreach (var t in titles)
+            foreach (var (no, name) in titles)
             {
                 //style.BorderLeft = BorderStyle.None;
-                WriteCell(sheet, styles["indexBox"], (p.y + t.no, p.x), t.no.ToString());   //番号埋め
+                WriteCell(sheet, styles["indexBox"], (y + no, x), no.ToString());   //番号埋め
 
                 //style.BorderLeft = BorderStyle.Dotted;
-                var link = new XSSFHyperlink(HyperlinkType.Document);
-                link.Address = t.name + "!A1";
-                WriteCell(sheet, styles["indexLabel"], link, (p.y + t.no, p.x + 1), t.name);        //シート名埋め
+                var link = new XSSFHyperlink(HyperlinkType.Document)
+                {
+                    Address = name + "!A1"
+                };
+                WriteCell(sheet, styles["indexLabel"], link, (y + no, x + 1), name);        //シート名埋め
             }
+
+            sheet.AutoSizeColumn(0, true);
+            //sheet.AutoSizeColumn(1, true);
+            //sheet.AutoSizeColumn(2, true);
 
             return true;
         }
@@ -222,7 +228,7 @@ namespace KnToolsHulft
         /// <param name="sheet">対象Sheetオブジェクト</param>
         /// <param name="idxColumn">Sheetの列位置</param>
         /// <param name="idxRow">Sheetの行位置</param>
-        public static void getCellValue(ISheet sheet, int idxColumn, int idxRow)
+        public static void GetCellValue(ISheet sheet, int idxColumn, int idxRow)
         {
             var row = sheet.GetRow(idxRow) ?? sheet.CreateRow(idxRow); //指定した行を取得できない時はエラーとならないよう新規作成している
             var cell = row.GetCell(idxColumn) ?? row.CreateCell(idxColumn); //一行上の処理の列版
@@ -243,7 +249,7 @@ namespace KnToolsHulft
                     value = "Value無し";
                     break;
             }
-            //Console.WriteLine("value: " + value);
+            Console.WriteLine("value: " + value);
         }
 
     }
