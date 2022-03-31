@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace KnToolsHulft.Data
 {
+    /// <summary>
+    /// HULFTの構造体 クラスでないよ 使ってないかもしれない 2022.03.31
+    /// </summary>
     struct HulftStructSnd
     {
         //プロパティ

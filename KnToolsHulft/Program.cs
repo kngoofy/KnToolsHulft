@@ -11,11 +11,9 @@ using NPOI.XSSF.UserModel;
 
 using AngleSharp;
 using AngleSharp.Html.Parser;
-using System.Net;
-
 using AngleSharp.Html.Dom;
+using System.Net;
 using System.Xml.Linq;
-
 
 using HtmlAgilityPack;
 
@@ -23,18 +21,83 @@ namespace KnToolsHulft
 {
     class Program
     {
+        /// <summary>
+        /// コマンドラインから実行する場合のメインメソッド
+        /// </summary>
+        /// <param name="args">コマンドラインからの引数 オプションパラメータあり</param>
+        /// <remarks>
+        ///  HULFT定義の各フラットファイルから、ExcelBookを生成するツール
+        ///  この下のMainはコマンドラインで実行するを想定
+        /// </remarks>
         static void Main(string[] args)
         {
 
-            //こんな感じで引数来るよね
-            //string[] myargs;
-            //args.Split(' ');
-
+            // コマンドラインのオプションパラメータの解釈
             args = args.Concat(new string[] { "" }).ToArray(); // オプションのみと　そもそも入っていないの識別
-            var options = new string[] { "-snd", "-rcv", "-hst", "-tgrp", "-o" };
-
+            var options = new string[] { "-snd", "-rcv", "-hst", "-tgrp", "-o" ,"-h" };
             var target = options.ToDictionary(p => p.Substring(1), p => args.SkipWhile(a => a != p).Skip(1).FirstOrDefault());
 
+            //Hulft Excelシートのテンプレートをまず作成する。オプションで生成Book名指定している場合はそこに
+            var OutPutBookName = "NewTemplate.xlsx";
+            if (target["o"] != null)
+            {
+                OutPutBookName = target["o"];
+            }
+
+            //まずテンプレートExcelBookとして生成する。
+            var makeSheet = new CreateNewTemplateBook(OutPutBookName);
+
+
+            //下記の処理で、生成したテンプレートExcelBookにシートにデータを積み込み、書式を付ける。
+
+            //(1) Sndシート[snd] 中身肉付け オプションでファイルが指定されていたら
+            if (target["snd"] != null)
+            {
+                var hulftSndData = new BuildHulftSndDef();
+                List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(target["snd"]);
+                var updateBookSndSheet = new UpdateBook(OutPutBookName, hulftSndDatas);
+            }
+
+            //(2) Rcvシート[rcv] 中身肉付け オプションでファイルが指定されていたら
+            if (target["rcv"] != null)
+            {
+                var hulftRcvData = new BuildHulftRcvDef();
+                List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(target["rcv"]);
+                var updateBookRcvSheet = new UpdateBook(OutPutBookName, hulftRcvDatas);
+            }
+
+            //(3) Hstシート[Host] 中身肉付け オプションでファイルが指定されていたら
+            if (target["hst"] != null)
+            {
+                var hulftHstData = new BuildHulftHstDef();
+                List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(target["hst"]);
+                var updateBookHstSheet = new UpdateBook(OutPutBookName, hulftHstDatas);
+            }
+
+            //(4) TGrpシート[Group] 中身肉付け オプションでファイルが指定されていたら
+            if (target["tgrp"] != null)
+            {
+                var hulftTGrpData = new BuildHulftTGrpDef();
+                List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(target["tgrp"]);
+                var updateBookTGrpSheet = new UpdateBook(OutPutBookName, hulftTGrpDatas);
+            }
+
+            return;
+
+
+            ////var updateSheet = new UpdateBook("sample.xlsx");
+            //var updateSheet = new UpdateBook("NewTemplate.xlsx", "hulftdef.xlsx", sndDatas, rcvDatas, tgrpDatas, hstDatas);
+            ////var updateSheet = new UpdateBook("NewTemplate.xlsx", "hulftdef.xlsx");
+            ////updateSheet.UpdateSndBook("NewTemplate.xlsx", datas);
+            ////NewExcelBook("sample.xlsx");
+
+
+
+        }
+
+
+        public void nop()
+        {
             //パラメータなし引数は値がnullでないかでチェック
             //if (result["hoge"] != null) Console.WriteLine("hogeがあります");
 
@@ -202,7 +265,6 @@ namespace KnToolsHulft
 
             //          //  return;
 
-
             //string sndFile = @"E:\02.Kazu-Development\01.visualstudio\KnToolsHulft\KnToolsHulft\TestData\hultsnd.txt";
             //if (!System.IO.File.Exists(sndFile))
             //{
@@ -224,41 +286,6 @@ namespace KnToolsHulft
             //    return;
             //}
 
-            //Hulft Excelシートのテンプレートを作成する。
-            var OutPutBookName = "NewTemplate.xlsx";
-            if (target["o"] != null)
-            {
-                 OutPutBookName = target["o"];
-            }
-            var makeSheet = new CreateNewTemplateBook(OutPutBookName);
-            //return;
-
-            if (target["snd"] != null)
-            {
-                var hulftSndData = new BuildHulftSndDef();
-                List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(target["snd"]);
-                var updateBookSndSheet = new UpdateBook(OutPutBookName, hulftSndDatas);
-            }
-            if (target["rcv"] != null)
-            {
-                var hulftRcvData = new BuildHulftRcvDef();
-                List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(target["rcv"]);
-                var updateBookRcvSheet = new UpdateBook(OutPutBookName, hulftRcvDatas);
-            }
-            if (target["hst"] != null)
-            {
-                var hulftHstData = new BuildHulftHstDef();
-                List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(target["hst"]);
-                var updateBookHstSheet = new UpdateBook(OutPutBookName, hulftHstDatas);
-            }
-            if (target["tgrp"] != null)
-            {
-                var hulftTGrpData = new BuildHulftTGrpDef();
-                List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(target["tgrp"]);
-                var updateBookTGrpSheet = new UpdateBook(OutPutBookName, hulftTGrpDatas);
-            }
-            return;
-
             ////
             //var sndData = new BuildHulftSndDef();
             //List<HulftSndDef> sndDatas = sndData.ReadBuildHulftSndDef(sndFile);
@@ -272,17 +299,6 @@ namespace KnToolsHulft
             //var hstData = new BuildHulftHstDef();
             //List<HulftHstDef> hstDatas = hstData.ReadBuildHulftHstDef(hstFile);
 
-            ////var updateSheet = new UpdateBook("sample.xlsx");
-            //var updateSheet = new UpdateBook("NewTemplate.xlsx", "hulftdef.xlsx", sndDatas, rcvDatas, tgrpDatas, hstDatas);
-            ////var updateSheet = new UpdateBook("NewTemplate.xlsx", "hulftdef.xlsx");
-            ////updateSheet.UpdateSndBook("NewTemplate.xlsx", datas);
-            ////NewExcelBook("sample.xlsx");
-
-
-
         }
-
-
-
     }
 }

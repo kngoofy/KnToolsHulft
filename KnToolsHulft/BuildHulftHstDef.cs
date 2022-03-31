@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using KnToolsHulft.Data;
 
 namespace KnToolsHulft
 {
+    /// <summary>
+    /// HULFTホスト定義を扱うクラス
+    /// </summary>
+
     class BuildHulftHstDef
     {
+        /// <summary>
+        /// HULFTホスト定義のフラットテキストファイルを読んで、HulftHstDefクラスのListを生成して返す。
+        /// </summary> 
+        /// <param name="file">HULFTホスト定義ファイル名</param>
+        /// <returns>HulftHstDefクラスのList</returns>
 
         public List<HulftHstDef> ReadBuildHulftHstDef(string file)
         {
-            /**
-               <summary>
-                HULFT配信定義のフラットテキストを読んで、HulftHstDefクラスのListを生成して返す。
-               </summary> 
-            */
-
             List<HulftHstDef> hulftHstDefs = new List<HulftHstDef>();
             HulftHstDef hulftdef = new HulftHstDef();
 
@@ -97,11 +97,37 @@ namespace KnToolsHulft
                             break;
                     }
                 }
-
             }
-            //
+
             return hulftHstDefs;
         }
 
+        //サンプル：HULFTホスト定義
+        //
+        //#
+        //# ID=Host1
+        //#
+        //
+        //HOST=Host1
+        //HOSTTYPE = UNIX
+        //KCODETYPE=UTF-8
+        //JISYEAR=0
+        //CONNECTTYPE=LAN
+        //RCVPORT = 30000
+        //REQPORT=31000
+        //HOSTSPSNUM=0
+        //MYPROXYNAME=PROXY1
+        //MYPROXYPORT = 8080
+        //SENDPERMIT=Y
+        //HULJOBPERMIT = Y
+        //HULSNDRCPERMIT=Y
+        //HULRJOBPERMIT = Y
+        //ALLOWINSTTRANS=Y
+        //USRNOTIFY = Y
+        //HUL7MODE=Y
+        //COMMENT = コメント
+        //END
+
     }
+
 }

@@ -2,26 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace KnToolsHulft.Data
 {
+    /// <summary>
+    /// HULFTの転送グループのクラス 一つのHULFT定義に値する
+    /// </summary>
+
     public class HulftTGrpDef : HulftDef
     {
+        //プロパティ
         //ターゲットグループ管理設定
         public string Id { get; set; } = "GRPID";         // ID=LOOPBACK
 
-        //プロパティ
         public string Grp { get; set; } = "GRP";            // × 転送グループID
         public string Comment { get; set; } = "COMMENT";    // 〇 コメント
         public string Server { get; set; } = "SERVER";    // 〇 コメント
         public List<string> ServerList;       // × ホスト名
 
-        //コンストラクタ
+        /// <summary>
+        /// コンストラクタ 引数なし
+        /// </summary>        
         public HulftTGrpDef() : base(HulftManageType.tgrp)
         {
             ClearRest();
         }
+
+        /// <summary>
+        /// コンストラクタ 第一引数
+        /// </summary>
+        /// <param name="type">string "Header" かそれ以外</param>
         public HulftTGrpDef(string type) : base(HulftManageType.tgrp)
         {
             switch (type)
@@ -40,8 +50,8 @@ namespace KnToolsHulft.Data
             return (HulftTGrpDef)MemberwiseClone();
         }
 
-        //
-        public List<string> getListValues()
+        //newにした
+        public new List<string> getListValues()
         {
             var list = new List<string>
             {
@@ -66,15 +76,13 @@ namespace KnToolsHulft.Data
             return list;
         }
 
-
-
         /*
-                //選択したプロパティ値を配列で返すメソッド
-                public override string[] getValueArray()
-                {
-                    return getListValues().ToArray();
-                }
-        */
+        //選択したプロパティ値を配列で返すメソッド
+        public override string[] getValueArray()
+        {
+            return getListValues().ToArray();
+        }
+*/
 
         public override void ClearRest()
         {

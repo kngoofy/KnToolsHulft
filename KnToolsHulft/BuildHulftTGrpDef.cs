@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using KnToolsHulft.Data;
 
 namespace KnToolsHulft
 {
+    /// <summary>
+    /// HULFT転送グループ定義を扱うクラス
+    /// </summary>
+
     class BuildHulftTGrpDef
     {
+        /// <summary>
+        /// HULFT転送グループ定義のフラットテキストファイルを読んで、HulftTGrpクラスのListを生成して返す。
+        /// </summary> 
+        /// <param name="file">HULFT転送グループ定義ファイル名</param>
+        /// <returns>HulftTGrpクラスのList</returns>
+
         public List<HulftTGrpDef> ReadBuildHulftTGrpDef(string file)
         {
 
@@ -61,9 +68,23 @@ namespace KnToolsHulft
                 }
 
             }
-            //
+
             return hulftTGrpDefs;
         }
+
+        //サンプル：HULFT転送グループ定義
+        //
+        //#
+        //# ID=GRP1
+        //#
+        //
+        //GRP=GRP1
+        //SERVER DEF
+        //  grp1host1
+        //  grp1host2
+        //DEFEND
+        //COMMENT=コメント1
+        //END
 
     }
 }

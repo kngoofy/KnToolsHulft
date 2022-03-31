@@ -12,15 +12,26 @@ using KnToolsHulft.Data;
 
 namespace KnToolsHulft
 {
+    /// <summary>
+    /// ExcelBookのテンプレート作成関連のクラス
+    /// </summary>
     class CreateNewTemplateBook
     {
 
-        //コンストラクタ
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="sheetName">テンプレートとしてのExcelブックのファイル名</param>
         public CreateNewTemplateBook(string sheetName)
         {
             this.NewExcelBook(sheetName);
         }
 
+        /// <summary>
+        /// Excelブックの中身を構成していくメソッド
+        /// </summary>
+        /// <param name="bookName">Excelファイル名</param>
+        /// <returns></returns>
         public bool NewExcelBook(string bookName)
         {
             try
@@ -42,7 +53,7 @@ namespace KnToolsHulft
                 var sheetRcv = book.GetSheet(ConstHulft.SHEETNAME_RCV);
                 var sheetGrp = book.GetSheet(ConstHulft.SHEETNAME_GRP);
                 var sheetHst = book.GetSheet(ConstHulft.SHEETNAME_HST);
-                
+
                 //定型シートの中身を整える
                 FormatSheetIdx(book, styles, sheetIdx);
                 FormatSheetSnd(styles, sheetSnd);
@@ -64,6 +75,13 @@ namespace KnToolsHulft
             return true;
         }
 
+        /// <summary>
+        /// Book内のIndexシートの飾り付けるメソッド
+        /// </summary>
+        /// <param name="book">ExcelBookのIクラス</param>
+        /// <param name="styles">使用するスタイルのDictionary</param>
+        /// <param name="sheet">ExcelSheetのIクラス</param>
+        /// <returns>Bool True or False</returns>
         public bool FormatSheetIdx(IWorkbook book, Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
 
@@ -72,7 +90,7 @@ namespace KnToolsHulft
 
             //TopLeft シートタイトル埋め込み
             WriteCell(sheet, styles["topleft"], (0, 0), "HULFT定義BookのIndex");
-            
+
             //Sheetのインデックス埋め込み
             var titles = new List<(int no, string name)> {
                   (1,ConstHulft.SHEETNAME_SND)
@@ -80,10 +98,10 @@ namespace KnToolsHulft
                 , (3,ConstHulft.SHEETNAME_GRP)
                 , (4,ConstHulft.SHEETNAME_HST)
             };
-            
+
             //
             (int y, int x) p = (1, 1);
-            
+
             foreach (var t in titles)
             {
                 //style.BorderLeft = BorderStyle.None;
@@ -97,8 +115,14 @@ namespace KnToolsHulft
 
             return true;
         }
-
-        //セル設定(文字列用)
+                
+        /// <summary>
+        /// セルに書式を付けるメソッド Cellにハ文字列を設定
+        /// </summary>
+        /// <param name="sheet">対象Sheetオブジェクト</param>
+        /// <param name="style">Cellに設定するstyleオブジェクト</param>
+        /// <param name="s">セルの行と列(タプル)</param>
+        /// <param name="value">Cellに設定する文字列</param>
         public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, string value)
         {
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
@@ -107,7 +131,14 @@ namespace KnToolsHulft
             cell.CellStyle = style;
         }
 
-        //
+        /// <summary>
+        /// セルに書式を付けるメソッド Cellにハイパーリンクつける
+        /// </summary>
+        /// <param name="sheet">対象Sheetオブジェクト</param>
+        /// <param name="style">Cellに設定するstyleオブジェクト</param>
+        /// <param name="link">リンク</param>
+        /// <param name="s">セルの行と列(タプル)</param>
+        /// <param name="value">Cellに設定する文字列</param>
         public static void WriteCell(ISheet sheet, ICellStyle style, IHyperlink link, (int y, int x) s, string value)
         {
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
@@ -117,24 +148,51 @@ namespace KnToolsHulft
             cell.CellStyle = style;
         }
 
+        /// <summary>
+        /// Book内のSndシートを飾り付けるメソッド HULFT定義用シート
+        /// </summary>
+        /// <param name="styles">CellStyleをセットしたDictionaryオブジェクト</param>
+        /// <param name="sheet">Sndシートオブジェクト</param>
+        /// <returns>true or false</returns>
         public bool FormatSheetSnd(Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
             sheet.DisplayGridlines = false;
             WriteCell(sheet, styles["topleft"], (0, 0), ConstHulft.SHEETNAME_SND);
             return true;
         }
+
+        /// <summary>
+        /// Book内のRcvシートを飾り付けるメソッド HULFT集信定義用シート
+        /// </summary>
+        /// <param name="styles"></param>
+        /// <param name="sheet">Rcvシートオブジェクト</param>
+        /// <returns>true or false</returns>
         public bool FormatSheetRcv(Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
             sheet.DisplayGridlines = false;
             WriteCell(sheet, styles["topleft"], (0, 0), ConstHulft.SHEETNAME_RCV);
             return true;
         }
+
+        /// <summary>
+        /// Book内のHostシートを飾り付けるメソッド HULFTホスト定義用シート
+        /// </summary>
+        /// <param name="styles">CellStyleをセットしたDictionaryオブジェクト</param>
+        /// <param name="sheet">Hostシートオブジェクト</param>
+        /// <returns>true or false</returns>
         public bool FormatSheetHst(Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
             sheet.DisplayGridlines = false;
             WriteCell(sheet, styles["topleft"], (0, 0), ConstHulft.SHEETNAME_HST);
             return true;
         }
+
+        /// <summary>
+        /// Book内のGroupシートを飾り付けるメソッド HULFT転送グループ定義用シート
+        /// </summary>
+        /// <param name="styles">CellStyleをセットしたDictionaryオブジェクト</param>
+        /// <param name="sheet">Groupシートオブジェクト</param>
+        /// <returns>true or false</returns>
         public bool FormatSheetGrp(Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
             sheet.DisplayGridlines = false;
@@ -142,8 +200,13 @@ namespace KnToolsHulft
             return true;
         }
 
-        
-        //書式変更
+        /// <summary>
+        /// セルに書式変更してつけるメソッド
+        /// </summary>
+        /// <param name="sheet"></param>
+        /// <param name="columnIndex">Sheetの列位置</param>
+        /// <param name="rowIndex">Sheetの行位置</param>
+        /// <param name="style">セルに設定するセルスタイル</param>
         public static void WriteStyle(ISheet sheet, int columnIndex, int rowIndex, ICellStyle style)
         {
             var row = sheet.GetRow(rowIndex) ?? sheet.CreateRow(rowIndex);
@@ -152,7 +215,13 @@ namespace KnToolsHulft
             cell.CellStyle = style;
         }
 
-        //指定したセルの値を取得する
+        /// <summary>
+        /// 指定したセルの値を取得するメソッド
+        /// ＊ ReturnせずにWriteLineするだけ Debugに使用したのか？
+        /// </summary>
+        /// <param name="sheet">対象Sheetオブジェクト</param>
+        /// <param name="idxColumn">Sheetの列位置</param>
+        /// <param name="idxRow">Sheetの行位置</param>
         public static void getCellValue(ISheet sheet, int idxColumn, int idxRow)
         {
             var row = sheet.GetRow(idxRow) ?? sheet.CreateRow(idxRow); //指定した行を取得できない時はエラーとならないよう新規作成している

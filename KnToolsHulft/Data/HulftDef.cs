@@ -2,8 +2,10 @@
 
 namespace KnToolsHulft.Data
 {
+    /// <summary>
+    /// HULFT 管理情報のBaseクラス 
+    /// </summary>
 
-    //HULFT 管理情報のBaseクラス
     public class HulftDef
     {
         //プロパティ
@@ -11,12 +13,20 @@ namespace KnToolsHulft.Data
         public HulftManageType ManagementType { get; set; } = HulftManageType.none; // 管理タイプ
         public string KeyId { get; set; } = "";                                     // HULFT-KeyID                                                            
 
-        //コンストラクタ
+
+        /// <summary>
+        /// コンストラクタ 引数なし
+        /// </summary>
         public HulftDef()
         {
             ClearRest();
             ManagementType = HulftManageType.none;
         }
+
+        /// <summary>
+        /// コンストラクタ 第一引数あり
+        /// </summary>
+        /// <param name="type">HULFTの管理タイプ enum </param>
         public HulftDef(HulftManageType type)
         {
             ManagementType = type;
@@ -36,6 +46,10 @@ namespace KnToolsHulft.Data
         }
         */
 
+        /// <summary>
+        /// クラスのプロパティからStringのListを組み立てて返すメソッド
+        /// </summary>
+        /// <returns>stringのList</returns>
         public List<string> getListValues()
         {
             var list = new List<string>
@@ -48,13 +62,18 @@ namespace KnToolsHulft.Data
 
         }
 
-        //選択したプロパティ値を配列で返すメソッド
+        /// <summary>
+        /// 選択したプロパティ値をstringの配列で返すメソッド
+        /// </summary>
+        /// <returns>stringの配列</returns>
         public string[] getValueArray()
         {
             return getListValues().ToArray();
         }
 
-        //メンバのクリアリセットするメソッド
+        /// <summary>
+        /// クラスのプロパティを初期値にクリアリセットするメソッド
+        /// </summary>
         public virtual void ClearRest()
         {
             SystemName = "";

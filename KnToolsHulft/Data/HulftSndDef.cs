@@ -3,8 +3,12 @@
 
 namespace KnToolsHulft.Data
 {
+    /// <summary>
+    ///  HULFTの配信定義のクラス 一つのHULFT定義に値する
+    /// </summary>
     public class HulftSndDef : HulftDef
     {
+        //プロパティ
         //配信管理設定
         public string Id { get; set; } = "HULFTID";                     // ID=LOOPBACK
 
@@ -34,11 +38,17 @@ namespace KnToolsHulft.Data
         public string MailId { get; set; } = "MAILID";                  // 〇 メール連携ID
         public string Password { get; set; } = "PASSWORD";              // 〇× 暗号キー
 
-        //コンストラクタ
+        /// <summary>
+        /// コンストラクタ 引数なし
+        /// </summary>
         public HulftSndDef() : base(HulftManageType.snd)
         {
             ClearRest();
         }
+        /// <summary>
+        /// コンストラクタ 第一引数
+        /// </summary>
+        /// <param name="type">string "Header" かそれ以外</param>
         public HulftSndDef(string type) : base(HulftManageType.snd)
         {
             switch (type)
@@ -51,14 +61,17 @@ namespace KnToolsHulft.Data
             }
         }
 
-        //クラスのコピークーロンを返すメソッド
+        /// <summary>
+        /// クラスのコピークーロンを返すメソッド
+        /// </summary>
+        /// <returns>HulftSndDefクラスのクーロンされたオブジェクト</returns>
         public HulftSndDef Clone()
         {
             return (HulftSndDef)MemberwiseClone();
         }
 
-        //
-        public List<string> getListValues()
+        //newにした
+        public new List<string> getListValues()
         {
             var list = new List<string>
             {
@@ -129,11 +142,11 @@ namespace KnToolsHulft.Data
            return getListValues().ToArray();
            //return list.ToArray();
        }
-
        */
 
-
-        //プロパティの初期値にクリアリセット
+        /// <summary>
+        /// クラスのプロパティに初期値をクリアリセットするメソッド
+        /// </summary>
         public override void ClearRest()
         {
             //base.ClearRest();

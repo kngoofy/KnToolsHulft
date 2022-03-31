@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.IO;
 using KnToolsHulft.Data;
 
 namespace KnToolsHulft
 {
+    /// <summary>
+    /// HULFT配信定義を扱うクラス
+    /// </summary>
+
     public class BuildHulftSndDef
     {
+        /// <summary>
+        /// HULFT配信定義のフラットテキストファイルを読んで、HulftSndDefクラスのListを生成して返す。
+        /// </summary> 
+        /// <param name="file">HULFT配信定義ファイル名</param>
+        /// <returns>HulftSndDefクラスのList</returns>
 
-        //
         public List<HulftSndDef> ReadBuildHulftSndDef(string filePathName)
         {
 
@@ -81,10 +89,30 @@ namespace KnToolsHulft
                     }
                 }
             }
-            //
+
             return hulftSndDefs;
         }
 
+        //サンプル：HULFT配信定義
         //
+        //#
+        //# ID=LOOPBACK1
+        //#
+        //
+        //SNDFILE=LOOPBACK1
+        //FILENAME = C:\HULFT\LOOPSND.txt
+        //TRANSTYPE = T
+        //TRANSPRTY=50
+        //INTERVAL=0
+        //BLOCKLEN=4096
+        //BLOCKCNT=3
+        //COMP=N
+        //GRPID = LOOPBACK
+        //KJCHNGE=S
+        //CLEAR = K
+        //CODESET=A
+        //SHIFTTRANSACT = Y
+        //END
+
     }
 }

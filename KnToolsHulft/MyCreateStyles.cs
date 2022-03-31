@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
 namespace KnToolsHulft
 {
-     class MyCreateStyles
+    /// <summary>
+    /// Excelのstyleを生成するクラス
+    /// </summary>
+    class MyCreateStyles
     {
+        /// <summary>
+        /// Excelのstyleを生成して、Dictionaryオブジェクトに入れ込むメソッド
+        /// </summary>
+        /// <param name="wb">Excelのブックオブジェクト</param>
+        /// <returns>生成したスタイル Dictionaryオブジェクト</returns>
         public static Dictionary<String, ICellStyle> createStyles(IWorkbook wb)
         {
             //
@@ -19,7 +26,7 @@ namespace KnToolsHulft
             IDataFormat df = wb.CreateDataFormat();
 
             ICellStyle style;
-     
+
             IFont headerFont = wb.CreateFont();
             headerFont.IsBold = true;
 
@@ -185,6 +192,12 @@ namespace KnToolsHulft
 
             return styles;
         }
+
+        /// <summary>
+        /// Excelのいわゆる罫線のスタイル (private static だよ)
+        /// </summary>
+        /// <param name="wb">ExcelBookオブジェクト</param>
+        /// <returns>セルのスタイル</returns>
         private static ICellStyle CreateBorderedStyle(IWorkbook wb)
         {
             ICellStyle style = wb.CreateCellStyle();

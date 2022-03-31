@@ -7,6 +7,9 @@ using KnToolsHulft.Data;
 
 namespace KnToolsHulft
 {
+    /// <summary>
+    /// HULFT定義のインターフェース
+    /// </summary>
     interface IHulftDef
     {
 

@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace KnToolsHulft.Data
 {
+    /// <summary>
+    /// HULFTのホスト定義のクラス 一つのHULFT定義に値する
+    /// </summary>
     public class HulftHstDef : HulftDef
     {
+        //プロパティ
         //管理設定
-        public string Id { get; set; } = "HOSTID";                     // ID=LOOPBACK
+        public string Id { get; set; } = "HOSTID";                      // ID=LOOPBACK
 
-        public string Host { get; set; } = "HOST";                   //× ホスト名
+        public string Host { get; set; } = "HOST";                      //× ホスト名
         public string Comment { get; set; } = "COMMENT";                //〇 コメント
         public string HostType { get; set; } = "HOSTTYPE";              //× ホスト種
         public string KCodeType { get; set; } = "KCODETYPE";            //× 漢字コード種
@@ -34,11 +38,19 @@ namespace KnToolsHulft.Data
         public string AllowWinstTrans { get; set; } = "ALLOWINSTTRANS";  //〇 簡易転送受付許可
         public string UsrNotiry { get; set; } = "USRNOTIFY";            //〇 ユーザの通知
 
-        //コンストラクタ
+
+        /// <summary>
+        /// コンストラクタ 引数なし
+        /// </summary>
         public HulftHstDef() : base(HulftManageType.hst)
         {
             ClearRest();
         }
+
+        /// <summary>
+        /// コンストラクタ 第一引数
+        /// </summary>
+        /// <param name="type">string "Header" かそれ以外</param>
         public HulftHstDef(string type) : base(HulftManageType.hst)
         {
             switch (type)
@@ -52,14 +64,17 @@ namespace KnToolsHulft.Data
 
         }
 
-        //クラスのコピークーロンを返すメソッド
+        /// <summary>
+        /// クラスのコピークーロンを返すメソッド
+        /// </summary>
+        /// <returns>HulftHstDefクラスのクーロンされたオブジェクト</returns>
         public HulftHstDef Clone()
         {
             return (HulftHstDef)MemberwiseClone();
         }
 
-        //
-        public List<string> getListValues()
+        // newにした
+        public new List<string> getListValues()
         {
             var list = new List<string>
             {
@@ -87,14 +102,17 @@ namespace KnToolsHulft.Data
             return list;
         }
 
-/*
-        //選択したプロパティ値を配列で返すメソッド
-        public override string[] getValueArray()
-        {
+        /*
+         //選択したプロパティ値を配列で返すメソッド
+          public override string[] getValueArray()
+          {
             return getListValues().ToArray();
-        }
-*/
+           }
+        */
 
+        /// <summary>
+        /// クラスのプロパティに初期値をクリアリセットするメソッド
+        /// </summary>
         public override void ClearRest()
         {
             //base.ClearRest();

@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text;
 using System.IO;
 using KnToolsHulft.Data;
 
 namespace KnToolsHulft
 {
+    /// <summary>
+    /// HULFT集信定義を扱うクラス
+    /// </summary>
+
     public class BuildHulftRcvDef
     {
+        /// <summary>
+        /// HULFT集信定義のフラットテキストファイルを読んで、HulftRcvDefクラスのListを生成して返す。
+        /// </summary> 
+        /// <param name="file">HULFT集信定義ファイル名</param>
+        /// <returns>HulftRcvDefクラスのList</returns>
 
         public List<HulftRcvDef> ReadBuildHulftRcvDef(string file)
         {
@@ -89,8 +95,33 @@ namespace KnToolsHulft
                 }
 
             }
-            //
+
             return hulftRcvDefs;
         }
+
+        //サンプル：HULFT集信定義
+        //
+        //#
+        //# ID=RCV1
+        //#
+        //
+        //RCVFILE=RCV1
+        //FILENAME = RCV1.txt
+        //CODESET=0
+        //TRANSMODE=NEW
+        //ABNORMAL = DELETE
+        //RCVTYPE=S
+        //GENCTL = YES
+        //GENMNGNO=世代管理数
+        //JOBID = 正常時ジョブID
+        //EJOBID=異常時ジョブID
+        //GRPID = 転送グループID
+        //PASSWORD=暗号キー
+        //MAILID = メール連携ID
+        //JOBWAIT=J
+        //DATAVERIFY = 0
+        //COMMENT=コメント
+        //END
+
     }
 }
