@@ -9,7 +9,7 @@ namespace KnToolsHulft
     /// HULFT転送グループ定義を扱うクラス
     /// </summary>
 
-    class BuildHulftTGrpDef
+    public class BuildHulftTGrpDef
     {
         /// <summary>
         /// HULFT転送グループ定義のフラットテキストファイルを読んで、HulftTGrpクラスのListを生成して返す。

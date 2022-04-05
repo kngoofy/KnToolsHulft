@@ -15,7 +15,7 @@ namespace KnToolsHulft
     /// <summary>
     /// ExcelBookのテンプレート作成関連のクラス
     /// </summary>
-    class CreateNewTemplateBook
+    public class CreateNewTemplateBook
     {
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace KnToolsHulft
 
             return true;
         }
-                
+
         /// <summary>
         /// セルに書式を付けるメソッド Cellにハ文字列を設定
         /// </summary>

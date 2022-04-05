@@ -9,7 +9,7 @@ namespace KnToolsHulft
     /// HULFTホスト定義を扱うクラス
     /// </summary>
 
-    class BuildHulftHstDef
+    public class BuildHulftHstDef
     {
         /// <summary>
         /// HULFTホスト定義のフラットテキストファイルを読んで、HulftHstDefクラスのListを生成して返す。
