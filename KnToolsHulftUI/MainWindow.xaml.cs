@@ -312,7 +312,7 @@ namespace KnToolsHulftUI
             var defs = new Dictionary<string, string>()
             {
                  { "snd",null }
-                ,{ "scv",null }
+                ,{ "rcv",null }
                 ,{ "hst",null }
                 ,{ "tgrp",null }
             };
