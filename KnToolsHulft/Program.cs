@@ -54,7 +54,8 @@ namespace KnToolsHulft
             if (target["snd"] != null)
             {
                 var hulftSndData = new BuildHulftSndDef();
-                List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(target["snd"]);
+                //List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(target["snd"]);
+                List<HulftSndDef> hulftSndDatas = hulftSndData.StreamBuildHulftSndDef(target["snd"]);
                 var updateBookSndSheet = new UpdateBook(OutPutBookName, hulftSndDatas);
             }
 
@@ -62,7 +63,8 @@ namespace KnToolsHulft
             if (target["rcv"] != null)
             {
                 var hulftRcvData = new BuildHulftRcvDef();
-                List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(target["rcv"]);
+                //List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(target["rcv"]);
+                List<HulftRcvDef> hulftRcvDatas = hulftRcvData.StreamBuildHulftRcvDef(target["rcv"]);
                 var updateBookRcvSheet = new UpdateBook(OutPutBookName, hulftRcvDatas);
             }
 
@@ -70,7 +72,8 @@ namespace KnToolsHulft
             if (target["hst"] != null)
             {
                 var hulftHstData = new BuildHulftHstDef();
-                List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(target["hst"]);
+                //List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(target["hst"]);
+                List<HulftHstDef> hulftHstDatas = hulftHstData.StreamBuildHulftHstDef(target["hst"]); 
                 var updateBookHstSheet = new UpdateBook(OutPutBookName, hulftHstDatas);
             }
 
@@ -78,7 +81,8 @@ namespace KnToolsHulft
             if (target["tgrp"] != null)
             {
                 var hulftTGrpData = new BuildHulftTGrpDef();
-                List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(target["tgrp"]);
+                //List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(target["tgrp"]);
+                List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.StreamBuildHulftTGrpDef(target["tgrp"]);
                 var updateBookTGrpSheet = new UpdateBook(OutPutBookName, hulftTGrpDatas);
             }
 

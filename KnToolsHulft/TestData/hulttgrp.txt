@@ -21,3 +21,15 @@ SERVER DEF
 DEFEND
 COMMENT=コメント2
 END
+
+#
+# ID=GRP3
+#
+
+GRP=GRP3
+SERVER DEF
+  grp2host1
+  grp2host2
+DEFEND
+COMMENT=コメント3
+END
