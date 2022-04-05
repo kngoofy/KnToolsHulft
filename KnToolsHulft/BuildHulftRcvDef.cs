@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using KnToolsHulft.Data;
+using System.Diagnostics;
 
 namespace KnToolsHulft
 {
@@ -17,7 +18,101 @@ namespace KnToolsHulft
         /// </summary> 
         /// <param name="file">HULFT集信定義ファイル名</param>
         /// <returns>HulftRcvDefクラスのList</returns>
+        public List<HulftRcvDef> StreamBuildHulftRcvDef(string filename)
+        {
+            string htmlText = File.ReadAllText(filename);
+            return StringBuildHulftRcvDef(htmlText);
+        }
 
+        public List<HulftRcvDef> StringBuildHulftRcvDef(string HtmlText)
+        {
+
+            List<HulftRcvDef> hulftRcvDefs = new List<HulftRcvDef>();
+            HulftRcvDef hulftdef = new HulftRcvDef();
+
+            string fileContent = "";
+            using (StringReader sr = new StringReader(HtmlText))
+            {
+                while ((fileContent = sr.ReadLine()) != null)
+                {
+                    Debug.WriteLine(fileContent);
+                    fileContent.Trim();
+                    if (fileContent == "") continue;
+                    if (fileContent == "#") continue;
+
+                    string[] array = fileContent.Split('=');
+                    switch (array[0])
+                    {
+                        case "# ID":
+                            hulftdef.ClearRest();
+                            hulftdef.Id = array[1];
+                            break;
+                        case "RCVFILE":
+                            hulftdef.RcvFile = array[1];
+                            break;
+                        case "COMMENT":
+                            hulftdef.Comment = array[1];
+                            break;
+                        case "FILENAME":
+                            hulftdef.FileName = array[1];
+                            break;
+                        case "TRANSMODE":
+                            hulftdef.TransMode = array[1];
+                            break;
+                        case "ABNORMAL":
+                            hulftdef.Abnormal = array[1];
+                            break;
+                        case "RCVTYPE":
+                            hulftdef.RcvType = array[1];
+                            break;
+                        case "GENCTL":
+                            hulftdef.GenCtl = array[1];
+                            break;
+                        case "GENMNGNO":
+                            hulftdef.GenMngNo = array[1];
+                            break;
+                        case "CODESET":
+                            hulftdef.CodeSet = array[1];
+                            break;
+                        case "JOBID":
+                            hulftdef.JobId = array[1];
+                            break;
+                        case "EJOBID":
+                            hulftdef.Comment = array[1];
+                            break;
+                        case "JOBWAIT":
+                            hulftdef.JobWait = array[1];
+                            break;
+                        case "GRPID":
+                            hulftdef.GrpId = array[1];
+                            break;
+                        case "DATAVERIFY":
+                            hulftdef.DataVerify = array[1];
+                            break;
+                        case "MAILID":
+                            hulftdef.MailId = array[1];
+                            break;
+                        case "PASSWORD":
+                            hulftdef.Password = array[1];
+                            break;
+                        case "END":
+                            hulftRcvDefs.Add(hulftdef.Clone());
+                            break;
+                    }
+                }
+
+            }
+
+            return hulftRcvDefs;
+        }
+
+
+
+        /// <summary>
+        /// HULFT集信定義のフラットテキストファイルを読んで、HulftRcvDefクラスのListを生成して返す。
+        /// </summary> 
+        /// <param name="file">HULFT集信定義ファイル名</param>
+        /// <returns>HulftRcvDefクラスのList</returns>
         public List<HulftRcvDef> ReadBuildHulftRcvDef(string file)
         {
 

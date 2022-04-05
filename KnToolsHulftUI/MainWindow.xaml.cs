@@ -312,9 +312,9 @@ namespace KnToolsHulftUI
             var defs = new Dictionary<string, string>()
             {
                  { "snd",null }
-                ,{ "rcv",null }
+                ,{ "scv",null }
                 ,{ "hst",null }
-                ,{ "TGrp",null }
+                ,{ "tgrp",null }
             };
 
             // Snd
@@ -330,12 +330,12 @@ namespace KnToolsHulftUI
             // Hst
             if ((tbHulftHstDefFileName.Text != string.Empty) && File.Exists(tbHulftHstDefFileName.Text))
             {
-                defs["Hst"] = tbHulftHstDefFileName.Text;
+                defs["hst"] = tbHulftHstDefFileName.Text;
             }
             // TGrp
             if ((tbHulftTGrpDefFileName.Text != string.Empty) && File.Exists(tbHulftTGrpDefFileName.Text))
             {
-                defs["TGrp"] = tbHulftTGrpDefFileName.Text;
+                defs["tgrp"] = tbHulftTGrpDefFileName.Text;
             }
 
             var book = HulftBookName.Text;
@@ -356,13 +356,13 @@ namespace KnToolsHulftUI
             if (defs["hst"] != null)
             {
                 var hulftHstData = new BuildHulftHstDef();
-                List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(defs["Hst"]);
+                List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(defs["hst"]);
                 var updateBookSndSheet = new UpdateBook(book, hulftHstDatas);
             }
-            if (defs["TGrp"] != null)
+            if (defs["tgrp"] != null)
             {
                 var hulftTGrpData = new BuildHulftTGrpDef();
-                List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(defs["TGrp"]);
+                List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(defs["tgrp"]);
                 var updateBookSndSheet = new UpdateBook(book, hulftTGrpDatas);
             }
         }
