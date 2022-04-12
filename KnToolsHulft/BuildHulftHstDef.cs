@@ -41,22 +41,19 @@ namespace KnToolsHulft
                 while ((fileContent = sr.ReadLine()) != null)
                 {
                     Debug.WriteLine(fileContent);
-                    fileContent.Trim();
+                    fileContent = fileContent.Trim();
                     if (fileContent == "") continue;
                     if (fileContent == "#") continue;
 
                     string[] array = fileContent.Split('=');
                     switch (array[0])
                     {
-                        case "!# ID":
+                        case "# ID":
                             hulftdef.ClearRest();
                             hulftdef.Id = array[1];
                             break;
                         case "HOST":
                             hulftdef.Host = array[1];
-                            break;
-                        case "COMMENT":
-                            hulftdef.Comment = array[1];
                             break;
                         case "HOSTTYPE":
                             hulftdef.HostType = array[1];
@@ -70,7 +67,10 @@ namespace KnToolsHulft
                         case "REQPORT":
                             hulftdef.ReQPort = array[1];
                             break;
-                        case "HJISYEARULFTID":
+                        case "COMMENT":
+                            hulftdef.Comment = array[1];
+                            break;
+                        case "JISYEAR":
                             hulftdef.JisYear = array[1];
                             break;
                         case "CONNECTTYPE":
@@ -78,15 +78,6 @@ namespace KnToolsHulft
                             break;
                         case "HOSTSPSNUM":
                             hulftdef.HostSPSNum = array[1];
-                            break;
-                        case "HUL7MODE":
-                            hulftdef.HUL7Mode = array[1];
-                            break;
-                        case "MYPROXYNAME":
-                            hulftdef.MyProxyName = array[1];
-                            break;
-                        case "MYPROXYPORT":
-                            hulftdef.MyProxyPort = array[1];
                             break;
                         case "SENDPERMIT":
                             hulftdef.SendPermit = array[1];
@@ -100,12 +91,23 @@ namespace KnToolsHulft
                         case "HULRJOBPERMIT":
                             hulftdef.HULRJOBPermit = array[1];
                             break;
-                        case "ALLOWINSTTRANS":
-                            hulftdef.AllowWinstTrans = array[1];
-                            break;
                         case "USRNOTIFY":
                             hulftdef.UsrNotiry = array[1];
                             break;
+                        case "HUL7MODE":
+                            hulftdef.HUL7Mode = array[1];
+                            break;
+
+                        case "MYPROXYNAME":
+                            hulftdef.MyProxyName = array[1];
+                            break;
+                        case "MYPROXYPORT":
+                            hulftdef.MyProxyPort = array[1];
+                            break;
+                        case "ALLOWINSTTRANS":
+                            hulftdef.AllowWinstTrans = array[1];
+                            break;
+
                         case "END":
                             hulftHstDefs.Add(hulftdef.Clone());
                             break;
@@ -115,10 +117,6 @@ namespace KnToolsHulft
 
             return hulftHstDefs;
         }
-
-
-
-
 
         /// <summary>
         /// HULFTホスト定義のフラットテキストファイルを読んで、HulftHstDefクラスのListを生成して返す。

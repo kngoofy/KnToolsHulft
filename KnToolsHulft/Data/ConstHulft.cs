@@ -18,6 +18,6 @@ namespace KnToolsHulft.Data
         public const string SHEETNAME_GRP = "Group";
 
         //ワシ
-        public static readonly string AUTHOR_NAME = "K.N";
+        public static readonly string AUTHOR_NAME = "K.Nishi";
     }
 }

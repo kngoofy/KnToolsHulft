@@ -8,7 +8,6 @@ namespace KnToolsHulft.Data
     /// </summary>
     /// <remarks>
     /// HULFT  管理情報パラメータファイル生成コマンド utligenの引数 -i に対応
-    /// 
     /// </remarks>
     public enum HulftManageType
     {
@@ -37,4 +36,5 @@ namespace KnToolsHulft.Data
         sch : スケジュール情報
         trg : ファイルトリガ情報
     */
+
 }

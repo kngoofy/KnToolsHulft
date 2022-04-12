@@ -13,12 +13,12 @@ namespace KnToolsHulft.Data
     {
         //プロパティ
         //ターゲットグループ管理設定
-        public string Id { get; set; } = "GRPID";         // ID=LOOPBACK
+        public string Id { get; set; } = "GRPID";           // ID=LOOPBACK
 
         public string Grp { get; set; } = "GRP";            // × 転送グループID
         public string Comment { get; set; } = "COMMENT";    // 〇 コメント
-        public string Server { get; set; } = "SERVER";    // 〇 コメント
-        public List<string> ServerList;       // × ホスト名
+        public string Server { get; set; } = "SERVER";      // 〇 コメント
+        public List<string> ServerList;                     // × ホスト名
 
         /// <summary>
         /// コンストラクタ 引数なし
@@ -82,7 +82,7 @@ namespace KnToolsHulft.Data
         {
             return getListValues().ToArray();
         }
-*/
+        */
 
         public override void ClearRest()
         {

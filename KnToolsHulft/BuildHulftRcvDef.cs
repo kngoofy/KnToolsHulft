@@ -10,7 +10,6 @@ namespace KnToolsHulft
     /// <summary>
     /// HULFT集信定義を扱うクラス
     /// </summary>
-
     public class BuildHulftRcvDef
     {
         /// <summary>
@@ -26,7 +25,6 @@ namespace KnToolsHulft
 
         public List<HulftRcvDef> StringBuildHulftRcvDef(string HtmlText)
         {
-
             List<HulftRcvDef> hulftRcvDefs = new List<HulftRcvDef>();
             HulftRcvDef hulftdef = new HulftRcvDef();
 
@@ -36,7 +34,7 @@ namespace KnToolsHulft
                 while ((fileContent = sr.ReadLine()) != null)
                 {
                     Debug.WriteLine(fileContent);
-                    fileContent.Trim();
+                    fileContent = fileContent.Trim();
                     if (fileContent == "") continue;
                     if (fileContent == "#") continue;
 
@@ -50,11 +48,17 @@ namespace KnToolsHulft
                         case "RCVFILE":
                             hulftdef.RcvFile = array[1];
                             break;
-                        case "COMMENT":
-                            hulftdef.Comment = array[1];
-                            break;
                         case "FILENAME":
                             hulftdef.FileName = array[1];
+                            break;
+                        case "OWNER":
+                            hulftdef.Owner = array[1];
+                            break;
+                        case "GROUP":
+                            hulftdef.Group = array[1];
+                            break;
+                        case "PERM":
+                            hulftdef.Perm = array[1];
                             break;
                         case "TRANSMODE":
                             hulftdef.TransMode = array[1];
@@ -65,36 +69,37 @@ namespace KnToolsHulft
                         case "RCVTYPE":
                             hulftdef.RcvType = array[1];
                             break;
-                        case "GENCTL":
-                            hulftdef.GenCtl = array[1];
-                            break;
-                        case "GENMNGNO":
-                            hulftdef.GenMngNo = array[1];
-                            break;
-                        case "CODESET":
-                            hulftdef.CodeSet = array[1];
-                            break;
                         case "JOBID":
                             hulftdef.JobId = array[1];
                             break;
-                        case "EJOBID":
+                        case "COMMENT":
                             hulftdef.Comment = array[1];
-                            break;
-                        case "JOBWAIT":
-                            hulftdef.JobWait = array[1];
                             break;
                         case "GRPID":
                             hulftdef.GrpId = array[1];
                             break;
-                        case "DATAVERIFY":
-                            hulftdef.DataVerify = array[1];
+                        case "EJOBID":
+                            hulftdef.EjobId = array[1];
                             break;
-                        case "MAILID":
-                            hulftdef.MailId = array[1];
+                        case "GENCTL":
+                            hulftdef.GenCtl = array[1];
                             break;
                         case "PASSWORD":
                             hulftdef.Password = array[1];
                             break;
+                        case "CODESET":
+                            hulftdef.CodeSet = array[1];
+                            break;
+                        case "JOBWAIT":
+                            hulftdef.JobWait = array[1];
+                            break;
+                        case "GENMNGNO":
+                            hulftdef.GenMngNo = array[1];
+                            break;
+                        case "DATAVERIFY":
+                            hulftdef.DataVerify = array[1];
+                            break;
+                        
                         case "END":
                             hulftRcvDefs.Add(hulftdef.Clone());
                             break;
@@ -106,8 +111,6 @@ namespace KnToolsHulft
             return hulftRcvDefs;
         }
 
-
-
         /// <summary>
         /// HULFT集信定義のフラットテキストファイルを読んで、HulftRcvDefクラスのListを生成して返す。
         /// </summary> 
@@ -115,7 +118,6 @@ namespace KnToolsHulft
         /// <returns>HulftRcvDefクラスのList</returns>
         public List<HulftRcvDef> ReadBuildHulftRcvDef(string file)
         {
-
             List<HulftRcvDef> hulftRcvDefs = new List<HulftRcvDef>();
             HulftRcvDef hulftdef = new HulftRcvDef();
 
@@ -176,9 +178,6 @@ namespace KnToolsHulft
                             break;
                         case "DATAVERIFY":
                             hulftdef.DataVerify = array[1];
-                            break;
-                        case "MAILID":
-                            hulftdef.MailId = array[1];
                             break;
                         case "PASSWORD":
                             hulftdef.Password = array[1];

@@ -13,25 +13,27 @@ namespace KnToolsHulft.Data
         public string Id { get; set; } = "HULFTID";             // ID=LOOPBACK
 
         public string RcvFile { get; set; } = "RCVFILE";        // ×SNDFILE=LOOPBACK
-        public string Comment { get; set; } = "COMMENT";        // 〇
+        public string Comment { get; set; } = "COMMENT";        // 〇コメント
 
         //基本設定
         public string FileName { get; set; } = "FILENAME";      // ×FILENAME=C:\HULFT\LOOPSND.txt
-        public string TransMode { get; set; } = "TRANSMODE";    // ×TRANSTYPE=T
-        public string Abnormal { get; set; } = "ABNORMAL";      // ×
-        public string RcvType { get; set; } = "RCVTYPE";        // ×
-        public string GenCtl { get; set; } = "GENCTL";          // ×
-        public string GenMngNo { get; set; } = "GENMNGNO";      // 〇
-        public string CodeSet { get; set; } = "CODESET";        //CODESET =A
-        public string JobId { get; set; } = "JOBID";            // 〇
-        public string EjobId { get; set; } = "EJOBID";          // 〇
+        public string Owner { get; set; } = "OWNER";            // 〇オーナ名
+        public string Group { get; set; } = "GROUP";            // 〇グループ名
+        public string Perm { get; set; } = "PERM";              // 〇パーミッション
+        public string TransMode { get; set; } = "TRANSMODE";    // ×登録モード
+        public string Abnormal { get; set; } = "ABNORMAL";      // ×異常時の処理
+        public string RcvType { get; set; } = "RCVTYPE";        // ×集信形態
+        public string GenCtl { get; set; } = "GENCTL";          // ×世代管理
+        public string GenMngNo { get; set; } = "GENMNGNO";      // 〇世代管理数
+        public string CodeSet { get; set; } = "CODESET";        // 〇EBCDICセット・コードセット
+        public string JobId { get; set; } = "JOBID";            // 〇正常時ジョブID
+        public string EjobId { get; set; } = "EJOBID";          // 〇異常時ジョブID
 
         //拡張設定
-        public string JobWait { get; set; } = "JOBWAIT";        // 〇
-        public string GrpId { get; set; } = "GRPID";            // 〇//GRPID=LOOPBACK
-        public string DataVerify { get; set; } = "DATAVERIFY";  // 〇
-        public string MailId { get; set; } = "MAILID";          // 〇
-        public string Password { get; set; } = "PASSWORD";      // 〇×
+        public string JobWait { get; set; } = "JOBWAIT";        // 〇集信完了通知
+        public string GrpId { get; set; } = "GRPID";            // 〇転送グループID
+        public string DataVerify { get; set; } = "DATAVERIFY";  // 〇データ検証
+        public string Password { get; set; } = "PASSWORD";      // 〇×暗号キー
 
         //
         /// <summary>
@@ -72,23 +74,24 @@ namespace KnToolsHulft.Data
         {
             var list = new List<string>
             {
-                Id,
                 RcvFile,
-                Comment,
                 FileName,
+                Owner,
+                Group,
+                Perm,
                 TransMode,
                 Abnormal,
                 RcvType,
-                GenCtl,
-                GenMngNo,
-                CodeSet,
                 JobId,
-                EjobId,
-                JobWait,
+                Comment,
                 GrpId,
+                EjobId,
+                GenCtl,
+                Password,
+                CodeSet,
+                JobWait,
+                GenMngNo,
                 DataVerify,
-                MailId,
-                Password
              };
             //base.getValueArray();
             return list;
@@ -108,22 +111,25 @@ namespace KnToolsHulft.Data
         public override void ClearRest()
         {
             base.ClearRest();
+            Id = "";
             RcvFile = "";
-            Comment = "";
             FileName = "";
+            Owner = "";
+            Group = "";
+            Perm = "";
             TransMode = "";
             Abnormal = "";
             RcvType = "";
-            GenCtl = "";
-            GenMngNo = "";
-            CodeSet = "";
             JobId = "";
-            EjobId = "";
-            JobWait = "";
+            Comment = "";
             GrpId = "";
-            DataVerify = "";
-            MailId = "";
+            EjobId = "";
+            GenCtl = "";
             Password = "";
+            CodeSet = "";
+            JobWait = "";
+            GenMngNo = "";
+            DataVerify = "";
         }
 
     }

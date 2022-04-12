@@ -41,7 +41,7 @@ namespace KnToolsHulft
                 while ((fileContent = sr.ReadLine()) != null)
                 {
                     Debug.WriteLine(fileContent);
-                    fileContent.Trim();
+                    fileContent = fileContent.Trim();
                     if (fileContent == "") continue;
                     if (fileContent == "#") continue;
 
@@ -60,8 +60,14 @@ namespace KnToolsHulft
                         case "FILENAME":
                             hulftdef.FileName = array[1];
                             break;
+                        case "DBID":
+                            hulftdef.DbId = array[1];
+                            break;
                         case "TRANSTYPE":
                             hulftdef.TransType = array[1];
+                            break;
+                        case "TRANSPRTY":
+                            hulftdef.Transprty = array[1];
                             break;
                         case "INTERVAL":
                             hulftdef.Interval = array[1];
@@ -75,8 +81,24 @@ namespace KnToolsHulft
                         case "COMP":
                             hulftdef.Comp = array[1];
                             break;
+                        case "JOBID":
+                            hulftdef.JobId = array[1];
+                            break;
+                        case "COMMENT":
+                            //hulftdef.Comment = array[1];
+                            //var a = string.Join("=", array.Skip(1).Take(2));
+                            if (array[2] != null)
+                                //hulftdef.Comment = array[2];
+                                hulftdef.Comment = string.Join("=", array.Skip(1).Take(2));
+                            break;
                         case "GRPID":
                             hulftdef.GrpId = array[1];
+                            break;
+                        case "FMTID":
+                            hulftdef.FmtId = array[1];
+                            break;
+                        case "EJOBID":
+                            hulftdef.EjobId = array[1];
                             break;
                         case "KJCHNGE":
                             hulftdef.KjChnge = array[1];
@@ -84,11 +106,20 @@ namespace KnToolsHulft
                         case "CLEAR":
                             hulftdef.Clear = array[1];
                             break;
+                        case "PASSWORD":
+                            hulftdef.Password = array[1];
+                            break;
                         case "CODESET":
                             hulftdef.CodeSet = array[1];
                             break;
+                        case "COMPSIZE":
+                            hulftdef.CompSize = array[1];
+                            break;
                         case "SHIFTTRANSACT":
                             hulftdef.Shifttransact = array[1];
+                            break;
+                        case "PREJOBID":
+                            hulftdef.PrejobId = array[1];
                             break;
                         case "END":
                             hulftSndDefs.Add(hulftdef.Clone());
@@ -100,10 +131,6 @@ namespace KnToolsHulft
 
             return hulftSndDefs;
         }
-
-
-
-
 
         /// <summary>
         /// HULFT配信定義のフラットテキストファイルを読んで、HulftSndDefクラスのListを生成して返す。

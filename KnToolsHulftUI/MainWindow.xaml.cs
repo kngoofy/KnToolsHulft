@@ -339,31 +339,36 @@ namespace KnToolsHulftUI
             }
 
             var book = HulftBookName.Text;
-            var makeSheet = new CreateNewTemplateBook(book);
+            //var makeSheet = new CreateNewTemplateBook(book);
+            new CreateNewTemplateBook(book);
 
             if (defs["snd"] != null)
             {
                 var hulftSndData = new BuildHulftSndDef();
                 List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(defs["snd"]);
-                var updateBookSndSheet = new UpdateBook(book, hulftSndDatas);
+                //var updateBookSndSheet = new UpdateBook(book, hulftSndDatas);
+                new UpdateBook(book, hulftSndDatas);
             }
             if (defs["rcv"] != null)
             {
                 var hulftRcvData = new BuildHulftRcvDef();
                 List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(defs["rcv"]);
-                var updateBookSndSheet = new UpdateBook(book, hulftRcvDatas);
+                //var updateBookSndSheet = new UpdateBook(book, hulftRcvDatas);
+                new UpdateBook(book, hulftRcvDatas);
             }
             if (defs["hst"] != null)
             {
                 var hulftHstData = new BuildHulftHstDef();
                 List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(defs["hst"]);
-                var updateBookSndSheet = new UpdateBook(book, hulftHstDatas);
+                //var updateBookSndSheet = new UpdateBook(book, hulftHstDatas);
+                new UpdateBook(book, hulftHstDatas);
             }
             if (defs["tgrp"] != null)
             {
                 var hulftTGrpData = new BuildHulftTGrpDef();
                 List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(defs["tgrp"]);
-                var updateBookSndSheet = new UpdateBook(book, hulftTGrpDatas);
+                //var updateBookSndSheet = new UpdateBook(book, hulftTGrpDatas);
+                new UpdateBook(book, hulftTGrpDatas);
             }
         }
 

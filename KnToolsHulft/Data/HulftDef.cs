@@ -13,7 +13,6 @@ namespace KnToolsHulft.Data
         public HulftManageType ManagementType { get; set; } = HulftManageType.none; // 管理タイプ
         public string KeyId { get; set; } = "";                                     // HULFT-KeyID                                                            
 
-
         /// <summary>
         /// コンストラクタ 引数なし
         /// </summary>

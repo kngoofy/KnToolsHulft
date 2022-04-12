@@ -9,7 +9,6 @@ using NPOI.XSSF.UserModel;
 using System.IO;
 using KnToolsHulft.Data;
 
-
 namespace KnToolsHulft
 {
     /// <summary>
@@ -17,7 +16,6 @@ namespace KnToolsHulft
     /// </summary>
     public class CreateNewTemplateBook
     {
-
         /// <summary>
         /// コンストラクタ
         /// </summary>

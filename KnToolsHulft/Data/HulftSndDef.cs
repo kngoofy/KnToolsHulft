@@ -35,7 +35,6 @@ namespace KnToolsHulft.Data
         public string BlockLen { get; set; } = "BLOCKLEN";              // × 転送ブロック長 BLOCKLEN=4096
         public string BlockCnt { get; set; } = "BLOCKCNT";              // × 転送ブロック数 BLOCKCNT=3
         public string Shifttransact { get; set; } = "SHIFTTRANSACT";    // 〇 シフトコードの扱い SHIFTTRANSACT = Y
-        public string MailId { get; set; } = "MAILID";                  // 〇 メール連携ID
         public string Password { get; set; } = "PASSWORD";              // 〇× 暗号キー
 
         /// <summary>
@@ -77,28 +76,27 @@ namespace KnToolsHulft.Data
             {
                 Id,
                 SndFile,
-                Comment,
                 FileName,
+                DbId,
                 TransType,
-                //FmtId,
-                Comp,
-                CompSize,
-                //DeflateLevel,
-                KjChnge,
-                //CodeSet,
-                //Clear,
-                GrpId,
-                //PrejobId,
-                JobId,
-                EjobId,
-                //DbId,
-                Interval,
                 Transprty,
+                Interval,
                 BlockLen,
                 BlockCnt,
-                //Shifttransact,
-                //MailId,
-                //Password
+                Comp,
+                JobId,
+                Comment,
+                GrpId,
+                FmtId,
+                EjobId,
+                KjChnge,
+                Clear,
+                Password,
+                CodeSet,
+                CompSize,
+                Shifttransact,
+                PrejobId,
+                //DeflateLevel,
             };
             //base.getValueArray();
             return list;
@@ -108,7 +106,6 @@ namespace KnToolsHulft.Data
        //選択したプロパティ値を配列で返すメソッド
        public override string[] getValueArray()
        {
-
            var list = new List<string>
            {
                Id,
@@ -137,8 +134,6 @@ namespace KnToolsHulft.Data
                //Password
            };
            //base.getValueArray();
-
-
            return getListValues().ToArray();
            //return list.ToArray();
        }
@@ -173,7 +168,6 @@ namespace KnToolsHulft.Data
             BlockLen = "";
             BlockCnt = "";
             Shifttransact = "";
-            MailId = "";
             Password = "";
         }
 

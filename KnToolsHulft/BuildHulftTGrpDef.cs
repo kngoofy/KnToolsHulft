@@ -10,7 +10,6 @@ namespace KnToolsHulft
     /// <summary>
     /// HULFT転送グループ定義を扱うクラス
     /// </summary>
-
     public class BuildHulftTGrpDef
     {
         /// <summary>
@@ -44,7 +43,7 @@ namespace KnToolsHulft
                 while ((fileContent = sr.ReadLine()) != null)
                 {
                     Debug.WriteLine(fileContent);
-                    fileContent.Trim();
+                    fileContent = fileContent.Trim();
                     if (fileContent == "") continue;
                     if (fileContent == "#") continue;
 
@@ -91,7 +90,6 @@ namespace KnToolsHulft
         /// </summary> 
         /// <param name="file">HULFT転送グループ定義ファイル名</param>
         /// <returns>HulftTGrpクラスのList</returns>
-
         public List<HulftTGrpDef> ReadBuildHulftTGrpDef(string file)
         {
 
