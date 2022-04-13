@@ -74,6 +74,7 @@ namespace KnToolsHulft.Data
         {
             var list = new List<string>
             {
+                Id,
                 RcvFile,
                 FileName,
                 Owner,

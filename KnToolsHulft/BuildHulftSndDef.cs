@@ -87,7 +87,7 @@ namespace KnToolsHulft
                         case "COMMENT":
                             //hulftdef.Comment = array[1];
                             //var a = string.Join("=", array.Skip(1).Take(2));
-                            if (array[2] != null)
+                            //if (array[2] != null)
                                 //hulftdef.Comment = array[2];
                                 hulftdef.Comment = string.Join("=", array.Skip(1).Take(2));
                             break;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
@@ -73,7 +74,10 @@ namespace KnToolsHulft
                             hulftdef.JobId = array[1];
                             break;
                         case "COMMENT":
-                            hulftdef.Comment = array[1];
+                            //hulftdef.Comment = array[1];
+                            //if (array[2] != null)
+                                //hulftdef.Comment = array[2];
+                                hulftdef.Comment = string.Join("=", array.Skip(1).Take(2));
                             break;
                         case "GRPID":
                             hulftdef.GrpId = array[1];
