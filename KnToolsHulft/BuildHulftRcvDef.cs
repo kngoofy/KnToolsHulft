@@ -34,7 +34,7 @@ namespace KnToolsHulft
             {
                 while ((fileContent = sr.ReadLine()) != null)
                 {
-                    Debug.WriteLine(fileContent);
+                    //Debug.WriteLine(fileContent);
                     fileContent = fileContent.Trim();
                     if (fileContent == "") continue;
                     if (fileContent == "#") continue;

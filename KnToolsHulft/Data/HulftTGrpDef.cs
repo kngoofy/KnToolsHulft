@@ -13,7 +13,7 @@ namespace KnToolsHulft.Data
     {
         //プロパティ
         //ターゲットグループ管理設定
-        public string Id { get; set; } = "GRPID";           // ID=LOOPBACK
+        public string Id { get; set; } = "ID";              // ID=LOOPBACK
 
         public string Grp { get; set; } = "GRP";            // × 転送グループID
         public string Comment { get; set; } = "COMMENT";    // 〇 コメント

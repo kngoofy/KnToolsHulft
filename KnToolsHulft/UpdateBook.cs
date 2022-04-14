@@ -184,7 +184,7 @@ namespace KnToolsHulft
             {
                 WriteCell(sheet, styles["indexLabel"], (p.y, p.x + x), headerList[x]);
             }
-            sheet.SetAutoFilter(new CellRangeAddress(p.y, p.y, p.x, p.x+ headerList.Count-1));
+            sheet.SetAutoFilter(new CellRangeAddress(p.y, p.y, p.x, p.x + headerList.Count - 1));
 
             // データブロックの書き出し
             p = (3, 1);
@@ -194,9 +194,15 @@ namespace KnToolsHulft
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
-                    WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
-                    sheet.AutoSizeColumn(p.x + x, true);
+                    if (x == 1) WriteCell(sheet, styles["defDataBa"], (p.y + y, p.x + x), dataList[x]);
+                    else WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
                 }
+            }
+
+            // カラムのAutoSize
+            for (int x = 0; x < headerList.Count; x++)
+            {
+                sheet.AutoSizeColumn(p.x + x, true);
             }
 
             return true;
@@ -240,9 +246,15 @@ namespace KnToolsHulft
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
-                    WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
-                    sheet.AutoSizeColumn(p.x + x, true);
+                    if (x == 1) WriteCell(sheet, styles["defDataBa"], (p.y + y, p.x + x), dataList[x]);
+                    else WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
                 }
+            }
+
+            // カラムのAutoSize
+            for (int x = 0; x < headerList.Count; x++)
+            {
+                sheet.AutoSizeColumn(p.x + x, true);
             }
 
             return true;
@@ -286,9 +298,15 @@ namespace KnToolsHulft
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
-                    WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
-                    sheet.AutoSizeColumn(p.x + x, true);
+                    if (x == 1) WriteCell(sheet, styles["defDataBa"], (p.y + y, p.x + x), dataList[x]);
+                    else WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
                 }
+            }
+
+            // カラムのAutoSize
+            for (int x = 0; x < headerList.Count; x++)
+            {
+                sheet.AutoSizeColumn(p.x + x, true);
             }
 
             return true;
@@ -333,9 +351,15 @@ namespace KnToolsHulft
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
-                    WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
-                    sheet.AutoSizeColumn(p.x + x, true);
+                    if (x == 1) WriteCell(sheet, styles["defDataBa"], (p.y + y, p.x + x), dataList[x]);
+                    else WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
                 }
+            }
+
+            // カラムのAutoSize
+            for (int x = 0; x < headerList.Count; x++)
+            {
+                sheet.AutoSizeColumn(p.x + x, true);
             }
 
             return true;
@@ -352,7 +376,31 @@ namespace KnToolsHulft
         {
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
             var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
-            cell.SetCellType(CellType.String);
+
+            //cell.SetCellValue(value);
+            cell.CellStyle = style;
+
+            bool result;
+            int intvalue;
+            result = Int32.TryParse(value, out intvalue);
+            if (result)
+            {
+                cell.SetCellType(CellType.Numeric);
+                cell.SetCellValue(intvalue);
+            }
+            else
+            {
+                cell.SetCellType(CellType.String);
+                cell.SetCellValue(value);
+            }
+
+        }
+
+        public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, int value)
+        {
+            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
+            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
+            cell.SetCellType(CellType.Numeric);
             cell.SetCellValue(value);
             cell.CellStyle = style;
         }

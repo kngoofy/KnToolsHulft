@@ -13,7 +13,7 @@ namespace KnToolsHulft.Data
     {
         //プロパティ
         //管理設定
-        public string Id { get; set; } = "HOSTID";                      // ID=LOOPBACK
+        public string Id { get; set; } = "ID";                          // ID=LOOPBACK
 
         public string Host { get; set; } = "HOST";                      //× ホスト名
         public string Comment { get; set; } = "COMMENT";                //〇 コメント

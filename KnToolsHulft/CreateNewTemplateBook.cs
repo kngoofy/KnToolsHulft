@@ -103,7 +103,8 @@ namespace KnToolsHulft
             foreach (var (no, name) in titles)
             {
                 //style.BorderLeft = BorderStyle.None;
-                WriteCell(sheet, styles["indexBox"], (y + no, x), no.ToString());   //番号埋め
+                //WriteCell(sheet, styles["indexBox"], (y + no, x), no.ToString());   //番号埋め
+                WriteCell(sheet, styles["indexBox"], (y + no, x), no);   //番号埋め
 
                 //style.BorderLeft = BorderStyle.Dotted;
                 var link = new XSSFHyperlink(HyperlinkType.Document)
@@ -121,7 +122,7 @@ namespace KnToolsHulft
         }
 
         /// <summary>
-        /// セルに書式を付けるメソッド Cellにハ文字列を設定
+        /// セルに書式を付けるメソッド Cellに文字列を設定
         /// </summary>
         /// <param name="sheet">対象Sheetオブジェクト</param>
         /// <param name="style">Cellに設定するstyleオブジェクト</param>
@@ -133,6 +134,15 @@ namespace KnToolsHulft
             var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
             cell.SetCellValue(value);
             cell.CellStyle = style;
+            cell.SetCellType(CellType.String);
+        }
+        public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, int value)
+        {
+            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
+            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
+            cell.SetCellValue(value);
+            cell.CellStyle = style;
+            cell.SetCellType(CellType.Numeric);
         }
 
         /// <summary>
@@ -150,6 +160,7 @@ namespace KnToolsHulft
             cell.Hyperlink = link;
             cell.SetCellValue(value);
             cell.CellStyle = style;
+            cell.SetCellType(CellType.String);
         }
 
         /// <summary>
