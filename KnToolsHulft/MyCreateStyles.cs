@@ -23,7 +23,7 @@ namespace KnToolsHulft
             Dictionary<String, ICellStyle> styles = new Dictionary<String, ICellStyle>();
 
             //short borderColor = IndexedColors.Grey50Percent.Index;
-            IDataFormat df = wb.CreateDataFormat();
+            //IDataFormat df = wb.CreateDataFormat();
 
             ICellStyle style;
 

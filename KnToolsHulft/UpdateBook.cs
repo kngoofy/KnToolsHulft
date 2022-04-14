@@ -381,8 +381,8 @@ namespace KnToolsHulft
             cell.CellStyle = style;
 
             bool result;
-            int intvalue;
-            result = Int32.TryParse(value, out intvalue);
+            //int intvalue;
+            result = Int32.TryParse(value, out int intvalue);
             if (result)
             {
                 cell.SetCellType(CellType.Numeric);

@@ -10,14 +10,14 @@ namespace KnToolsHulft
     /// HULFTホスト定義を扱うクラス
     /// </summary>
 
-    public class BuildHulftHstDef
+    public static class BuildHulftHstDef
     {
         /// <summary>
         /// HULFTホスト定義のフラットテキストファイルを読んで、HulftHstDefクラスのListを生成して返す。
         /// </summary> 
         /// <param name="file">HULFTホスト定義ファイル名</param>
         /// <returns>HulftHstDefクラスのList</returns>
-        public List<HulftHstDef> StreamBuildHulftHstDef(string filename)
+        public static List<HulftHstDef> StreamBuildHulftHstDef(string filename)
         {
             //List<HulftHstDef> hulftHstDefs = new List<HulftHstDef>();
             string htmlText = File.ReadAllText(filename);
@@ -29,7 +29,7 @@ namespace KnToolsHulft
         /// </summary> 
         /// <param name="file">HULFTホスト定義ファイル名</param>
         /// <returns>HulftHstDefクラスのList</returns>
-        public List<HulftHstDef> StringBuildHulftHstDef(string HtmlText)
+        public static List<HulftHstDef> StringBuildHulftHstDef(string HtmlText)
         {
             List<HulftHstDef> hulftHstDefs = new List<HulftHstDef>();
             HulftHstDef hulftdef = new HulftHstDef();
@@ -124,7 +124,7 @@ namespace KnToolsHulft
         /// <param name="file">HULFTホスト定義ファイル名</param>
         /// <returns>HulftHstDefクラスのList</returns>
 
-        public List<HulftHstDef> ReadBuildHulftHstDef(string file)
+        public static List<HulftHstDef> ReadBuildHulftHstDef(string file)
         {
             List<HulftHstDef> hulftHstDefs = new List<HulftHstDef>();
             HulftHstDef hulftdef = new HulftHstDef();

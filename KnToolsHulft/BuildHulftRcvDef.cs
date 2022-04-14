@@ -11,20 +11,20 @@ namespace KnToolsHulft
     /// <summary>
     /// HULFT集信定義を扱うクラス
     /// </summary>
-    public class BuildHulftRcvDef
+    public static class BuildHulftRcvDef
     {
         /// <summary>
         /// HULFT集信定義のフラットテキストファイルを読んで、HulftRcvDefクラスのListを生成して返す。
         /// </summary> 
         /// <param name="file">HULFT集信定義ファイル名</param>
         /// <returns>HulftRcvDefクラスのList</returns>
-        public List<HulftRcvDef> StreamBuildHulftRcvDef(string filename)
+        public static List<HulftRcvDef> StreamBuildHulftRcvDef(string filename)
         {
             string htmlText = File.ReadAllText(filename);
             return StringBuildHulftRcvDef(htmlText);
         }
 
-        public List<HulftRcvDef> StringBuildHulftRcvDef(string HtmlText)
+        public static List<HulftRcvDef> StringBuildHulftRcvDef(string HtmlText)
         {
             List<HulftRcvDef> hulftRcvDefs = new List<HulftRcvDef>();
             HulftRcvDef hulftdef = new HulftRcvDef();
@@ -120,7 +120,7 @@ namespace KnToolsHulft
         /// </summary> 
         /// <param name="file">HULFT集信定義ファイル名</param>
         /// <returns>HulftRcvDefクラスのList</returns>
-        public List<HulftRcvDef> ReadBuildHulftRcvDef(string file)
+        public static List<HulftRcvDef> ReadBuildHulftRcvDef(string file)
         {
             List<HulftRcvDef> hulftRcvDefs = new List<HulftRcvDef>();
             HulftRcvDef hulftdef = new HulftRcvDef();

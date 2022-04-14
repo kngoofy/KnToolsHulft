@@ -344,30 +344,34 @@ namespace KnToolsHulftUI
 
             if (defs["snd"] != null)
             {
-                var hulftSndData = new BuildHulftSndDef();
-                List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(defs["snd"]);
+                //var hulftSndData = new BuildHulftSndDef();
+                //List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(defs["snd"]);
                 //var updateBookSndSheet = new UpdateBook(book, hulftSndDatas);
+                List<HulftSndDef> hulftSndDatas = BuildHulftSndDef.ReadBuildHulftSndDef(defs["snd"]);
                 new UpdateBook(book, hulftSndDatas);
             }
             if (defs["rcv"] != null)
             {
-                var hulftRcvData = new BuildHulftRcvDef();
-                List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(defs["rcv"]);
+                //var hulftRcvData = new BuildHulftRcvDef();
+                //List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(defs["rcv"]);
                 //var updateBookSndSheet = new UpdateBook(book, hulftRcvDatas);
+                List<HulftRcvDef> hulftRcvDatas = BuildHulftRcvDef.ReadBuildHulftRcvDef(defs["rcv"]);
                 new UpdateBook(book, hulftRcvDatas);
             }
             if (defs["hst"] != null)
             {
-                var hulftHstData = new BuildHulftHstDef();
-                List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(defs["hst"]);
+                //var hulftHstData = new BuildHulftHstDef();
+                //List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(defs["hst"]);
                 //var updateBookSndSheet = new UpdateBook(book, hulftHstDatas);
+                List<HulftHstDef> hulftHstDatas = BuildHulftHstDef.ReadBuildHulftHstDef(defs["hst"]);
                 new UpdateBook(book, hulftHstDatas);
             }
             if (defs["tgrp"] != null)
             {
-                var hulftTGrpData = new BuildHulftTGrpDef();
-                List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(defs["tgrp"]);
+                //var hulftTGrpData = new BuildHulftTGrpDef();
+                //List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(defs["tgrp"]);
                 //var updateBookSndSheet = new UpdateBook(book, hulftTGrpDatas);
+                List<HulftTGrpDef> hulftTGrpDatas = BuildHulftTGrpDef.ReadBuildHulftTGrpDef(defs["tgrp"]);
                 new UpdateBook(book, hulftTGrpDatas);
             }
         }

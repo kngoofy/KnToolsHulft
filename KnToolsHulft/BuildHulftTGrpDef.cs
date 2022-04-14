@@ -10,14 +10,14 @@ namespace KnToolsHulft
     /// <summary>
     /// HULFT転送グループ定義を扱うクラス
     /// </summary>
-    public class BuildHulftTGrpDef
+    public static class BuildHulftTGrpDef
     {
         /// <summary>
         /// HULFT転送グループ定義のフラットテキストファイルを読んで、HulftTGrpクラスのListを生成して返す。
         /// </summary>
         /// <param name="file">HULFT転送グループ定義ファイル名</param>
         /// <returns>HulftTGrpクラスのList</returns>
-        public List<HulftTGrpDef> StreamBuildHulftTGrpDef(string filename)
+        public static List<HulftTGrpDef> StreamBuildHulftTGrpDef(string filename)
         {
             string htmlText = File.ReadAllText(filename);
             return StringBuildHulftTGrpDef(htmlText);
@@ -28,7 +28,7 @@ namespace KnToolsHulft
         /// </summary>
         /// <param name="HtmlText">HULFT転送グループ定義文字列</param>
         /// <returns>HulftTGrpクラスのList</returns>
-        public List<HulftTGrpDef> StringBuildHulftTGrpDef(string HtmlText)
+        public static List<HulftTGrpDef> StringBuildHulftTGrpDef(string HtmlText)
         {
             List<HulftTGrpDef> hulftTGrpDefs = new List<HulftTGrpDef>();
             HulftTGrpDef hulftdef = new HulftTGrpDef();
@@ -90,7 +90,7 @@ namespace KnToolsHulft
         /// </summary> 
         /// <param name="file">HULFT転送グループ定義ファイル名</param>
         /// <returns>HulftTGrpクラスのList</returns>
-        public List<HulftTGrpDef> ReadBuildHulftTGrpDef(string file)
+        public static List<HulftTGrpDef> ReadBuildHulftTGrpDef(string file)
         {
 
             List<HulftTGrpDef> hulftTGrpDefs = new List<HulftTGrpDef>();

@@ -23,8 +23,10 @@ namespace KnToolsHulft.Data
         public string Shifttransact { get; set; }   //SHIFTTRANSACT = Y
 
         //コンストラクター
-        public HulftStructSnd(string a)
+        public HulftStructSnd(string none)
         {
+            Id = none;
+
             Id = "";
             Sndfile = "";
             Filename = "";

@@ -11,7 +11,7 @@ namespace KnToolsHulft
     /// HULFT配信定義を扱うクラス
     /// </summary>
 
-    public class BuildHulftSndDef
+    public static class BuildHulftSndDef
     {
         /// <summary>
         /// HULFT配信定義のフラットテキストファイルを読んで、HulftSndDefクラスのListを生成して返す。
@@ -19,13 +19,13 @@ namespace KnToolsHulft
         /// <param name="file">HULFT配信定義ファイル名</param>
         /// <returns>HulftSndDefクラスのList</returns>
 
-        public List<HulftSndDef> StreamBuildHulftSndDef(string filename)
+        public static List<HulftSndDef> StreamBuildHulftSndDef(string filename)
         {
             string htmlText = File.ReadAllText(filename);
             return StringBuildHulftSndDef(htmlText);
         }
 
-        public List<HulftSndDef> StringBuildHulftSndDef(string HtmlText)
+        public static List<HulftSndDef> StringBuildHulftSndDef(string HtmlText)
         {
 
             // int counterLine = 0;
@@ -138,7 +138,7 @@ namespace KnToolsHulft
         /// <param name="file">HULFT配信定義ファイル名</param>
         /// <returns>HulftSndDefクラスのList</returns>
 
-        public List<HulftSndDef> ReadBuildHulftSndDef(string filePathName)
+        public static List<HulftSndDef> ReadBuildHulftSndDef(string filePathName)
         {
 
             // int counterLine = 0;
