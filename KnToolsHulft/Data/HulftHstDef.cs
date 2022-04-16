@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace KnToolsHulft.Data
 {
@@ -17,7 +15,7 @@ namespace KnToolsHulft.Data
 
         public string Host { get; set; } = "HOST";                      //× ホスト名
         public string Comment { get; set; } = "COMMENT";                //〇 コメント
-        
+
         public string HostType { get; set; } = "HOSTTYPE";              //× ホスト種
         public string KCodeType { get; set; } = "KCODETYPE";            //× 転送コードセット・漢字コード種
         public string RcvPort { get; set; } = "RCVPORT";                //× 集信ポートNo.
@@ -70,8 +68,11 @@ namespace KnToolsHulft.Data
             return (HulftHstDef)MemberwiseClone();
         }
 
-        // newにした
-        public new List<string> GetListValues()
+        /// <summary>
+        /// クラスのプロパティからStringのListを組み立てて返すメソッド
+        /// </summary>
+        /// <returns>stringのList</returns>
+        public override List<string> GetListValues()
         {
             var list = new List<string>
             {
@@ -95,17 +96,17 @@ namespace KnToolsHulft.Data
                 //MyProxyName,
                 //MyProxyPort,
             };
-            //base.getValueArray();
             return list;
         }
 
-        /*
-         //選択したプロパティ値を配列で返すメソッド
-          public override string[] getValueArray()
-          {
-            return getListValues().ToArray();
-           }
-        */
+        /// <summary>
+        /// 選択したプロパティ値をstringの配列で返すメソッド
+        /// </summary>
+        /// <returns>stringの配列</returns>
+        public override string[] GetValueArray()
+        {
+            return GetListValues().ToArray();
+        }
 
         /// <summary>
         /// クラスのプロパティに初期値をクリアリセットするメソッド

@@ -16,8 +16,13 @@ namespace KnToolsHulft.Data
         public const string SHEETNAME_RCV = "Rcv";
         public const string SHEETNAME_HST = "Host";
         public const string SHEETNAME_GRP = "Group";
+        public const string SHEETNAME_JOB = "Job";
 
         //ワシ
-        public static readonly string AUTHOR_NAME = "K.Nishi";
+        public const string AUTHOR_NAME = "K.Nishi";
+
+        //バージョン埋め込み
+        public static readonly string VERSION = "2022.04.16";
+
     }
 }

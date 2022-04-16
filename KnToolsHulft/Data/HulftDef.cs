@@ -9,9 +9,9 @@ namespace KnToolsHulft.Data
     public class HulftDef
     {
         //プロパティ
-        public string SystemName { get; set; } = "";                                //システム名 
-        public HulftManageType ManagementType { get; set; } = HulftManageType.none; // 管理タイプ
-        public string KeyId { get; set; } = "";                                     // HULFT-KeyID                                                            
+        protected string SystemName { get; set; } = "";                                //システム名 
+        protected HulftManageType ManagementType { get; set; } = HulftManageType.none; // 管理タイプ
+        protected string KeyId { get; set; } = "";                                     // HULFT-KeyID                                                            
 
         /// <summary>
         /// コンストラクタ 引数なし
@@ -31,41 +31,27 @@ namespace KnToolsHulft.Data
             ManagementType = type;
         }
 
-        /*
-        //選択したプロパティ値を配列で返すメソッド
-        public virtual string[] getValueArray()
+        /// <summary>
+        /// クラスのプロパティからStringのListを組み立てて返すメソッド
+        /// </summary>
+        /// <returns>stringのList</returns>
+        public virtual List<string> GetListValues()
         {
             var list = new List<string>
             {
                  SystemName
                 ,ManagementType.ToString()
                 ,KeyId
-        };
-            return list.ToArray();
-        }
-        */
-
-        /// <summary>
-        /// クラスのプロパティからStringのListを組み立てて返すメソッド
-        /// </summary>
-        /// <returns>stringのList</returns>
-        public List<string> GetListValues()
-        {
-            var list = new List<string>
-            {
-                SystemName
-                ,ManagementType.ToString()
-                ,KeyId
             };
             return list;
-
         }
 
         /// <summary>
         /// 選択したプロパティ値をstringの配列で返すメソッド
         /// </summary>
         /// <returns>stringの配列</returns>
-        public string[] GetValueArray()
+        //public string[] GetValueArray()
+        public virtual string[] GetValueArray()
         {
             return GetListValues().ToArray();
         }
@@ -80,12 +66,14 @@ namespace KnToolsHulft.Data
             KeyId = "";
         }
 
-        /*
-        //クラスのコピークーロンを返すメソッド
-        public HulftSndDef Clone()
-        {
-            return (HulftSndDef)MemberwiseClone();
-        }
-        */
+        ///// <summary>
+        ///// クラスのコピークーロンを返すメソッド
+        ///// </summary>
+        ///// <returns></returns>
+        //public virtual HulftDef Clone()
+        //{
+        //    return (HulftSndDef)MemberwiseClone();
+        //}
+
     }
 }

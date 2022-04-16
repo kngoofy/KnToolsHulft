@@ -121,6 +121,32 @@ namespace KnToolsHulft
         }
 
         /// <summary>
+        /// コンストラクタ 
+        /// </summary>
+        /// <param name="outputFile">ExcelBookファイル名</param>
+        /// <param name="jobLists">HULFTジョブを組み立てたList</param>
+        public UpdateBook(string outputFile, List<HulftJobDef> jobLists)
+        {
+            try
+            {
+                var book = WorkbookFactory.Create(outputFile);
+                // 各シートを埋める
+                UpdateJobBook(book, jobLists);
+
+                // UpdateしたExcelファイルを閉じる
+                using (var fs = new FileStream(outputFile, FileMode.Create))
+                {
+                    book.Write(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="outputFile">ExcelBookファイル名</param>
@@ -128,7 +154,7 @@ namespace KnToolsHulft
         /// <param name="rcvLists">HULFT集信定義を組み立てたList</param>
         /// <param name="tgrpLists">HULFT転送グループ定義を組み立てたList</param>
         /// <param name="hstLists">HULFTホスト定義を組み立てたList</param>
-        public UpdateBook(string outputFile, List<HulftSndDef> sndLists, List<HulftRcvDef> rcvLists, List<HulftTGrpDef> tgrpLists, List<HulftHstDef> hstLists)
+        public UpdateBook(string outputFile, List<HulftSndDef> sndLists, List<HulftRcvDef> rcvLists, List<HulftTGrpDef> tgrpLists, List<HulftHstDef> hstLists, List<HulftJobDef> jobLists)
         {
             // Bookの中身を埋める
             try
@@ -142,6 +168,7 @@ namespace KnToolsHulft
                 UpdateRcvBook(book, rcvLists);
                 UpdateHstBook(book, hstLists);
                 UpdateTGrpBook(book, tgrpLists);
+                UpdateJobBook(book, jobLists);
 
                 // UpdateしたExcelファイルを閉じる
                 using (var fs = new FileStream(outputFile, FileMode.Create))
@@ -174,7 +201,6 @@ namespace KnToolsHulft
 
             // データヘッダーの組み立て
             var header = new HulftSndDef("Header");
-            //var headerArray = header.getValueArray();
             var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
@@ -226,7 +252,6 @@ namespace KnToolsHulft
 
             // データヘッダーの組み立て
             var header = new HulftRcvDef("Header");
-            //var headerArray = header.getValueArray();
             var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
@@ -278,7 +303,6 @@ namespace KnToolsHulft
 
             // データヘッダーの組み立て
             var header = new HulftHstDef("Header");
-            //var headerArray = header.getValueArray();
             var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
@@ -330,7 +354,6 @@ namespace KnToolsHulft
 
             // データヘッダーの組み立て
             var header = new HulftTGrpDef("Header");
-            //var headerArray = header.getValueArray();
             var headerList = header.GetListValues();
 
             // データヘッダーブロックの書き出し
@@ -347,7 +370,7 @@ namespace KnToolsHulft
             for (int y = 0; y < lists.Count; y++)
             {
                 //var dataList = lists[y].getListValues();
-                var dataList = lists[y].GetListListValues();
+                var dataList = lists[y].GetListValues();
                 dataList.Insert(0, (y + 1).ToString());
                 for (int x = 0; x < dataList.Count; x++)
                 {
@@ -366,7 +389,58 @@ namespace KnToolsHulft
         }
 
         /// <summary>
-        /// セルに書き込むメッソド
+        /// Jobシートのデータ埋めと書式あてこみメソッド
+        /// </summary>
+        /// <param name="book">ExcelBookオブジェクト</param>
+        /// <param name="lists">HULFTジョブ定義データオブジェクト</param>
+        /// <returns></returns>
+        public bool UpdateJobBook(IWorkbook book, List<HulftJobDef> lists)
+        {
+            var sheet = book.GetSheet(ConstHulft.SHEETNAME_JOB);
+
+            // セルに充てるスタイルの組み立て
+            Dictionary<String, ICellStyle> styles = MyCreateStyles.CreateStyles(book);
+
+            // 左上にシート名を
+            WriteCell(sheet, styles["indexLabel"], (0, 0), ConstHulft.SHEETNAME_JOB);
+
+            // データヘッダーの組み立て
+            var header = new HulftJobDef("Header");
+            var headerList = header.GetListValues();
+
+            // データヘッダーブロックの書き出し
+            (int y, int x) p = (2, 1);
+            headerList.Insert(0, "No.");
+            for (int x = 0; x < headerList.Count; x++)
+            {
+                WriteCell(sheet, styles["indexLabel"], (p.y, p.x + x), headerList[x]);
+            }
+            sheet.SetAutoFilter(new CellRangeAddress(p.y, p.y, p.x, p.x + headerList.Count - 1));
+
+            // データブロックの書き出し
+            p = (3, 1);
+            for (int y = 0; y < lists.Count; y++)
+            {
+                var dataList = lists[y].GetListValues();
+                dataList.Insert(0, (y + 1).ToString());
+                for (int x = 0; x < dataList.Count; x++)
+                {
+                    if (x == 1) WriteCell(sheet, styles["defDataBa"], (p.y + y, p.x + x), dataList[x]);
+                    else WriteCell(sheet, styles["defData"], (p.y + y, p.x + x), dataList[x]);
+                }
+            }
+
+            // カラムのAutoSize
+            for (int x = 0; x < headerList.Count; x++)
+            {
+                sheet.AutoSizeColumn(p.x + x, true);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// セルに書き込むメソッド
         /// </summary>
         /// <param name="sheet">シートオブジェクト</param>
         /// <param name="style">セルスタイル</param>
@@ -377,11 +451,9 @@ namespace KnToolsHulft
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
             var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
 
-            //cell.SetCellValue(value);
             cell.CellStyle = style;
 
             bool result;
-            //int intvalue;
             result = Int32.TryParse(value, out int intvalue);
             if (result)
             {
@@ -396,6 +468,13 @@ namespace KnToolsHulft
 
         }
 
+        /// <summary>
+        /// セルに書き込むメソッド
+        /// </summary>
+        /// <param name="sheet">シートオブジェクト</param>
+        /// <param name="style">セルスタイル</param>
+        /// <param name="s">座標</param>
+        /// <param name="value">数値</param>
         public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, int value)
         {
             var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);

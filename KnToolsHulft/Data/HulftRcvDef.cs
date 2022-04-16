@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace KnToolsHulft.Data
 
@@ -94,24 +96,24 @@ namespace KnToolsHulft.Data
                 GenMngNo,
                 DataVerify,
              };
-            //base.getValueArray();
             return list;
         }
 
-        /*
-        //選択したプロパティ値を配列で返すメソッド
-        public override string[] getValueArray()
+        /// <summary>
+        /// 選択したプロパティ値をstringの配列で返すメソッド
+        /// </summary>
+        /// <returns>stringの配列</returns>
+        public override string[] GetValueArray()
         {
-            return getListValues().ToArray();
+            return GetListValues().ToArray();
         }
-        */
 
         /// <summary>
         /// クラスのプロパティに初期値をクリアリセットするメソッド
         /// </summary>
         public override void ClearRest()
         {
-            base.ClearRest();
+            //base.ClearRest();
             Id = "";
             RcvFile = "";
             FileName = "";

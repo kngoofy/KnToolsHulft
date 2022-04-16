@@ -74,10 +74,7 @@ namespace KnToolsHulft
                             hulftdef.JobId = array[1];
                             break;
                         case "COMMENT":
-                            //hulftdef.Comment = array[1];
-                            //if (array[2] != null)
-                                //hulftdef.Comment = array[2];
-                                hulftdef.Comment = string.Join("=", array.Skip(1).Take(2));
+                            hulftdef.Comment = string.Join("=", array.Skip(1).Take(2));
                             break;
                         case "GRPID":
                             hulftdef.GrpId = array[1];
@@ -103,7 +100,7 @@ namespace KnToolsHulft
                         case "DATAVERIFY":
                             hulftdef.DataVerify = array[1];
                             break;
-                        
+
                         case "END":
                             hulftRcvDefs.Add(hulftdef.Clone());
                             break;
@@ -115,87 +112,87 @@ namespace KnToolsHulft
             return hulftRcvDefs;
         }
 
-        /// <summary>
-        /// HULFT集信定義のフラットテキストファイルを読んで、HulftRcvDefクラスのListを生成して返す。
-        /// </summary> 
-        /// <param name="file">HULFT集信定義ファイル名</param>
-        /// <returns>HulftRcvDefクラスのList</returns>
-        public static List<HulftRcvDef> ReadBuildHulftRcvDef(string file)
-        {
-            List<HulftRcvDef> hulftRcvDefs = new List<HulftRcvDef>();
-            HulftRcvDef hulftdef = new HulftRcvDef();
+        ///// <summary>
+        ///// HULFT集信定義のフラットテキストファイルを読んで、HulftRcvDefクラスのListを生成して返す。
+        ///// </summary> 
+        ///// <param name="file">HULFT集信定義ファイル名</param>
+        ///// <returns>HulftRcvDefクラスのList</returns>
+        //public static List<HulftRcvDef> ReadBuildHulftRcvDef(string file)
+        //{
+        //    List<HulftRcvDef> hulftRcvDefs = new List<HulftRcvDef>();
+        //    HulftRcvDef hulftdef = new HulftRcvDef();
 
-            string fileContent = "";
-            using (var sr = new StreamReader(file, Encoding.Default))
-            {
-                while ((fileContent = sr.ReadLine()) != null)
-                {
-                    fileContent.Trim();
-                    if (fileContent == "") continue;
-                    if (fileContent == "#") continue;
+        //    string fileContent = "";
+        //    using (var sr = new StreamReader(file, Encoding.Default))
+        //    {
+        //        while ((fileContent = sr.ReadLine()) != null)
+        //        {
+        //            fileContent.Trim();
+        //            if (fileContent == "") continue;
+        //            if (fileContent == "#") continue;
 
-                    string[] array = fileContent.Split('=');
-                    switch (array[0])
-                    {
-                        case "# ID":
-                            hulftdef.ClearRest();
-                            hulftdef.Id = array[1];
-                            break;
-                        case "RCVFILE":
-                            hulftdef.RcvFile = array[1];
-                            break;
-                        case "COMMENT":
-                            hulftdef.Comment = array[1];
-                            break;
-                        case "FILENAME":
-                            hulftdef.FileName = array[1];
-                            break;
-                        case "TRANSMODE":
-                            hulftdef.TransMode = array[1];
-                            break;
-                        case "ABNORMAL":
-                            hulftdef.Abnormal = array[1];
-                            break;
-                        case "RCVTYPE":
-                            hulftdef.RcvType = array[1];
-                            break;
-                        case "GENCTL":
-                            hulftdef.GenCtl = array[1];
-                            break;
-                        case "GENMNGNO":
-                            hulftdef.GenMngNo = array[1];
-                            break;
-                        case "CODESET":
-                            hulftdef.CodeSet = array[1];
-                            break;
-                        case "JOBID":
-                            hulftdef.JobId = array[1];
-                            break;
-                        case "EJOBID":
-                            hulftdef.Comment = array[1];
-                            break;
-                        case "JOBWAIT":
-                            hulftdef.JobWait = array[1];
-                            break;
-                        case "GRPID":
-                            hulftdef.GrpId = array[1];
-                            break;
-                        case "DATAVERIFY":
-                            hulftdef.DataVerify = array[1];
-                            break;
-                        case "PASSWORD":
-                            hulftdef.Password = array[1];
-                            break;
-                        case "END":
-                            hulftRcvDefs.Add(hulftdef.Clone());
-                            break;
-                    }
-                }
+        //            string[] array = fileContent.Split('=');
+        //            switch (array[0])
+        //            {
+        //                case "# ID":
+        //                    hulftdef.ClearRest();
+        //                    hulftdef.Id = array[1];
+        //                    break;
+        //                case "RCVFILE":
+        //                    hulftdef.RcvFile = array[1];
+        //                    break;
+        //                case "COMMENT":
+        //                    hulftdef.Comment = array[1];
+        //                    break;
+        //                case "FILENAME":
+        //                    hulftdef.FileName = array[1];
+        //                    break;
+        //                case "TRANSMODE":
+        //                    hulftdef.TransMode = array[1];
+        //                    break;
+        //                case "ABNORMAL":
+        //                    hulftdef.Abnormal = array[1];
+        //                    break;
+        //                case "RCVTYPE":
+        //                    hulftdef.RcvType = array[1];
+        //                    break;
+        //                case "GENCTL":
+        //                    hulftdef.GenCtl = array[1];
+        //                    break;
+        //                case "GENMNGNO":
+        //                    hulftdef.GenMngNo = array[1];
+        //                    break;
+        //                case "CODESET":
+        //                    hulftdef.CodeSet = array[1];
+        //                    break;
+        //                case "JOBID":
+        //                    hulftdef.JobId = array[1];
+        //                    break;
+        //                case "EJOBID":
+        //                    hulftdef.Comment = array[1];
+        //                    break;
+        //                case "JOBWAIT":
+        //                    hulftdef.JobWait = array[1];
+        //                    break;
+        //                case "GRPID":
+        //                    hulftdef.GrpId = array[1];
+        //                    break;
+        //                case "DATAVERIFY":
+        //                    hulftdef.DataVerify = array[1];
+        //                    break;
+        //                case "PASSWORD":
+        //                    hulftdef.Password = array[1];
+        //                    break;
+        //                case "END":
+        //                    hulftRcvDefs.Add(hulftdef.Clone());
+        //                    break;
+        //            }
+        //        }
 
-            }
+        //    }
 
-            return hulftRcvDefs;
-        }
+        //    return hulftRcvDefs;
+        //}
 
         //サンプル：HULFT集信定義
         //

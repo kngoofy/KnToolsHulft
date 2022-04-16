@@ -16,7 +16,8 @@ namespace KnToolsHulft.Data
         rcv,
         hst,
         tgrp,
-        //job, fmt, mfmt, sch, trg
+        job, 
+        //fmt, mfmt, sch, trg
     }
 
     /*

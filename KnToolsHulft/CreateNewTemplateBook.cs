@@ -45,12 +45,14 @@ namespace KnToolsHulft
                 book.CreateSheet(ConstHulft.SHEETNAME_RCV);
                 book.CreateSheet(ConstHulft.SHEETNAME_GRP);
                 book.CreateSheet(ConstHulft.SHEETNAME_HST);
+                book.CreateSheet(ConstHulft.SHEETNAME_JOB);
 
                 var sheetIdx = book.GetSheet(ConstHulft.SHEETNAME_IDX);
                 var sheetSnd = book.GetSheet(ConstHulft.SHEETNAME_SND);
                 var sheetRcv = book.GetSheet(ConstHulft.SHEETNAME_RCV);
                 var sheetGrp = book.GetSheet(ConstHulft.SHEETNAME_GRP);
                 var sheetHst = book.GetSheet(ConstHulft.SHEETNAME_HST);
+                var sheetJob = book.GetSheet(ConstHulft.SHEETNAME_JOB);
 
                 //定型シートの中身を整える
                 FormatSheetIdx(/*book,*/ styles, sheetIdx);
@@ -58,6 +60,7 @@ namespace KnToolsHulft
                 FormatSheetRcv(styles, sheetRcv);
                 FormatSheetGrp(styles, sheetGrp);
                 FormatSheetHst(styles, sheetHst);
+                FormatSheetJob(styles, sheetJob);
 
                 //テンプレートBookを書き出す
                 using (var fs = new FileStream(bookName, FileMode.Create))
@@ -80,9 +83,8 @@ namespace KnToolsHulft
         /// <param name="styles">使用するスタイルのDictionary</param>
         /// <param name="sheet">ExcelSheetのIクラス</param>
         /// <returns>Bool True or False</returns>
-        public bool FormatSheetIdx(/*IWorkbook book,*/ Dictionary<String, ICellStyle> styles, ISheet sheet)
+        public bool FormatSheetIdx(Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
-
             //メモリ線を非表示
             sheet.DisplayGridlines = false;
 
@@ -95,76 +97,33 @@ namespace KnToolsHulft
                 , (2,ConstHulft.SHEETNAME_RCV)
                 , (3,ConstHulft.SHEETNAME_GRP)
                 , (4,ConstHulft.SHEETNAME_HST)
+                , (5,ConstHulft.SHEETNAME_JOB)
             };
 
-            //
+            //Sheetの中身を整える
             (int y, int x) = (1, 1);
 
             foreach (var (no, name) in titles)
             {
-                //style.BorderLeft = BorderStyle.None;
-                //WriteCell(sheet, styles["indexBox"], (y + no, x), no.ToString());   //番号埋め
-                WriteCell(sheet, styles["indexBox"], (y + no, x), no);   //番号埋め
+                //番号埋め
+                WriteCell(sheet, styles["indexBox"], (y + no, x), no);
 
-                //style.BorderLeft = BorderStyle.Dotted;
+                //シート名を埋めてリンクを付ける
                 var link = new XSSFHyperlink(HyperlinkType.Document)
                 {
                     Address = name + "!A1"
                 };
-                WriteCell(sheet, styles["indexLabel"], link, (y + no, x + 1), name);        //シート名埋め
+                WriteCell(sheet, styles["indexLabel"], link, (y + no, x + 1), name);
             }
 
+            //カラムの横幅Autoが好き
             sheet.AutoSizeColumn(0, true);
-            //sheet.AutoSizeColumn(1, true);
-            //sheet.AutoSizeColumn(2, true);
 
             return true;
         }
 
-        /// <summary>
-        /// セルに書式を付けるメソッド Cellに文字列を設定
-        /// </summary>
-        /// <param name="sheet">対象Sheetオブジェクト</param>
-        /// <param name="style">Cellに設定するstyleオブジェクト</param>
-        /// <param name="s">セルの行と列(タプル)</param>
-        /// <param name="value">Cellに設定する文字列</param>
-        public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, string value)
-        {
-            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
-            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
-            cell.SetCellValue(value);
-            cell.CellStyle = style;
-            cell.SetCellType(CellType.String);
-        }
-        public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, int value)
-        {
-            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
-            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
-            cell.SetCellValue(value);
-            cell.CellStyle = style;
-            cell.SetCellType(CellType.Numeric);
-        }
-
-        /// <summary>
-        /// セルに書式を付けるメソッド Cellにハイパーリンクつける
-        /// </summary>
-        /// <param name="sheet">対象Sheetオブジェクト</param>
-        /// <param name="style">Cellに設定するstyleオブジェクト</param>
-        /// <param name="link">リンク</param>
-        /// <param name="s">セルの行と列(タプル)</param>
-        /// <param name="value">Cellに設定する文字列</param>
-        public static void WriteCell(ISheet sheet, ICellStyle style, IHyperlink link, (int y, int x) s, string value)
-        {
-            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
-            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
-            cell.Hyperlink = link;
-            cell.SetCellValue(value);
-            cell.CellStyle = style;
-            cell.SetCellType(CellType.String);
-        }
-
-        /// <summary>
-        /// Book内のSndシートを飾り付けるメソッド HULFT定義用シート
+         /// <summary>
+        /// Book内のSndシートを飾り付けるメソッド HULFT配信定義用シート
         /// </summary>
         /// <param name="styles">CellStyleをセットしたDictionaryオブジェクト</param>
         /// <param name="sheet">Sndシートオブジェクト</param>
@@ -190,7 +149,7 @@ namespace KnToolsHulft
         }
 
         /// <summary>
-        /// Book内のHostシートを飾り付けるメソッド HULFTホスト定義用シート
+        /// Book内のHostシートを飾り付けるメソッド HULFTホスト詳細定義用シート
         /// </summary>
         /// <param name="styles">CellStyleをセットしたDictionaryオブジェクト</param>
         /// <param name="sheet">Hostシートオブジェクト</param>
@@ -216,49 +175,67 @@ namespace KnToolsHulft
         }
 
         /// <summary>
-        /// セルに書式変更してつけるメソッド
+        /// Book内のJobシートを飾り付けるメソッド HULFTジョブ定義用シート
         /// </summary>
-        /// <param name="sheet"></param>
-        /// <param name="columnIndex">Sheetの列位置</param>
-        /// <param name="rowIndex">Sheetの行位置</param>
-        /// <param name="style">セルに設定するセルスタイル</param>
-        public static void WriteStyle(ISheet sheet, int columnIndex, int rowIndex, ICellStyle style)
+        /// <param name="styles">CellStyleをセットしたDictionaryオブジェクト</param>
+        /// <param name="sheet">Jobシートオブジェクト</param>
+        /// <returns>true or false</returns>
+        public bool FormatSheetJob(Dictionary<String, ICellStyle> styles, ISheet sheet)
         {
-            var row = sheet.GetRow(rowIndex) ?? sheet.CreateRow(rowIndex);
-            var cell = row.GetCell(columnIndex) ?? row.CreateCell(columnIndex);
+            sheet.DisplayGridlines = false;
+            WriteCell(sheet, styles["topleft"], (0, 0), ConstHulft.SHEETNAME_JOB);
+            return true;
+        }
 
+
+        /// <summary>
+        /// セルに書式を付けるメソッド Cellに数字を設定
+        /// </summary>
+        /// <param name="sheet">対象Sheetオブジェクト</param>
+        /// <param name="style">Cellに設定するstyleオブジェクト</param>
+        /// <param name="s">セルの行と列(タプル)</param>
+        /// <param name="value">Cellに設定する数値</param>
+        public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, int value)
+        {
+            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
+            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
+            cell.SetCellValue(value);
             cell.CellStyle = style;
+            cell.SetCellType(CellType.Numeric);
         }
 
         /// <summary>
-        /// 指定したセルの値を取得するメソッド
-        /// ＊ ReturnせずにWriteLineするだけ Debugに使用したのか？
+        /// セルに書式を付けるメソッド Cellに文字列を設定
         /// </summary>
         /// <param name="sheet">対象Sheetオブジェクト</param>
-        /// <param name="idxColumn">Sheetの列位置</param>
-        /// <param name="idxRow">Sheetの行位置</param>
-        public static void GetCellValue(ISheet sheet, int idxColumn, int idxRow)
+        /// <param name="style">Cellに設定するstyleオブジェクト</param>
+        /// <param name="s">セルの行と列(タプル)</param>
+        /// <param name="value">Cellに設定する文字列</param>
+        public static void WriteCell(ISheet sheet, ICellStyle style, (int y, int x) s, string value)
         {
-            var row = sheet.GetRow(idxRow) ?? sheet.CreateRow(idxRow); //指定した行を取得できない時はエラーとならないよう新規作成している
-            var cell = row.GetCell(idxColumn) ?? row.CreateCell(idxColumn); //一行上の処理の列版
-            string value;
+            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
+            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
+            cell.SetCellValue(value);
+            cell.CellStyle = style;
+            cell.SetCellType(CellType.String);
+        }
 
-            switch (cell.CellType)
-            {
-                case CellType.String:
-                    value = cell.StringCellValue;
-                    break;
-                case CellType.Numeric:
-                    value = cell.NumericCellValue.ToString();
-                    break;
-                case CellType.Boolean:
-                    value = cell.BooleanCellValue.ToString();
-                    break;
-                default:
-                    value = "Value無し";
-                    break;
-            }
-            Console.WriteLine("value: " + value);
+        /// <summary>
+        /// セルに書式を付けるメソッド Cellにハイパーリンクつける
+        /// </summary>
+        /// <param name="sheet">対象Sheetオブジェクト</param>
+        /// <param name="style">Cellに設定するstyleオブジェクト</param>
+        /// <param name="link">リンク</param>
+        /// <param name="s">セルの行と列(タプル)</param>
+        /// <param name="value">Cellに設定する文字列</param>
+        public static void WriteCell(ISheet sheet, ICellStyle style, IHyperlink link, (int y, int x) s, string value)
+        {
+            var row = sheet.GetRow(s.y) ?? sheet.CreateRow(s.y);
+            var cell = row.GetCell(s.x) ?? row.CreateCell(s.x);
+            cell.Hyperlink = link;
+            cell.SetCellValue(value);
+            cell.CellStyle = style;
+            cell.SetCellType(CellType.String);
         }
 
     }

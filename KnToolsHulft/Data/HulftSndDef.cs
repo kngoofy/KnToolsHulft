@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 
 namespace KnToolsHulft.Data
@@ -102,42 +104,14 @@ namespace KnToolsHulft.Data
             return list;
         }
 
-        /*
-       //選択したプロパティ値を配列で返すメソッド
-       public override string[] getValueArray()
-       {
-           var list = new List<string>
-           {
-               Id,
-               SndFile,
-               Comment,
-               FileName,
-               TransType,
-               //FmtId,
-               Comp,
-               CompSize,
-               //DeflateLevel,
-               KjChnge,
-               //CodeSet,
-               //Clear,
-               GrpId,
-               //PrejobId,
-               JobId,
-               EjobId,
-               //DbId,
-               Interval,
-               Transprty,
-               BlockLen,
-               BlockCnt,
-               //Shifttransact,
-               //MailId,
-               //Password
-           };
-           //base.getValueArray();
-           return getListValues().ToArray();
-           //return list.ToArray();
-       }
-       */
+        /// <summary>
+        /// 選択したプロパティ値をstringの配列で返すメソッド
+        /// </summary>
+        /// <returns>stringの配列</returns>
+        public override string[] GetValueArray()
+        {
+            return GetListValues().ToArray();
+        }
 
         /// <summary>
         /// クラスのプロパティに初期値をクリアリセットするメソッド
@@ -145,7 +119,6 @@ namespace KnToolsHulft.Data
         public override void ClearRest()
         {
             //base.ClearRest();
-            //ManagementType = HulftExportType.none; //親クラスのKeyID
             Id = "";
             SndFile = "";
             Comment = "";

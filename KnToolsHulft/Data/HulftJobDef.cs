@@ -5,24 +5,23 @@ using System.Text;
 namespace KnToolsHulft.Data
 {
     /// <summary>
-    /// HULFTの転送グループのクラス 一つのHULFT定義に値する
+    /// HULFTのジョブ起動のクラス 一つのHULFT定義に値する
     /// </summary>
-
-    public class HulftTGrpDef : HulftDef
+    public class HulftJobDef : HulftDef
     {
         //プロパティ
-        //ターゲットグループ管理設定
-        public string Id { get; set; } = "ID";                  // ID=LOOPBACK
+        //ジョブ管理設定
+        public string Id { get; set; } = "ID";              // ID=LOOPBACK
 
-        public string Grp { get; set; } = "GRP";                // × 転送グループID
-        public string Comment { get; set; } = "COMMENT";        // 〇 コメント
-        //public string Server { get; set; } = "SERVER";          // 〇 ホスト名
-        public List<string> ServerList = new List<string>();    // × ホスト名
+        public string Job { get; set; } = "JOB";            // × ジョブID
+        public string Comment { get; set; } = "COMMENT";    // 〇 コメント
+        //public string Jobs { get; set; } = "SERVER";      // 〇 ホスト名
+        public List<string> JobList = new List<string>();   // × 起動ジョブ
 
         /// <summary>
         /// コンストラクタ 引数なし
-        /// </summary>        
-        public HulftTGrpDef() : base(HulftManageType.tgrp)
+        /// </summary>
+        public HulftJobDef() : base(HulftManageType.job)
         {
             ClearRest();
         }
@@ -31,7 +30,7 @@ namespace KnToolsHulft.Data
         /// コンストラクタ 第一引数
         /// </summary>
         /// <param name="type">string "Header" かそれ以外</param>
-        public HulftTGrpDef(string type) : base(HulftManageType.tgrp)
+        public HulftJobDef(string type) : base(HulftManageType.job)
         {
             switch (type)
             {
@@ -47,28 +46,10 @@ namespace KnToolsHulft.Data
         /// クラスのコピークーロンを返すメソッド
         /// </summary>
         /// <returns>HulftTGtpDefクラスのクーロンされたオブジェクト</returns>
-        public HulftTGrpDef Clone()
+        public HulftJobDef Clone()
         {
-            return (HulftTGrpDef)MemberwiseClone();
+            return (HulftJobDef)MemberwiseClone();
         }
-
-
-        ///// <summary>
-        ///// クラスのプロパティからStringのListを組み立てて返すメソッド
-        ///// </summary>
-        ///// <returns>stringのList</returns>
-        //public override List<string> GetListValues()
-        //{
-        //    var list = new List<string>
-        //    {
-        //        Id,
-        //        Grp,
-        //        Comment,
-        //        Server
-        //     };
-        //    return list;
-        //}
-
 
         /// <summary>
         /// クラスのプロパティからStringのListを組み立てて返すメソッド
@@ -79,9 +60,9 @@ namespace KnToolsHulft.Data
             var list = new List<string>
             {
                 Id,
-                Grp,
+                Job,
                 Comment,
-                string.Join(",",ServerList)
+                string.Join(",",JobList)
              };
             return list;
         }
@@ -102,10 +83,10 @@ namespace KnToolsHulft.Data
         {
             //base.ClearRest();
             Id = "";
-            Grp = "";
+            Job = "";
             Comment = "";
-            //ServerList = new List<string> { };
-            ServerList.Clear();
+            //JobList = new List<string> { };
+            JobList.Clear();
         }
 
     }

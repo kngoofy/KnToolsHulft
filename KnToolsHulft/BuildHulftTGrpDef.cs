@@ -13,7 +13,7 @@ namespace KnToolsHulft
     public static class BuildHulftTGrpDef
     {
         /// <summary>
-        /// HULFT転送グループ定義のフラットテキストファイルを読んで、HulftTGrpクラスのListを生成して返す。
+        /// HULFT転送グループ定義のフラットテキストファイルを読んで、HulftTGrpDefクラスのListを生成して返す。
         /// </summary>
         /// <param name="file">HULFT転送グループ定義ファイル名</param>
         /// <returns>HulftTGrpクラスのList</returns>
@@ -86,7 +86,7 @@ namespace KnToolsHulft
         }
 
         /// <summary>
-        /// HULFT転送グループ定義のフラットテキストファイルを読んで、HulftTGrpクラスのListを生成して返す。
+        /// HULFT転送グループ定義のフラットテキストファイルを読んで、HulftTGrpDefクラスのListを生成して返す。
         /// </summary> 
         /// <param name="file">HULFT転送グループ定義ファイル名</param>
         /// <returns>HulftTGrpクラスのList</returns>
@@ -127,6 +127,7 @@ namespace KnToolsHulft
                         case "DEFEND":
                             serverDef = false;
                             break;
+
                         case "END":
                             hulftTGrpDefs.Add(hulftdef.Clone());
                             break;
