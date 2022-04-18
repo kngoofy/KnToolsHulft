@@ -32,19 +32,18 @@
         <GroupBox Header="作成するHulfBookファイルの指定" Grid.Row="1"  Margin="10,10.,10,0"  Height="74" VerticalAlignment="Top"
                   FontSize="14" FontFamily="Meiryo UI">
             <DockPanel Height="auto" >
-                <StackPanel DockPanel.Dock="Left" Margin="10,10,10,10.333" Width="720"  >
-                    <TextBox x:Name="HulftBookName" Height="26" TextWrapping="NoWrap" Text="TextBox" 
-                             FontSize="14" FontFamily="Meiryo UI" Margin="0,0,0,0" />
+                <StackPanel DockPanel.Dock="Left" Margin="0,10,10,10.333" Width="781"  >
+                    <TextBox x:Name="HulftBookName" Text="HulftBook" TabIndex="1" 
+                             ToolTip="生成するHulftBookファイルの指定 (Drag and Drop)"
+                              PreviewDragOver="EhDragOverHulftBookDef" PreviewDrop="EhDropHulftBookDef" 
+                             Style="{StaticResource TextBox1}" Width="761"
+                    />
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Right" Margin="0,0,0,0" Width="179" Height="40" >
-                    <Button Content="HulftBookの指定" 
-                            Foreground="White" 
+                <StackPanel DockPanel.Dock="Right" Margin="0,0,0,0"  >
+                    <Button Content="HulftBookの指定"
                             Click="Button_Click_SelectHulftBook"
-                            FontSize="14" FontFamily="Meiryo UI" Width="174" Height="40">
-                        <Button.Background>
-                            <ImageBrush ImageSource="images\blueberries.jpg"/>
-                        </Button.Background>
-                    </Button>
+                            Style="{StaticResource Button}"
+                    />
                 </StackPanel>
             </DockPanel>
         </GroupBox>
@@ -56,12 +55,12 @@
 
                 <Grid Margin="0,0,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="676*"/>
-                        <ColumnDefinition Width="195*"/>
-                        <ColumnDefinition Width="129*"/>
+                        <ColumnDefinition Width="677*"/>
+                        <ColumnDefinition Width="189*"/>
+                        <ColumnDefinition Width="135*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0"  >
+                    <StackPanel Grid.Column="0" Margin="0,0,0.667,0.333"  >
 
                         <Grid Margin="0,0,0,0">
                             <Grid.RowDefinitions>
@@ -72,42 +71,42 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
 
-                            <TextBox Name="tbHulftSndDefFileName" Text="" 
+                            <TextBox Name="tbHulftSndDefFileName" Text="Snd" TabIndex="2" 
                                 Grid.Row="0"
                                 ToolTip="HULFT 配信定義ファイルの指定 (Drag and Drop)"
-                                PreviewDragOver="EhDragOverRcvDef" PreviewDrop="EhDropRcvDef" 
-                                Style="{StaticResource TextBox}"
+                                PreviewDragOver="EhDragOverSndDef" PreviewDrop="EhDropSndDef" 
+                                Style="{StaticResource TextBox2}"
                              />
-                            <TextBox Name="tbHulftRcvDefFileName" Text="" 
+                            <TextBox Name="tbHulftRcvDefFileName" Text="Rcv" TabIndex="3"
                                 Grid.Row="1"
                                 ToolTip="HULFT 集信定義ファイルの指定 (Drag and Drop)"
                                 PreviewDragOver="EhDragOverRcvDef" PreviewDrop="EhDropRcvDef" 
-                                Style="{StaticResource TextBox}"
+                                Style="{StaticResource TextBox2}"
                              />
-                            <TextBox Name="tbHulftHstDefFileName" Text="" 
+                            <TextBox Name="tbHulftHstDefFileName" Text="Hst" TabIndex="4"
                                 Grid.Row="2"
                                 ToolTip="HULFT ホスト詳細定義ファイルの指定 (Drag and Drop)"
                                 PreviewDragOver="EhDragOverHstDef" PreviewDrop="EhDropHstDef" 
-                                Style="{StaticResource TextBox}"
+                                Style="{StaticResource TextBox2}"
                              />
-                            <TextBox Name="tbHulftTGrpDefFileName" Text="" 
+                            <TextBox Name="tbHulftTGrpDefFileName" Text="TGrp" TabIndex="5"
                                 Grid.Row="3" 
                                 ToolTip="HULFT 転送グループ定義ファイルの指定 (Drag and Drop)"
                                 PreviewDragOver="EhDragOverTGrpDef" PreviewDrop="EhDropTGrpDef" 
-                                Style="{StaticResource TextBox}"
+                                Style="{StaticResource TextBox2}"
                              />
-                            <TextBox Name="tbHulftJobDefFileName" Text="" 
+                            <TextBox Name="tbHulftJobDefFileName" Text="Job" TabIndex="6"
                                 Grid.Row="4" 
                                 ToolTip="HULFT ジョブ定義ファイルの指定 (Drag and Drop)"
-                                PreviewDragOver="EhDragOverTGrpDef" PreviewDrop="EhDropTGrpDef" 
-                                Style="{StaticResource TextBox}"
+                                PreviewDragOver="EhDragOverJobDef" PreviewDrop="EhDropJobDef" 
+                                Style="{StaticResource TextBox2}"
                              />
 
                         </Grid>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1"
-                        Margin="0,0,0,0" VerticalAlignment="Top" Height="270" Width="auto">
+                        Margin="0.333,0,134.333,0" VerticalAlignment="Top" Height="270" Width="auto" Grid.ColumnSpan="2">
 
                         <Grid Margin="0,0,0,0">
                             <Grid.RowDefinitions>
@@ -122,64 +121,36 @@
                                 Grid.Row="0" 
                                 Style="{StaticResource Button}"
                                 Click="Button_Click_Snd"
-                                    
-                            >
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
-                                </Button.Background>
-                            </Button>
-
+                                />
                             <Button Content="集信定義ファイル" Click="Button_Click_Rcv"
                                 Grid.Row="1" 
                                 Style="{StaticResource Button}"
-                            >
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
-                                </Button.Background>
-                            </Button>
+                                />
                             <Button Content="ホスト定義ファイル" Click="Button_Click_Hst"
                                 Grid.Row="2" 
                                 Style="{StaticResource Button}"
-                                >
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
-                                </Button.Background>
-                            </Button>
-
+                                />
                             <Button Content="転送グループ定義ファイル" Click="Button_Click_TGrp"
                                 Grid.Row="3" 
                                 Style="{StaticResource Button}"
-                                >
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
-                                </Button.Background>
-                            </Button>
+                                />
                             <Button Content="ジョブ定義ファイル" Click="Button_Click_Job"
                                 Grid.Row="4" 
                                 Style="{StaticResource Button}"
-                                >
-                                <Button.Background>
-                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
-                                </Button.Background>
-                            </Button>
-
+                                />
                         </Grid>
 
                     </StackPanel>
 
                     <StackPanel Grid.Column="2"
-                        Margin="9.333,20,0,0" VerticalAlignment="Top" Height="75" Width="104" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
-                        <Button Content="HulfBook作成" HorizontalAlignment="Left" Height="75" Margin="10,0,0,0" Width="auto"
-                            Foreground="White"
-                            Click="Button_Click_CreateHulftBook" RenderTransformOrigin="0.46,1.709">
-                            <Button.Background>
-                                <ImageBrush ImageSource="images\blueberries.jpg"/>
-                            </Button.Background>
-                        </Button>
-
-
+                        Margin="11,40,12.333,0" VerticalAlignment="Top" Height="75"
+                                 HorizontalAlignment="Center" Width="112">
+                        <Button Content="HulfBook作成" 
+                                Height="75" 
+                                Style="{StaticResource Button}"
+                                Click="Button_Click_CreateHulftBook" Width="112" 
+                        />
                     </StackPanel>
-
 
                 </Grid>
             </DockPanel>

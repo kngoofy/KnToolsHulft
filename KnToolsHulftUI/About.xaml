@@ -9,9 +9,9 @@
         Icon="images\butterfly2_small.jpg"
         Title="About" Height="230" Width="440">
 
-
     <Grid>
         <Image Style="{StaticResource WatermarkImage}"/>
+
         <DockPanel>
 
             <Grid Style="{StaticResource WindowContentGrid}" Margin="5,5,5,4.667" Width="420">

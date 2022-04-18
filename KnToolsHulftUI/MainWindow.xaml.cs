@@ -111,6 +111,16 @@ namespace KnToolsHulftUI
             }
         }
 
+
+        /// <summary>
+        /// HulftBookTextBoxへドラッグオーバーのメソッド
+        /// </summary>
+        private void EhDragOverHulftBookDef(object sender, System.Windows.DragEventArgs args)
+        {
+            args.Effects = IsSingleFile(args) != null ? System.Windows.DragDropEffects.Copy : System.Windows.DragDropEffects.None;
+            args.Handled = true;
+        }
+
         /// <summary>
         /// Hulft定義(Snd)のTextBoxへドラッグオーバーのメソッド
         /// </summary>
@@ -178,6 +188,17 @@ namespace KnToolsHulftUI
         }
 
         /// <summary>
+        /// HulftBookのTextBoxへのドラッグアンドロップのメソッド
+        /// </summary>
+        private void EhDropHulftBookDef(object sender, System.Windows.DragEventArgs args)
+        {
+            args.Handled = true;    // Mark the event as handled, so TextBox's native Drop handler is not called.
+            var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
+            HulftBookName.Text = fileNames[0];
+        }
+
+
+        /// <summary>
         /// Hulft定義(Snd)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
         private void EhDropSndDef(object sender, System.Windows.DragEventArgs args)
@@ -220,7 +241,7 @@ namespace KnToolsHulftUI
         {
             args.Handled = true;    // Mark the event as handled, so TextBox's native Drop handler is not called.
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
-            tbHulftTGrpDefFileName.Text = fileNames[0];
+            tbHulftJobDefFileName.Text = fileNames[0];
         }
 
 
@@ -257,7 +278,7 @@ namespace KnToolsHulftUI
         /// </summary>
         private void Button_Click_Job(object sender, RoutedEventArgs e)
         {
-            OpenDocumentDef(tbHulftTGrpDefFileName);
+            OpenDocumentDef(tbHulftJobDefFileName);
         }
 
         /// <summary>
@@ -276,7 +297,7 @@ namespace KnToolsHulftUI
                 {
                     openFileDialog.FileName = System.IO.Path.GetFileName(fileName);
                     openFileDialog.DefaultExt = ".def";
-                    openFileDialog.CheckFileExists = false;     //存在しなくも良いを指定
+                    openFileDialog.CheckFileExists = true;     //存在しなくてはいけない
 
                     // ファイルの種類リストを設定
                     openFileDialog.Filter = "HultDefine(.def,*.txt)|*.def;*.txt|すべてのファイル(*.*)|*.*";
@@ -340,6 +361,9 @@ namespace KnToolsHulftUI
                 ,{ "job",null }
             };
 
+            // カーソルをくるくるに変える
+            this.Cursor = System.Windows.Input.Cursors.Wait;
+
             // Snd
             if ((tbHulftSndDefFileName.Text != string.Empty) && File.Exists(tbHulftSndDefFileName.Text))
             {
@@ -394,6 +418,10 @@ namespace KnToolsHulftUI
                 List<HulftJobDef> hulftJobDatas = BuildHulftJobDef.StreamBuildHulftJobDef(defs["job"]);
                 new UpdateBook(book, hulftJobDatas);
             }
+
+            // カーソルを戻す
+            this.Cursor = null;
+
         }
 
         private void OnMenuAbout(object sender, RoutedEventArgs e)

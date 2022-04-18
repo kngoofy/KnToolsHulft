@@ -22,26 +22,73 @@
         <Setter Property="Height" Value="44" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="images\blueberries.jpg"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
-    <Style x:Key="TextBox" TargetType="{x:Type TextBox}">
-        <Setter Property="Width" Value="650" />
-        <Setter Property="Height" Value="32" />
+    <Style TargetType="{x:Type TextBox}" >
+        <!--<Setter Property="Width" Value="650" />-->
+        <Setter Property="Height" Value="30" />
         <Setter Property="BorderBrush" Value="Black" />
         <Setter Property="BorderThickness" Value="1" />
-        
+
+        <!--<Setter Property="TextWrapping" Value="NoWrap"/>-->
+        <Setter Property="IsTabStop" Value="True"/>
+
         <Setter Property="AllowDrop" Value="True"/>
-        <Setter Property="AcceptsTab" Value="True"/>
-        <Setter Property="AcceptsReturn" Value="True"/>
 
         <Setter Property="Foreground" Value="DarkSlateBlue" />
-        <Setter Property="FontSize" Value="14pt" />
+        <Setter Property="FontSize" Value="12pt" />
         <Setter Property="Margin" Value="10,0,0,0" />
         <Setter Property="FontFamily" Value="Meiryo UI" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+
+    <Style x:Key="TextBox1" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Width" Value="1033" />
+        <!--<Setter Property="Height" Value="32" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+
+        --><!--<Setter Property="TextWrapping" Value="NoWrap"/>--><!--
+        <Setter Property="IsTabStop" Value="True"/>
+
+        <Setter Property="AllowDrop" Value="True"/>
+
+        <Setter Property="Foreground" Value="DarkSlateBlue" />
+        <Setter Property="FontSize" Value="10pt" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+        <Setter Property="FontFamily" Value="Meiryo UI" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />-->
+    </Style>
+
+    <Style x:Key="TextBox2" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Width" Value="650" />
+        <!--<Setter Property="Height" Value="32" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+       
+        --><!--<Setter Property="TextWrapping" Value="NoWrap"/>--><!--
+        <Setter Property="IsTabStop" Value="True"/>
+        
+        <Setter Property="AllowDrop" Value="True"/>
+       
+        <Setter Property="Foreground" Value="DarkSlateBlue" />
+        <Setter Property="FontSize" Value="10pt" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+        <Setter Property="FontFamily" Value="Meiryo UI" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />-->
     </Style>
     
     <Style TargetType="{x:Type Label}">
