@@ -29,8 +29,6 @@ namespace KnToolsHulftUI
         {
             InitializeComponent();
 
-            //var path = Directory.GetCurrentDirectory();
-
             var holderName = Directory.GetCurrentDirectory();
             HulftBookName.Text = holderName + "\\" + "hulftBook.xlsx";
 
@@ -38,10 +36,13 @@ namespace KnToolsHulftUI
             //tbHulftRcvDefFileName.Text = holderName + "\\" + "rcv.def";
             //tbHulftHstDefFileName.Text = holderName + "\\" + "hst.def"; ;
             //tbHulftTGrpDefFileName.Text = holderName + "\\" + "tgrp.def"; ;
-
         }
 
-        // window 終了
+        /// <summary>
+        /// window 終了
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FileExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -110,7 +111,6 @@ namespace KnToolsHulftUI
             }
         }
 
-
         /// <summary>
         /// Hulft定義(Snd)のTextBoxへドラッグオーバーのメソッド
         /// </summary>
@@ -143,6 +143,14 @@ namespace KnToolsHulftUI
             args.Effects = IsSingleFile(args) != null ? System.Windows.DragDropEffects.Copy : System.Windows.DragDropEffects.None;
             args.Handled = true;
         }
+        /// <summary>
+        /// Hulft定義(Job)のTextBoxへドラッグオーバーのメソッド
+        /// </summary>
+        private void EhDragOverJobDef(object sender, System.Windows.DragEventArgs args)
+        {
+            args.Effects = IsSingleFile(args) != null ? System.Windows.DragDropEffects.Copy : System.Windows.DragDropEffects.None;
+            args.Handled = true;
+        }
 
         /// <summary>
         /// ドラッグオーバーしているファイルのシングルファイルかを調べるメソッド
@@ -168,7 +176,6 @@ namespace KnToolsHulftUI
             }
             return null;
         }
-
 
         /// <summary>
         /// Hulft定義(Snd)のTextBoxへのドラッグアンドロップのメソッド
@@ -206,6 +213,15 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftTGrpDefFileName.Text = fileNames[0];
         }
+        /// <summary>
+        /// Hulft定義(Job)のTextBoxへのドラッグアンドロップのメソッド
+        /// </summary>
+        private void EhDropJobDef(object sender, System.Windows.DragEventArgs args)
+        {
+            args.Handled = true;    // Mark the event as handled, so TextBox's native Drop handler is not called.
+            var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
+            tbHulftTGrpDefFileName.Text = fileNames[0];
+        }
 
 
         /// <summary>
@@ -233,6 +249,13 @@ namespace KnToolsHulftUI
         /// Hulft定義ファイル(TGrp)を指定するダイアログを呼び出すメソッド
         /// </summary>
         private void Button_Click_TGrp(object sender, RoutedEventArgs e)
+        {
+            OpenDocumentDef(tbHulftTGrpDefFileName);
+        }
+        /// <summary>
+        /// Hulft定義ファイル(Job)を指定するダイアログを呼び出すメソッド
+        /// </summary>
+        private void Button_Click_Job(object sender, RoutedEventArgs e)
         {
             OpenDocumentDef(tbHulftTGrpDefFileName);
         }
@@ -292,7 +315,6 @@ namespace KnToolsHulftUI
             }
         }
 
-
         /// <summary>
         /// HulftBook を作成するメソッド
         /// </summary>
@@ -315,6 +337,7 @@ namespace KnToolsHulftUI
                 ,{ "rcv",null }
                 ,{ "hst",null }
                 ,{ "tgrp",null }
+                ,{ "job",null }
             };
 
             // Snd
@@ -337,43 +360,46 @@ namespace KnToolsHulftUI
             {
                 defs["tgrp"] = tbHulftTGrpDefFileName.Text;
             }
+            // Job
+            if ((tbHulftJobDefFileName.Text != string.Empty) && File.Exists(tbHulftJobDefFileName.Text))
+            {
+                defs["job"] = tbHulftJobDefFileName.Text;
+            }
 
             var book = HulftBookName.Text;
-            //var makeSheet = new CreateNewTemplateBook(book);
             new CreateNewTemplateBook(book);
 
             if (defs["snd"] != null)
             {
-                //var hulftSndData = new BuildHulftSndDef();
-                //List<HulftSndDef> hulftSndDatas = hulftSndData.ReadBuildHulftSndDef(defs["snd"]);
-                //var updateBookSndSheet = new UpdateBook(book, hulftSndDatas);
-                List<HulftSndDef> hulftSndDatas = BuildHulftSndDef.ReadBuildHulftSndDef(defs["snd"]);
+                List<HulftSndDef> hulftSndDatas = BuildHulftSndDef.StreamBuildHulftSndDef(defs["snd"]);
                 new UpdateBook(book, hulftSndDatas);
             }
             if (defs["rcv"] != null)
             {
-                //var hulftRcvData = new BuildHulftRcvDef();
-                //List<HulftRcvDef> hulftRcvDatas = hulftRcvData.ReadBuildHulftRcvDef(defs["rcv"]);
-                //var updateBookSndSheet = new UpdateBook(book, hulftRcvDatas);
-                List<HulftRcvDef> hulftRcvDatas = BuildHulftRcvDef.ReadBuildHulftRcvDef(defs["rcv"]);
+                List<HulftRcvDef> hulftRcvDatas = BuildHulftRcvDef.StreamBuildHulftRcvDef(defs["rcv"]);
                 new UpdateBook(book, hulftRcvDatas);
             }
             if (defs["hst"] != null)
             {
-                //var hulftHstData = new BuildHulftHstDef();
-                //List<HulftHstDef> hulftHstDatas = hulftHstData.ReadBuildHulftHstDef(defs["hst"]);
-                //var updateBookSndSheet = new UpdateBook(book, hulftHstDatas);
-                List<HulftHstDef> hulftHstDatas = BuildHulftHstDef.ReadBuildHulftHstDef(defs["hst"]);
+                List<HulftHstDef> hulftHstDatas = BuildHulftHstDef.StreamBuildHulftHstDef(defs["hst"]);
                 new UpdateBook(book, hulftHstDatas);
             }
             if (defs["tgrp"] != null)
             {
-                //var hulftTGrpData = new BuildHulftTGrpDef();
-                //List<HulftTGrpDef> hulftTGrpDatas = hulftTGrpData.ReadBuildHulftTGrpDef(defs["tgrp"]);
-                //var updateBookSndSheet = new UpdateBook(book, hulftTGrpDatas);
-                List<HulftTGrpDef> hulftTGrpDatas = BuildHulftTGrpDef.ReadBuildHulftTGrpDef(defs["tgrp"]);
+                List<HulftTGrpDef> hulftTGrpDatas = BuildHulftTGrpDef.StreamBuildHulftTGrpDef(defs["tgrp"]);
                 new UpdateBook(book, hulftTGrpDatas);
             }
+            if (defs["job"] != null)
+            {
+                List<HulftJobDef> hulftJobDatas = BuildHulftJobDef.StreamBuildHulftJobDef(defs["job"]);
+                new UpdateBook(book, hulftJobDatas);
+            }
+        }
+
+        private void OnMenuAbout(object sender, RoutedEventArgs e)
+        {
+            var _childWindow = new About();
+            _childWindow.ShowDialog();
         }
 
     }

@@ -57,10 +57,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -97,13 +108,46 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="appicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\KnToolsHulft\KnToolsHulft.csproj">
       <Project>{600e3490-fb32-4f51-8998-4aae2bfffd23}</Project>
       <Name>KnToolsHulft</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\berries.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\blueberries.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\appicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\apple.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Watermark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\IMG_0009.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cherries.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\butterfly2_small.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\music.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\butterfly2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\square.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cherries_larger.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

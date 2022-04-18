@@ -5,94 +5,183 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KnToolsHulftUI"
         mc:Ignorable="d"
-        Title="MainWindow" Icon="appicon.ico" Height="387.239" Width="1040.69">
+        Title="MainWindow" 
+        Icon="images\butterfly2_small.jpg"
+        Height="460" Width="1040">
 
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="104*"/>
-            <RowDefinition Height="220*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" Margin="0,0,1,1.667">
-            <Menu DockPanel.Dock="Top" Margin="0,0,-0.333,0" VerticalAlignment="Top" Width="1033" HorizontalAlignment="Left" FontSize="14" FontFamily="Meiryo UI">
+        <DockPanel Grid.Row="0" Margin="0,0,0,0">
+            <Menu DockPanel.Dock="Top" Margin="0,0,0,0" VerticalAlignment="Top" Width="1033" HorizontalAlignment="Left" 
+                  FontSize="14" FontFamily="Meiryo UI">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Exit" Click="FileExit_Click"/>
+                </MenuItem>
+                <MenuItem Header="Help" >
+                    <MenuItem Header="About" Click="OnMenuAbout"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
 
-        <GroupBox Header="作成するHulfBookファイルの指定" Grid.Row="1"  Margin="10,10.333,11,0"  Height="80" VerticalAlignment="Top"
+        <GroupBox Header="作成するHulfBookファイルの指定" Grid.Row="1"  Margin="10,10.,10,0"  Height="74" VerticalAlignment="Top"
                   FontSize="14" FontFamily="Meiryo UI">
             <DockPanel Height="auto" >
-                <StackPanel DockPanel.Dock="Left" Margin="10,10,10,10.333" Width="797"  >
-                    <TextBox x:Name="HulftBookName" Height="auto" TextWrapping="NoWrap" Text="TextBox" Width="800" HorizontalAlignment="Left" Margin="0,0,-2.667,0" 
-                             FontSize="14" FontFamily="Meiryo UI" RenderTransformOrigin="0.5,0.5">
-                        <TextBox.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="0.204"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </TextBox.RenderTransform>
-                    </TextBox>
+                <StackPanel DockPanel.Dock="Left" Margin="10,10,10,10.333" Width="720"  >
+                    <TextBox x:Name="HulftBookName" Height="26" TextWrapping="NoWrap" Text="TextBox" 
+                             FontSize="14" FontFamily="Meiryo UI" Margin="0,0,0,0" />
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Right" Margin="10,10,10,10" >
-                    <Button Content="HulftBookの指定" Height="auto" Width="auto" HorizontalAlignment="Left" Margin="0,0,0,0" 
+                <StackPanel DockPanel.Dock="Right" Margin="0,0,0,0" Width="179" Height="40" >
+                    <Button Content="HulftBookの指定" 
+                            Foreground="White" 
                             Click="Button_Click_SelectHulftBook"
-                            FontSize="14" FontFamily="Meiryo UI"/>
+                            FontSize="14" FontFamily="Meiryo UI" Width="174" Height="40">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images\blueberries.jpg"/>
+                        </Button.Background>
+                    </Button>
                 </StackPanel>
             </DockPanel>
         </GroupBox>
 
 
-        <GroupBox Header="ファイルからHulfBook作成" Grid.Row="2"  Margin="10,10.333,12,0"  Height="175" VerticalAlignment="Top"
+        <GroupBox Header="ファイルからHulfBook作成" Grid.Row="2"  Margin="10,0,10,0"  Height="300" 
                   FontSize="14" FontFamily="Meiryo UI">
             <DockPanel>
-                <StackPanel Margin="10,10,0,0" VerticalAlignment="Top" Height="auto" Width="678">
 
-                    <TextBox Name="tbHulftSndDefFileName" AllowDrop="True" Height="auto" Margin="0,10,0,0" ToolTip="HULFT 集信定義ファイルの指定 (Drag and Drop)"
-                             PreviewDragOver="EhDragOverSndDef" PreviewDrop="EhDropSndDef" 
-                             AcceptsReturn="True" AcceptsTab="True" BorderThickness="1" BorderBrush="Black"
-                             HorizontalAlignment="Left" Text="" Width="668"
-                             FontSize="14" FontFamily="Meiryo UI"/>
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="676*"/>
+                        <ColumnDefinition Width="195*"/>
+                        <ColumnDefinition Width="129*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBox Name="tbHulftRcvDefFileName" AllowDrop="True" Height="auto" Margin="0,10,0,0" ToolTip="HULFT 集信定義ファイルの指定 (Drag and Drop)"
-                             PreviewDragOver="EhDragOverRcvDef" PreviewDrop="EhDropRcvDef" 
-                             AcceptsReturn="True" AcceptsTab="True" BorderThickness="1" BorderBrush="Black"
-                             HorizontalAlignment="Left" Text="" Width="668"
-                             FontSize="14" FontFamily="Meiryo UI"/>
+                    <StackPanel Grid.Column="0"  >
 
-                    <TextBox Name="tbHulftHstDefFileName" AllowDrop="True" Height="auto" Margin="0,10,0,0" ToolTip="HULFT 集信定義ファイルの指定 (Drag and Drop)"
-                             PreviewDragOver="EhDragOverHstDef" PreviewDrop="EhDropHstDef" 
-                             AcceptsReturn="True" AcceptsTab="True" BorderThickness="1" BorderBrush="Black"
-                             HorizontalAlignment="Left" Text="" Width="668"
-                             FontSize="14" FontFamily="Meiryo UI"/>
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
 
-                    <TextBox Name="tbHulftTGrpDefFileName" AllowDrop="True" Height="auto" Margin="0,10,0,0" ToolTip="HULFT 集信定義ファイルの指定 (Drag and Drop)"
-                             PreviewDragOver="EhDragOverTGrpDef" PreviewDrop="EhDropTGrpDef" 
-                             AcceptsReturn="True" AcceptsTab="True" BorderThickness="1" BorderBrush="Black"
-                             HorizontalAlignment="Left" Text="" Width="668"
-                             FontSize="14" FontFamily="Meiryo UI"/>
+                            <TextBox Name="tbHulftSndDefFileName" Text="" 
+                                Grid.Row="0"
+                                ToolTip="HULFT 配信定義ファイルの指定 (Drag and Drop)"
+                                PreviewDragOver="EhDragOverRcvDef" PreviewDrop="EhDropRcvDef" 
+                                Style="{StaticResource TextBox}"
+                             />
+                            <TextBox Name="tbHulftRcvDefFileName" Text="" 
+                                Grid.Row="1"
+                                ToolTip="HULFT 集信定義ファイルの指定 (Drag and Drop)"
+                                PreviewDragOver="EhDragOverRcvDef" PreviewDrop="EhDropRcvDef" 
+                                Style="{StaticResource TextBox}"
+                             />
+                            <TextBox Name="tbHulftHstDefFileName" Text="" 
+                                Grid.Row="2"
+                                ToolTip="HULFT ホスト詳細定義ファイルの指定 (Drag and Drop)"
+                                PreviewDragOver="EhDragOverHstDef" PreviewDrop="EhDropHstDef" 
+                                Style="{StaticResource TextBox}"
+                             />
+                            <TextBox Name="tbHulftTGrpDefFileName" Text="" 
+                                Grid.Row="3" 
+                                ToolTip="HULFT 転送グループ定義ファイルの指定 (Drag and Drop)"
+                                PreviewDragOver="EhDragOverTGrpDef" PreviewDrop="EhDropTGrpDef" 
+                                Style="{StaticResource TextBox}"
+                             />
+                            <TextBox Name="tbHulftJobDefFileName" Text="" 
+                                Grid.Row="4" 
+                                ToolTip="HULFT ジョブ定義ファイルの指定 (Drag and Drop)"
+                                PreviewDragOver="EhDragOverTGrpDef" PreviewDrop="EhDropTGrpDef" 
+                                Style="{StaticResource TextBox}"
+                             />
 
-                </StackPanel>
+                        </Grid>
+                    </StackPanel>
 
-                <StackPanel Margin="10,10,0,10" VerticalAlignment="Top" Height="auto" Width="auto">
-                    <Button Content="配信定義ファイル" HorizontalAlignment="Left" Height="auto" Margin="0,10,0,0" Width="160" Click="Button_Click_Snd"
-                            FontSize="14" FontFamily="Meiryo UI"/>
-                    <Button Content="集信定義ファイル" HorizontalAlignment="Left" Height="auto" Margin="0,10,0,0" Width="160" Click="Button_Click_Rcv"
-                            FontSize="14" FontFamily="Meiryo UI"/>
-                    <Button Content="ホスト定義ファイル" HorizontalAlignment="Left" Height="auto" Margin="0,10,0,0" Width="160" Click="Button_Click_Hst"
-                            FontSize="14" FontFamily="Meiryo UI"/>
-                    <Button Content="転送グループ定義ファイル" HorizontalAlignment="Left" Height="auto" Margin="0,10,0,0" Width="160" Click="Button_Click_TGrp"
-                            FontSize="14" FontFamily="Meiryo UI"/>
-                </StackPanel>
+                    <StackPanel Grid.Column="1"
+                        Margin="0,0,0,0" VerticalAlignment="Top" Height="270" Width="auto">
 
-                <StackPanel  Margin="10,20,0,0" VerticalAlignment="Top" Height="auto" Width="auto" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
-                    <Button Content="HulfBook作成" HorizontalAlignment="Left" Height="50" Margin="10,0,0,0" Width="auto" Click="Button_Click_CreateHulftBook" RenderTransformOrigin="0.46,1.709"/>
-                </StackPanel>
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
 
+                            <Button Content="配信定義ファイル"
+                                Grid.Row="0" 
+                                Style="{StaticResource Button}"
+                                Click="Button_Click_Snd"
+                                    
+                            >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
+                                </Button.Background>
+                            </Button>
+
+                            <Button Content="集信定義ファイル" Click="Button_Click_Rcv"
+                                Grid.Row="1" 
+                                Style="{StaticResource Button}"
+                            >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
+                                </Button.Background>
+                            </Button>
+                            <Button Content="ホスト定義ファイル" Click="Button_Click_Hst"
+                                Grid.Row="2" 
+                                Style="{StaticResource Button}"
+                                >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
+                                </Button.Background>
+                            </Button>
+
+                            <Button Content="転送グループ定義ファイル" Click="Button_Click_TGrp"
+                                Grid.Row="3" 
+                                Style="{StaticResource Button}"
+                                >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
+                                </Button.Background>
+                            </Button>
+                            <Button Content="ジョブ定義ファイル" Click="Button_Click_Job"
+                                Grid.Row="4" 
+                                Style="{StaticResource Button}"
+                                >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="images\blueberries.jpg"/>
+                                </Button.Background>
+                            </Button>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2"
+                        Margin="9.333,20,0,0" VerticalAlignment="Top" Height="75" Width="104" DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+                        <Button Content="HulfBook作成" HorizontalAlignment="Left" Height="75" Margin="10,0,0,0" Width="auto"
+                            Foreground="White"
+                            Click="Button_Click_CreateHulftBook" RenderTransformOrigin="0.46,1.709">
+                            <Button.Background>
+                                <ImageBrush ImageSource="images\blueberries.jpg"/>
+                            </Button.Background>
+                        </Button>
+
+
+                    </StackPanel>
+
+
+                </Grid>
             </DockPanel>
         </GroupBox>
 
