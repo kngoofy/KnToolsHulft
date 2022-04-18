@@ -31,18 +31,12 @@ namespace KnToolsHulftUI
 
             var holderName = Directory.GetCurrentDirectory();
             HulftBookName.Text = holderName + "\\" + "hulftBook.xlsx";
-
-            //tbHulftSndDefFileName.Text = holderName + "\\" + "snd.def";
-            //tbHulftRcvDefFileName.Text = holderName + "\\" + "rcv.def";
-            //tbHulftHstDefFileName.Text = holderName + "\\" + "hst.def"; ;
-            //tbHulftTGrpDefFileName.Text = holderName + "\\" + "tgrp.def"; ;
+            
         }
 
         /// <summary>
         /// window 終了
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void FileExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -51,12 +45,11 @@ namespace KnToolsHulftUI
         /// <summary>
         /// クリックされて、ExcelBook ファイルを指定するメソッド
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Button_Click_SelectHulftBook(object sender, RoutedEventArgs e)
         {
             OpenDocumentHulftBook();
         }
+        
         /// <summary>
         /// ExcelBook ファイルをopenFileDialogにて設定するメソッド
         /// </summary>
@@ -165,8 +158,6 @@ namespace KnToolsHulftUI
         /// <summary>
         /// ドラッグオーバーしているファイルのシングルファイルかを調べるメソッド
         /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
         private string IsSingleFile(System.Windows.DragEventArgs args)
         {
             // Check for files in the hovering data object.
@@ -197,7 +188,6 @@ namespace KnToolsHulftUI
             HulftBookName.Text = fileNames[0];
         }
 
-
         /// <summary>
         /// Hulft定義(Snd)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -207,6 +197,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftSndDefFileName.Text = fileNames[0];
         }
+        
         /// <summary>
         /// Hulft定義(Rcv)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -216,6 +207,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftRcvDefFileName.Text = fileNames[0];
         }
+        
         /// <summary>
         /// Hulft定義(Hst)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -225,6 +217,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftHstDefFileName.Text = fileNames[0];
         }
+        
         /// <summary>
         /// Hulft定義(TGrp)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -234,6 +227,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftTGrpDefFileName.Text = fileNames[0];
         }
+        
         /// <summary>
         /// Hulft定義(Job)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -244,7 +238,6 @@ namespace KnToolsHulftUI
             tbHulftJobDefFileName.Text = fileNames[0];
         }
 
-
         /// <summary>
         /// Hulft定義ファイル(Snd)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -252,6 +245,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftSndDefFileName);
         }
+        
         /// <summary>
         /// Hulft定義ファイル(Rcv)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -259,6 +253,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftRcvDefFileName);
         }
+        
         /// <summary>
         /// Hulft定義ファイル(Hst)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -266,6 +261,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftHstDefFileName);
         }
+        
         /// <summary>
         /// Hulft定義ファイル(TGrp)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -273,6 +269,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftTGrpDefFileName);
         }
+        
         /// <summary>
         /// Hulft定義ファイル(Job)を指定するダイアログを呼び出すメソッド
         /// </summary>

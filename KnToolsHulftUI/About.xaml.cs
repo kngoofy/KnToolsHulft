@@ -19,6 +19,9 @@ namespace KnToolsHulftUI
     /// </summary>
     public partial class About : Window
     {
+        /// <summary>
+        /// HelpのAboutウィンドウ
+        /// </summary>
         public About()
         {
             InitializeComponent();

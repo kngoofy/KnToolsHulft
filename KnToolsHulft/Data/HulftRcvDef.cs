@@ -71,8 +71,11 @@ namespace KnToolsHulft.Data
             return (HulftRcvDef)MemberwiseClone();
         }
 
-        //newにした
-        public new List<string> GetListValues()
+        /// <summary>
+        /// クラスのプロパティからStringのListを組み立てて返すメソッド
+        /// </summary>
+        /// <returns>stringのList</returns>
+        public override List<string> GetListValues()
         {
             var list = new List<string>
             {

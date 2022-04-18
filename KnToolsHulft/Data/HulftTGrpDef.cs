@@ -52,24 +52,6 @@ namespace KnToolsHulft.Data
             return (HulftTGrpDef)MemberwiseClone();
         }
 
-
-        ///// <summary>
-        ///// クラスのプロパティからStringのListを組み立てて返すメソッド
-        ///// </summary>
-        ///// <returns>stringのList</returns>
-        //public override List<string> GetListValues()
-        //{
-        //    var list = new List<string>
-        //    {
-        //        Id,
-        //        Grp,
-        //        Comment,
-        //        Server
-        //     };
-        //    return list;
-        //}
-
-
         /// <summary>
         /// クラスのプロパティからStringのListを組み立てて返すメソッド
         /// </summary>

@@ -22,7 +22,7 @@ namespace KnToolsHulft.Data
         public const string AUTHOR_NAME = "K.Nishi";
 
         //バージョン埋め込み
-        public static readonly string VERSION = "2022.04.16";
+        public static readonly string VERSION = "2022.04.18 Update";
 
     }
 }

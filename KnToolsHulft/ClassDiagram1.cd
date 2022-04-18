@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KnToolsHulft.BuildHulftHstDef" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuildHulftHstDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.BuildHulftJobDef" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuildHulftJobDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.BuildHulftRcvDef" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuildHulftRcvDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.BuildHulftSndDef" Collapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>BuildHulftSndDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.BuildHulftTGrpDef" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuildHulftTGrpDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.CreateNewTemplateBook" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAgAAAAAAABKAAAAAAAAMAAAAA=</HashCode>
+      <FileName>CreateNewTemplateBook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.MyCreateStyles" Collapsed="true">
+    <Position X="17.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyCreateStyles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Program" Collapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.UpdateBook" Collapsed="true">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAACAAAAAAAAAAAgAgCAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>UpdateBook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Data.ConstHulft" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAQAAABAAAAQAAAAAAAQAAAgAAAAgAAAAAAAAAg=</HashCode>
+      <FileName>Data\ConstHulft.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Data.HulftDef">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAgAAICAAAAAAQAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Data\HulftDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Data.HulftHstDef">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQACQIAEBAEABgAAQAAAAAAAQAAAiAQAEAAAQGAAgVA=</HashCode>
+      <FileName>Data\HulftHstDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Data.HulftJobDef">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAEAAgAEAAAAAAAAQAACAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Data\HulftJobDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Data.HulftRcvDef">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAECEAQEAAwAAQAAUAAAAQAgABAACAQAAoIJAABA=</HashCode>
+      <FileName>Data\HulftRcvDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Data.HulftSndDef">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAESIAAEAEEAAgAAAoAQBAABQAAABABCAQAAAEhBABE=</HashCode>
+      <FileName>Data\HulftSndDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KnToolsHulft.Data.HulftTGrpDef">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAEAAgAAAAAAAAAAQAAAACAAAAAQAAAAABA=</HashCode>
+      <FileName>Data\HulftTGrpDef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="KnToolsHulft.Data.HulftManageType">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQgIAAAAAAAAAAAAAAAAAAIAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Data\HulftManageType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

@@ -34,23 +34,23 @@ namespace KnToolsHulft
             IFont topleftFont = wb.CreateFont();
             topleftFont.FontHeightInPoints = (short)14;
             topleftFont.IsBold = true;
-            topleftFont.Color = (IndexedColors.White.Index);
+            topleftFont.Color = IndexedColors.White.Index;
             //style = wb.CreateCellStyle();
             style = CreateBorderedStyle(wb);
-            style.Alignment = (HorizontalAlignment.Left);
+            style.Alignment = HorizontalAlignment.Left;
             style.VerticalAlignment = VerticalAlignment.Center;
-            style.FillForegroundColor = (IndexedColors.DarkBlue.Index);
-            style.FillPattern = (FillPattern.SolidForeground);
+            style.FillForegroundColor = IndexedColors.DarkBlue.Index;
+            style.FillPattern = FillPattern.SolidForeground;
             style.SetFont(topleftFont);
             styles.Add("topleft", style);
 
             //◆ index sheet [indexTitle]
             IFont indexTitleFont = wb.CreateFont();
             indexTitleFont.FontHeightInPoints = (short)48;
-            indexTitleFont.Color = (IndexedColors.DarkBlue.Index);
+            indexTitleFont.Color = IndexedColors.DarkBlue.Index;
             //style = wb.CreateCellStyle();
             style = CreateBorderedStyle(wb);
-            style.Alignment = (HorizontalAlignment.Center);
+            style.Alignment = HorizontalAlignment.Center;
             style.VerticalAlignment = VerticalAlignment.Center;
             style.SetFont(indexTitleFont);
             styles.Add("indexTitle", style);
@@ -58,27 +58,27 @@ namespace KnToolsHulft
             //◆ index sheet [indexBox]
             IFont indexBoxFont = wb.CreateFont();
             indexBoxFont.FontHeightInPoints = (short)12;
-            //indexBoxFont.Color = (IndexedColors.White.Index);
+            //indexBoxFont.Color = IndexedColors.White.Index;
             indexBoxFont.IsBold = true;
             style = CreateBorderedStyle(wb);
             style.Alignment = (HorizontalAlignment.Right);
-            style.VerticalAlignment = (VerticalAlignment.Center);
-            //style.FillForegroundColor = (IndexedColors.DarkBlue.Index);
-            //style.FillPattern = (FillPattern.SolidForeground);
+            style.VerticalAlignment = VerticalAlignment.Center;
+            //style.FillForegroundColor = IndexedColors.DarkBlue.Index;
+            //style.FillPattern = FillPattern.SolidForeground;
             style.SetFont(indexBoxFont);
             styles.Add("indexBox", style);
 
             //◆ index sheet [indexLabelBox]
             IFont indexLabelFont = wb.CreateFont();
             indexLabelFont.FontHeightInPoints = (short)10;
-            indexLabelFont.Color = (IndexedColors.White.Index);
+            indexLabelFont.Color = IndexedColors.White.Index;
             indexLabelFont.IsBold = false;
             indexLabelFont.FontName = "Meiryo UI";
             //style = wb.CreateCellStyle();
             style = CreateBorderedStyle(wb);
-            style.Alignment = (HorizontalAlignment.Center);
-            style.VerticalAlignment = (VerticalAlignment.Center);
-            style.FillForegroundColor = (IndexedColors.DarkBlue.Index);
+            style.Alignment = HorizontalAlignment.Center;
+            style.VerticalAlignment = VerticalAlignment.Center;
+            style.FillForegroundColor = IndexedColors.DarkBlue.Index;
             style.FillPattern = (FillPattern.SolidForeground);
             style.SetFont(indexLabelFont);
             styles.Add("indexLabel", style);
