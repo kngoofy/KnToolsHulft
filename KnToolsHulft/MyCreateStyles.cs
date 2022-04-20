@@ -105,7 +105,6 @@ namespace KnToolsHulft
             style.FillPattern = FillPattern.SolidForeground;
             styles.Add("defDataBa", style);
 
-
             //style = CreateBorderedStyle(wb);
             //style.Alignment = HorizontalAlignment.Center;
             //style.FillForegroundColor = (IndexedColors.LightCornflowerBlue.Index);

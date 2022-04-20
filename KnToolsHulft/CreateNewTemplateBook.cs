@@ -55,7 +55,7 @@ namespace KnToolsHulft
                 var sheetJob = book.GetSheet(ConstHulft.SHEETNAME_JOB);
 
                 //定型シートの中身を整える
-                FormatSheetIdx(/*book,*/ styles, sheetIdx);
+                FormatSheetIdx(styles, sheetIdx);
                 FormatSheetSnd(styles, sheetSnd);
                 FormatSheetRcv(styles, sheetRcv);
                 FormatSheetGrp(styles, sheetGrp);
@@ -122,7 +122,7 @@ namespace KnToolsHulft
             return true;
         }
 
-         /// <summary>
+        /// <summary>
         /// Book内のSndシートを飾り付けるメソッド HULFT配信定義用シート
         /// </summary>
         /// <param name="styles">CellStyleをセットしたDictionaryオブジェクト</param>

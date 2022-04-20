@@ -1,111 +1,90 @@
-﻿https://www.hulft.com/help/ja-jp/HULFT-V8/WIN-OPE/Content/HULFT_OPE/HULFTOpeCmd/MngmntInfoBatchReg.htm
-
-
-
-配信管理情報パラメータの形式
-
-配信管理情報を登録、変更するためのパラメータファイルの形式は以下のとおりです。
-
-各項目の詳細は「配信管理情報」を参照してください。
+﻿
+◆配信管理情報パラメータの形式
 
 SNDFILE=ファイルID
 FILENAME=配信ファイル名
 [INTERVAL=転送間隔]
 [BLOCKLEN=転送ブロック長]
 [BLOCKCNT=転送ブロック数]
-COMP={NO|1|2|3} …………………………………………… 圧縮方式
+COMP={NO|1|2|3} ……………………………………… 圧縮方式
 [COMPSIZE=圧縮単位]
-[DEFLATELEVEL={S|D|C}]  ………………………………… DEFLATEレベル
+[DEFLATELEVEL={S|D|C}]  …………………………… DEFLATEレベル
 [TRANSPRTY=転送優先度]
-TRANSTYPE={FORMAT|BINARY|TEXT|MFORMAT}  …………… 転送タイプ
-[CODESET={0|A|B|C|D|E|F|G|H|I|V|W|X}] ……………… EBCDICセット
-KJCHNGE={S|R|N} …………………………………………… コード変換
-[SHIFTTRANSACT={Y|N}] …………………………………… シフトコードの扱い
-[CLEAR={K|C|D|L}] ………………………………………… 配信ファイルの扱い
+TRANSTYPE={FORMAT|BINARY|TEXT|MFORMAT}  ……… 転送タイプ
+[CODESET={0|A|B|C|D|E|F|G|H|I|V|W|X}] ………… EBCDICセット
+KJCHNGE={S|R|N} ……………………………………… コード変換
+[SHIFTTRANSACT={Y|N}] ……………………………… シフトコードの扱い
+[CLEAR={K|C|D|L}] …………………………………… 配信ファイルの扱い
 [PREJOBID=配信前ジョブID]
 [JOBID=正常時ジョブID]
 [EJOBID=異常時ジョブID]
 [DBID=連携DBID]
-[MAILID=メール連携ID]
 GRPID=転送グループID
 [FMTID=フォーマットID|マルチフォーマットID]
 [PASSWORD=暗号キー]
 [COMMENT=コメント]
 END
 
-注意
-
-    ファイルIDに“_INSTANT_TRANSFER_”は指定できません。
-
-    転送ブロック長に“6”～“127”の値を指定している場合は、自動的にHULFT Ver.8の下限値“128”へ変換された後、配信管理情報に登録されます。
-
-    システム動作環境設定の高強度暗号強制モード（strongkeymode）を“有効（1）”に設定した場合、暗号キーは64桁の16進文字列（A～F、0～9の文字）で指定してください。
-
-集信管理情報パラメータの形式
-
-集信管理情報を登録、変更するためのパラメータファイルの形式は以下のとおりです。
-
-各項目の詳細は「集信管理情報」を参照してください。
+◆集信管理情報パラメータの形式
 
 RCVFILE=ファイルID
 FILENAME=集信ファイル名
-[CODESET={0|A|B|C|D|E|F|G|H|I|V|W|X}]  ……………… EBCDICセット
-TRANSMODE={NEW|REP|MOD}  ………………………………… 登録モード
-ABNORMAL={DELETE|KEEP|RESTORE} ………………………… 異常時の処置
-RCVTYPE={S|M}  ……………………………………………… 集信形態
-GENCTL={YES|NO}  …………………………………………… 世代管理
+[OWNER=オーナー名]
+[GROUP=グループ名]
+PERM=パーミッション(*1)
+[CODESET={0|A|B|C|D|E|F|G|H|I|V|W|X}]  ………… EBCDICセット
+TRANSMODE={NEW|REP|MOD}  …………………………… 登録モード
+ABNORMAL={DELETE|KEEP|RESTORE} …………………… 異常時の処置
+RCVTYPE={S|M}  ………………………………………… 集信形態
+GENCTL={YES|NO}  ……………………………………… 世代管理
 [GENMNGNO=世代管理数]
 [JOBID=正常時ジョブID]
 [EJOBID=異常時ジョブID]
 [GRPID=転送グループID]
 [PASSWORD=暗号キー]
-[MAILID=メール連携ID]
-[JOBWAIT={J|T}]  …………………………………………… 集信完了通知
-[DATAVERIFY={0|1}] ………………………………………… データ検証
+[JOBWAIT={J|T}]  ……………………………………… 集信完了通知
+[DATAVERIFY={0|1}] …………………………………… データ検証
 [COMMENT=コメント]
 END
 
-注意
+◆ジョブ起動情報パラメータの形式
 
-    ファイルIDに“_INSTANT_TRANSFER_”は指定できません。
+JOB=ジョブID
+JOB DEF
+  ジョブ名1
+       ：
+       ：               （13個まで指定可能）
+       ：
+  ジョブ名13
+DEFEND
+ [COMMENT=コメント]
+END
 
-    システム動作環境設定の高強度暗号強制モード（strongkeymode）を“有効（1）”に設定した場合、暗号キーは64桁の16進文字列（A～F、0～9の文字）で指定してください。
 
-
-    
-
-詳細ホスト情報パラメータの形式
-
-詳細ホスト情報を登録、変更するためのパラメータファイルの形式は以下のとおりです。
-
-各項目の詳細は「詳細ホスト情報」を参照してください。
+◆詳細ホスト情報パラメータの形式
 
 HOST=ホスト名
-HOSTTYPE={HOST|UNIX|NT|WIN|K|AS400}  ……………………… ホスト種
+HOSTTYPE={HOST|UNIX|NT|WIN|K|AS400} ……………………………… ホスト種
 KCODETYPE={SHIFT-JIS|JEF|EUC-JP|IBM kanji|KEIS|NEC|UTF-8|GB18030|IBM Simplified Chinese}
- ……………………………………………………………………… 転送コードセット
-JISYEAR={0|1}  …………………………………………………… 日本語規格
-[CONNECTTYPE=LAN]  ……………………………………………… 接続形態
+  …………………………………………………………………………… 転送コードセット
+JISYEAR={78|83}または {0|1} ………………………………………… 日本語規格
+[CONNECTTYPE=LAN] ……………………………………………………… 接続形態
 [RCVPORT=集信ポートNo.]
 [REQPORT=要求受付ポートNo.]
 [HOSTSPSNUM=ホスト別配信多重度]
+[COMMENT=コメント]
 [MYPROXYNAME=PROXYサーバ名]
 [MYPROXYPORT=PROXYポートNo.]
-[SENDPERMIT={Y|N}] …………………………… 送信要求または再送要求受付許可
-[HULJOBPERMIT={Y|N}] ………………………… 集信後ジョブ結果参照要求受付許可
-[HULSNDRCPERMIT={Y|N}] ……………………… ジョブ実行結果通知受付許可
-[HULRJOBPERMIT={Y|N}]  ……………………… リモートジョブ実行受付許可
-[ALLOWINSTTRANS={Y|N}] ……………………… 簡易転送受付許可
-[USRNOTIFY={Y|N}]  …………………………… ユーザの通知
-[HUL7MODE={Y|N}] ……………………………… HULFT7通信モード
-[COMMENT=コメント]
+[SENDPERMIT={Y|N}] ………………………… 送信要求または再送要求受付許可
+[HULJOBPERMIT={Y|N}] ……………………… 集信後ジョブ結果参照要求受付許可
+[HULSNDRCPERMIT={Y|N}] …………………… ジョブ実行結果通知受付許可
+[HULRJOBPERMIT={Y|N}]  …………………… リモートジョブ実行受付許可
+[ALLOWINSTTRANS={Y|N}] …………………… 簡易転送受付許可
+[USRNOTIFY={Y|N}]  ………………………… ユーザの通知
+[HUL7MODE={Y|N}] …………………………… HULFT7 通信モード
 END
 
-転送グループ情報パラメータの形式
-
-転送グループ情報を登録、変更するためのパラメータファイルの形式は以下のとおりです。
-
-各項目の詳細は「転送グループ情報」を参照してください。
+◆転送グループ情報パラメータの形式
 
 GRP=転送グループID
 SERVER DEF

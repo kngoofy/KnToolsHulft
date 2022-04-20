@@ -116,7 +116,6 @@ namespace KnToolsHulft
 
                         case "END":
                             hulftSndDefs.Add(hulftdef.Clone());
-                            //dict[hulftdef.Id]= hulftdef.Clone();
                             break;
                     }
                 }

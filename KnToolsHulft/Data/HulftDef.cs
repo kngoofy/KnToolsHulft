@@ -9,7 +9,7 @@ namespace KnToolsHulft.Data
     public class HulftDef
     {
         //プロパティ
-        protected string SystemName { get; set; } = "";                                //システム名 
+        protected string SystemName { get; set; } = "";                                // システム名 
         protected HulftManageType ManagementType { get; set; } = HulftManageType.none; // 管理タイプ
         protected string KeyId { get; set; } = "";                                     // HULFT-KeyID                                                            
 

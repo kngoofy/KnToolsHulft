@@ -12,7 +12,7 @@ namespace KnToolsHulft.Data
     {
         //プロパティ
         //集信管理設定
-        public string Id { get; set; } = "ID";                  // ID=LOOPBACK
+        public string Id { get; set; } = "ID";                  // ID
 
         public string RcvFile { get; set; } = "RCVFILE";        // ×SNDFILE=LOOPBACK
         public string Comment { get; set; } = "COMMENT";        // 〇コメント

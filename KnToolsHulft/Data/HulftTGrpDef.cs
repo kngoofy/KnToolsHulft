@@ -86,8 +86,7 @@ namespace KnToolsHulft.Data
             Id = "";
             Grp = "";
             Comment = "";
-            //ServerList = new List<string> { };
-            ServerList.Clear();
+            ServerList = new List<string> { };
         }
 
     }

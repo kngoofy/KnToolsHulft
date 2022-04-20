@@ -1,4 +1,15 @@
 ﻿#
+# ID=!JOB
+#
+
+GRP=!JOB
+JOB DEF
+  !JOB
+DEFEND
+COMMENT=!コメント1
+END
+
+#
 # ID=JOB1
 #
 
@@ -20,4 +31,15 @@ JOB DEF
   JOB22
 DEFEND
 COMMENT=コメント2
+END
+
+#
+# ID=!JOB2
+#
+
+GRP=!JOB2
+JOB DEF
+  !JOB2
+DEFEND
+COMMENT=!コメント2
 END

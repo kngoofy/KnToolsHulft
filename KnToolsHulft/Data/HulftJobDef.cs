@@ -11,11 +11,10 @@ namespace KnToolsHulft.Data
     {
         //プロパティ
         //ジョブ管理設定
-        public string Id { get; set; } = "ID";              // ID=LOOPBACK
+        public string Id { get; set; } = "ID";              // ID
 
         public string Job { get; set; } = "JOB";            // × ジョブID
         public string Comment { get; set; } = "COMMENT";    // 〇 コメント
-        //public string Jobs { get; set; } = "SERVER";      // 〇 ホスト名
         public List<string> JobList = new List<string>();   // × 起動ジョブ
 
         /// <summary>
@@ -85,8 +84,7 @@ namespace KnToolsHulft.Data
             Id = "";
             Job = "";
             Comment = "";
-            //JobList = new List<string> { };
-            JobList.Clear();
+            JobList = new List<string> { };
         }
 
     }

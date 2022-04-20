@@ -104,11 +104,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\huljob.txt" />
-    <Content Include="TestData\hulthst.txt" />
-    <Content Include="TestData\hultrcv.txt" />
-    <Content Include="TestData\hultsnd.txt" />
-    <Content Include="TestData\hulttgrp.txt" />
+    <Content Include="TestData\Job.txt" />
+    <Content Include="TestData\Hst.txt" />
+    <Content Include="TestData\Rcv.txt" />
+    <Content Include="TestData\Snd.txt" />
+    <Content Include="TestData\TGrp.txt" />
     <Content Include="TestData\TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>

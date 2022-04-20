@@ -63,11 +63,11 @@ namespace KnToolsHulft
                             break;
                         case "SERVER DEF":
                             serverDef = true;
-                            //hulftdef.Server = array[1];
                             break;
                         case "DEFEND":
                             serverDef = false;
                             break;
+
                         case "END":
                             hulftTGrpDefs.Add(hulftdef.Clone());
                             break;

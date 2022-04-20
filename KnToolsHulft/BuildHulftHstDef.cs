@@ -35,7 +35,6 @@ namespace KnToolsHulft
             HulftHstDef hulftdef = new HulftHstDef();
 
             string fileContent = "";
-            //using (var sr = new StreamReader(file, Encoding.Default))
             using (StringReader sr = new StringReader(HtmlText))
             {
                 while ((fileContent = sr.ReadLine()) != null)

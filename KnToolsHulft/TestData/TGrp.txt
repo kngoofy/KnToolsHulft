@@ -1,11 +1,21 @@
 ﻿#
+# ID=!GRP
+#
+
+GRP=!GRP
+SERVER DEF
+  !grphost
+DEFEND
+COMMENT=!コメント
+END
+
+#
 # ID=GRP1
 #
 
 GRP=GRP1
 SERVER DEF
   grp1host1
-  grp1host2
 DEFEND
 COMMENT=コメント1
 END
@@ -16,7 +26,6 @@ END
 
 GRP=GRP2
 SERVER DEF
-  grp2host1
   grp2host2
 DEFEND
 COMMENT=コメント2
@@ -32,4 +41,15 @@ SERVER DEF
   grp2host2
 DEFEND
 COMMENT=コメント3
+END
+
+#
+# ID=!GRP2
+#
+
+GRP=!GRP2
+SERVER DEF
+  !grphost2
+DEFEND
+COMMENT=!コメント2
 END
