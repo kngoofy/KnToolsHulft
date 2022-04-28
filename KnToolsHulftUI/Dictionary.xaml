@@ -13,7 +13,7 @@
         <Setter Property="Margin" Value="5" />
     </Style>
 
-    <Style x:Key="Button" TargetType="{x:Type Button}">
+    <!--<Style x:Key="Button" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="12pt" />
         <Setter Property="FontFamily" Value="Meiryo UI" />
         <Setter Property="Foreground" Value="White" />
@@ -30,7 +30,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type TextBox}" >
+    <Style x:Key="TextBoxBase" TargetType="{x:Type TextBox}" >
         <Setter Property="Height" Value="30" />
         <Setter Property="BorderBrush" Value="Black" />
         <Setter Property="BorderThickness" Value="1" />
@@ -51,30 +51,30 @@
 
     <Style x:Key="TextBox2" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="Width" Value="650" />
-    </Style>
+    </Style>-->
     
-    <Style TargetType="{x:Type Label}">
+    <!--<Style TargetType="{x:Type Label}">
         <Setter Property="Margin" Value="1,2,0,0" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontWeight" Value="Bold" />
-    </Style>
+    </Style>-->
 
-    <Style x:Key="Label1" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+    <!--<Style x:Key="Label1" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
         <Setter Property="Height" Value="25" />
         <Setter Property="Width" Value="70" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Foreground" Value="DarkSlateBlue" />
         <Setter Property="FontSize" Value="10pt" />
         <Setter Property="FontFamily" Value="Trebuchet MS" />
-    </Style>
+    </Style>-->
 
-    <Style x:Key="Label2" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+    <!--<Style x:Key="Label2" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
         <Setter Property="Height" Value="25" />
         <Setter Property="Width" Value="140" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Foreground" Value="#0066CC" />
         <Setter Property="FontFamily" Value="Trebuchet MS" />
         <Setter Property="FontSize" Value="10pt" />
-    </Style>
+    </Style>-->
 
 </ResourceDictionary>

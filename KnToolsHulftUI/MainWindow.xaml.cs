@@ -17,13 +17,15 @@ using System.Windows.Shapes;
 using MessageBox = System.Windows.Forms.MessageBox;
 using KnToolsHulft;
 using KnToolsHulft.Data;
+using MahApps.Metro.Controls;
+using MaterialDesignThemes.Wpf;
 
 namespace KnToolsHulftUI
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
@@ -336,8 +338,14 @@ namespace KnToolsHulftUI
         /// <summary>
         /// HulftBook を作成するメソッド
         /// </summary>
-        private void Button_Click_CreateHulftBook(object sender, RoutedEventArgs e)
+        private async void Button_Click_CreateHulftBook(object sender, RoutedEventArgs e)
         {
+            var file = HulftBookName.Text;
+            if (string.IsNullOrWhiteSpace(file)) {
+                //MessageBox.Show("生成するHulftBookを指定して下さい。");
+                await DialogHost.Show(new MyMsgBox("生成するHulftBookを指定して下さい。"));
+                return;
+            }
             // HulftBookのフォルダは問題ないか？
             // FileInfo クラスのインスタンスを生成
             FileInfo fileInfo = new FileInfo(HulftBookName.Text);
@@ -346,7 +354,9 @@ namespace KnToolsHulftUI
             // 存在する場合は InitialDirectory プロパティに設定
             if (!Directory.Exists(directoryName))
             {
-                MessageBox.Show("HulftBookのフォルダを見直して下さい。");
+                //MessageBox.Show("指定したHulftBookのフォルダを見直して下さい。");
+                await DialogHost.Show(new MyMsgBox("指定したHulftBookのフォルダを見直して下さい。"));
+                return;
             }
 
             var defs = new Dictionary<string, string>()

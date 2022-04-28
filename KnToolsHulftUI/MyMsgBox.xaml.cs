@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,29 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KnToolsHulftUI
 {
     /// <summary>
-    /// About.xaml の相互作用ロジック
+    /// MyMsgBox.xaml の相互作用ロジック
     /// </summary>
-    public partial class About : MetroWindow
+    public partial class MyMsgBox : UserControl
     {
-        /// <summary>
-        /// HelpのAboutウィンドウ
-        /// </summary>
-        public About()
+        public MyMsgBox(string message)
         {
             InitializeComponent();
-        }
 
-        /// <summary>
-        /// 終了
-        /// </summary>
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
+            //メッセージをテキストボックスへ反映
+            txtMessage.Text = message;
         }
     }
 }
