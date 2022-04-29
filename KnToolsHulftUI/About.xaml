@@ -9,7 +9,38 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Icon="images\application_msn_windows_2431.ico"
-        Title="About" Height="230" Width="440">
+        Title="About" Height="240" Width="440">
+
+    <Window.Resources>
+        <Style x:Key="WatermarkImage" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="images/Watermark.png" />
+            <Setter Property="HorizontalAlignment" Value="left" />
+            <Setter Property="VerticalAlignment" Value="top" />
+            <Setter Property="Width" Value="230" />
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <!--<Setter Property="FontFamily" Value="Trebuchet MS" />-->
+            <Setter Property="FontSize" Value="10pt" />
+            <!--<Setter Property="FontWeight" Value="Bold" />-->
+        </Style>
+        <Style x:Key="MyChip" TargetType="{x:Type materialDesign:Chip}" BasedOn="{StaticResource MaterialDesignOutlineChip}">
+            <Setter Property="Margin" Value="1" />
+            <!--<Setter Property="Height" Value="28" />-->
+            <Setter Property="Width" Value="170" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontFamily" Value="Meiryo UI" />
+            <Setter Property="FontSize" Value="9pt" />
+            <!--<Setter Property="FontWeight" Value="Bold" />-->
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <Image Style="{StaticResource WatermarkImage}"/>
@@ -18,39 +49,29 @@
 
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="274*" />
+                    <ColumnDefinition Width="260*" />
                     <ColumnDefinition Width="180*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*" />
                     <RowDefinition Height="40*" />
                     <RowDefinition Height="40*" />
-                    <RowDefinition Height="100*" />
+                    <RowDefinition Height="120*" />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="1" Grid.Column="0" Content="Category:" Margin="0,8,1,8.667" HorizontalAlignment="Right" FontSize="11" Height="24" Width="63"/>
-                <materialDesign:Chip 
-                    Grid.Row="1" Grid.Column="1"
+                <Label Grid.Row="1" Grid.Column="0" Content="Category:"/>
+                <materialDesign:Chip Grid.Row="1" Grid.Column="1"
                     Content="HulftBook 作成"
-                    Style="{StaticResource MaterialDesignOutlineChip}" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Margin="6" 
-                    Width="160" 
-                    FontFamily="Meiryo UI" FontWeight="Bold" FontSize="10">
+                    Style="{StaticResource MyChip}">
                     <materialDesign:Chip.Icon>
                         <Image Source="images/application_office_excel_2474.ico" />
                     </materialDesign:Chip.Icon>
                 </materialDesign:Chip>
 
-                <Label Grid.Row="2" Grid.Column="0" Content="Author:" Margin="0,8.333,1,9" HorizontalAlignment="Right" FontSize="11" Height="24" Width="51"/>
-                <materialDesign:Chip 
-                    Grid.Row="2" Grid.Column="1"
+                <Label Grid.Row="2" Grid.Column="0" Content="Author:"/>
+                <materialDesign:Chip Grid.Row="2" Grid.Column="1"
                     Content="kngoofy@gmail.com"
-                    Style="{StaticResource MaterialDesignOutlineChip}" 
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Margin="6" 
-                    Width="160" 
-                    FontFamily="Meiryo UI" FontWeight="Bold" FontSize="10">
+                    Style="{StaticResource MyChip}">
                     <materialDesign:Chip.Icon>
                         <Image Source="images/butterfly2_small.jpg" />
                     </materialDesign:Chip.Icon>
@@ -58,7 +79,7 @@
 
                 <Button Grid.Row="3" Grid.Column="1" 
                         Content="ok" Click="Button_Click" 
-                        Margin="5" 
+                        Margin="50,8,50,8" 
                         HorizontalAlignment="Center" VerticalAlignment="Center" Height="90" Width="80" >
                     <Button.Background>
                         <ImageBrush ImageSource="images\IMG_0009.PNG"/>

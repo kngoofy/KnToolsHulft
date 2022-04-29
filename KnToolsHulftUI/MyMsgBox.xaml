@@ -18,7 +18,7 @@
                 Height="50"
                 Foreground="{StaticResource PrimaryHueMidBrush}"
                 Kind="AlertCircleOutline" />
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Width="321">
                 <TextBlock
                     Width="200"
                     FontSize="16"
@@ -28,8 +28,7 @@
                 </TextBlock>
                 <TextBlock
                     Name="txtMessage"
-                    Width="500"
-                    Margin="15,5"
+                    Margin="15,5,18.333,5"
                     FontSize="14"
                     Foreground="DarkGray"
                     TextWrapping="Wrap" />

@@ -31,9 +31,9 @@ namespace KnToolsHulftUI
         {
             InitializeComponent();
 
-            var holderName = Directory.GetCurrentDirectory();
+            string holderName = Directory.GetCurrentDirectory();
             HulftBookName.Text = holderName + "\\" + "hulftBook.xlsx";
-            
+            //_ = HulftBookName.Focus();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentHulftBook();
         }
-        
+
         /// <summary>
         /// ExcelBook ファイルをopenFileDialogにて設定するメソッド
         /// </summary>
@@ -60,7 +60,7 @@ namespace KnToolsHulftUI
             try
             {
                 // テキストボックスからファイル名 (ファイルパス) を取得
-                string fileName = this.HulftBookName.Text;
+                string fileName = HulftBookName.Text;
 
                 // OpenFileDialog クラスのインスタンスを生成
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -199,7 +199,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftSndDefFileName.Text = fileNames[0];
         }
-        
+
         /// <summary>
         /// Hulft定義(Rcv)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -209,7 +209,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftRcvDefFileName.Text = fileNames[0];
         }
-        
+
         /// <summary>
         /// Hulft定義(Hst)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -219,7 +219,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftHstDefFileName.Text = fileNames[0];
         }
-        
+
         /// <summary>
         /// Hulft定義(TGrp)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -229,7 +229,7 @@ namespace KnToolsHulftUI
             var fileNames = args.Data.GetData(System.Windows.DataFormats.FileDrop, true) as string[];
             tbHulftTGrpDefFileName.Text = fileNames[0];
         }
-        
+
         /// <summary>
         /// Hulft定義(Job)のTextBoxへのドラッグアンドロップのメソッド
         /// </summary>
@@ -247,7 +247,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftSndDefFileName);
         }
-        
+
         /// <summary>
         /// Hulft定義ファイル(Rcv)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -255,7 +255,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftRcvDefFileName);
         }
-        
+
         /// <summary>
         /// Hulft定義ファイル(Hst)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -263,7 +263,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftHstDefFileName);
         }
-        
+
         /// <summary>
         /// Hulft定義ファイル(TGrp)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -271,7 +271,7 @@ namespace KnToolsHulftUI
         {
             OpenDocumentDef(tbHulftTGrpDefFileName);
         }
-        
+
         /// <summary>
         /// Hulft定義ファイル(Job)を指定するダイアログを呼び出すメソッド
         /// </summary>
@@ -341,9 +341,12 @@ namespace KnToolsHulftUI
         private async void Button_Click_CreateHulftBook(object sender, RoutedEventArgs e)
         {
             var file = HulftBookName.Text;
-            if (string.IsNullOrWhiteSpace(file)) {
+            if (string.IsNullOrWhiteSpace(file))
+            {
                 //MessageBox.Show("生成するHulftBookを指定して下さい。");
-                await DialogHost.Show(new MyMsgBox("生成するHulftBookを指定して下さい。"));
+                HulftBookName.Focus();
+                await DialogHost.Show(new MyMsgBox("生成するHulftBookファイルの指定がありません。指定して下さい。"));
+
                 return;
             }
             // HulftBookのフォルダは問題ないか？
@@ -355,6 +358,8 @@ namespace KnToolsHulftUI
             if (!Directory.Exists(directoryName))
             {
                 //MessageBox.Show("指定したHulftBookのフォルダを見直して下さい。");
+                HulftBookName.Focusable = true;
+                _ = HulftBookName.Focus();
                 await DialogHost.Show(new MyMsgBox("指定したHulftBookのフォルダを見直して下さい。"));
                 return;
             }

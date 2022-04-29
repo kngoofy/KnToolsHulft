@@ -453,8 +453,9 @@ namespace KnToolsHulft
 
             cell.CellStyle = style;
 
+            //セルが数値の場合の対応
             bool result;
-            result = Int32.TryParse(value, out int intvalue);
+            result = int.TryParse(value, out int intvalue);
             if (result)
             {
                 cell.SetCellType(CellType.Numeric);
