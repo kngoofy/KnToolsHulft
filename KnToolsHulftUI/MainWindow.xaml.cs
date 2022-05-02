@@ -45,6 +45,17 @@ namespace KnToolsHulftUI
         }
 
         /// <summary>
+        /// HelpのAboutウィンドウ表示
+        /// </summary>
+        private void OnMenuAbout(object sender, RoutedEventArgs e)
+        {
+            var _childWindow = new About();
+            _childWindow.Top = this.Top + 120;
+            _childWindow.Left = this.Left + 120;
+            _childWindow.ShowDialog();
+        }
+
+        /// <summary>
         /// クリックされて、ExcelBook ファイルを指定するメソッド
         /// </summary>
         private void Button_Click_SelectHulftBook(object sender, RoutedEventArgs e)
@@ -434,12 +445,6 @@ namespace KnToolsHulftUI
             // カーソルを戻す
             this.Cursor = null;
 
-        }
-
-        private void OnMenuAbout(object sender, RoutedEventArgs e)
-        {
-            var _childWindow = new About();
-            _childWindow.ShowDialog();
         }
 
     }

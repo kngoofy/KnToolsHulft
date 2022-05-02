@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:KnToolsHulftUI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="250" d:DesignWidth="500">
 
     <Grid
         Width="400"
@@ -20,7 +20,6 @@
                 Kind="AlertCircleOutline" />
             <StackPanel Orientation="Vertical" Width="321">
                 <TextBlock
-                    Width="200"
                     FontSize="16"
                     Foreground="DarkSlateGray"
                     TextWrapping="Wrap" HorizontalAlignment="Left" Margin="8,0,0,0">
@@ -45,12 +44,6 @@
                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                 Content="OK"
                 Style="{DynamicResource MaterialDesignFlatButton}" />
-            <!--<Button
-                Width="85"
-                Margin="2"
-                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                Content="Cancel"
-                Style="{DynamicResource MaterialDesignFlatButton}" />-->
         </StackPanel>
     </Grid>
 

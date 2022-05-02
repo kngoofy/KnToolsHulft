@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="HulftBook" 
         Icon="images\application_msn_windows_2431.ico"
-        Height="750" Width="760">
+        Height="750" Width="760" MinWidth="700" MinHeight="740">
 
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
@@ -90,27 +90,11 @@
                     </Button>
                 </StackPanel>
 
-                <!--<DockPanel Height="auto" >
-                    --><!--<StackPanel DockPanel.Dock="Left" Margin="0,10,10,10.333" Width="781"  >
-                        <TextBox x:Name="HulftBookName" Text="HulftBook" TabIndex="1" 
-                             ToolTip="生成するHulftBookファイルの指定 (Drag and Drop)"
-                              PreviewDragOver="EhDragOverHulftBookDef" PreviewDrop="EhDropHulftBookDef" 
-                             Style="{StaticResource TextBox1}" Width="761"
-                    />
-                    </StackPanel>-->
-                    <!--<StackPanel DockPanel.Dock="Right" Margin="0,0,0,0"  >
-                        <Button Content="HulftBookの指定"
-                            Click="Button_Click_SelectHulftBook"
-                            Style="{StaticResource Button}"
-                    />
-                    </StackPanel>--><!--
-                </DockPanel>-->
-
             </Grid>
         </GroupBox>
 
         <GroupBox Grid.Row="3"  Margin="8" 
-            Header="各定義ファイルからHulfBook作成"
+            Header="元となる各定義ファイルの指定"
             Style="{StaticResource MaterialDesignCardGroupBox}">
 
             <GroupBox.HeaderTemplate>
@@ -170,7 +154,7 @@
                          />
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="0">
-                        <Label>ホスト詳細定義ファイル</Label>
+                        <Label>詳細ホスト定義ファイル</Label>
                         <TextBox Name="tbHulftHstDefFileName" Text="Hst"
                             TabIndex="0"
                             Margin="6,0,0,0"
@@ -192,7 +176,7 @@
                         />
                     </StackPanel>
                     <StackPanel Grid.Row="4" Grid.Column="0">
-                        <Label>Job定義ファイル</Label>
+                        <Label>ジョブ起動定義ファイル</Label>
                         <TextBox Name="tbHulftJobDefFileName" Text="Job" 
                             TabIndex="0"
                             Margin="6,0,0,0"
@@ -202,9 +186,6 @@
                             PreviewDragOver="EhDragOverJobDef" PreviewDrop="EhDropJobDef" 
                         />
                     </StackPanel>
-                    <!--<StackPanel Grid.Row="4" Grid.Column="0">
-
-                    </StackPanel>-->
 
                     <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
                         <Button
@@ -257,44 +238,12 @@
                         </Button>
                     </StackPanel>
 
-                    <!--<Button Content="配信定義ファイル"
-                                Grid.Row="0" 
-                                Style="{StaticResource Button}"
-                                Click="Button_Click_Snd"
-                                />
-                            <Button Content="集信定義ファイル" Click="Button_Click_Rcv"
-                                Grid.Row="1" 
-                                Style="{StaticResource Button}"
-                                />
-                            <Button Content="ホスト定義ファイル" Click="Button_Click_Hst"
-                                Grid.Row="2" 
-                                Style="{StaticResource Button}"
-                                />
-                            <Button Content="転送グループ定義ファイル" Click="Button_Click_TGrp"
-                                Grid.Row="3" 
-                                Style="{StaticResource Button}"
-                                />
-                            <Button Content="ジョブ定義ファイル" Click="Button_Click_Job"
-                                Grid.Row="4" 
-                                Style="{StaticResource Button}"
-                                />-->
-
-                    <!--<StackPanel Grid.Column="2"
-                        Margin="11,40,12.333,0" VerticalAlignment="Top" Height="75"
-                                 HorizontalAlignment="Center" Width="112">
-                        <Button Content="HulfBook作成" 
-                                Height="75" 
-                                Style="{StaticResource Button}"
-                                Click="Button_Click_CreateHulftBook" Width="112" 
-                        />
-                    </StackPanel>-->
-
                 </Grid>
             </DockPanel>
         </GroupBox>
 
         <materialDesign:DialogHost Grid.Row="4">
-        <Button
+            <Button
             IsTabStop="False"
             Margin="10,1,10.333,1.333" Height="58" VerticalAlignment="Center"
             Click="Button_Click_CreateHulftBook"
@@ -304,7 +253,7 @@
             FontSize="20"
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
         </materialDesign:DialogHost>
-        
+
     </Grid>
 
 </mah:MetroWindow>

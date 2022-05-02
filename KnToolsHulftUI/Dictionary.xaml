@@ -9,9 +9,9 @@
         <Setter Property="Opacity" Value="0.5" />
     </Style>-->
     
-    <Style x:Key="WindowContentGrid" TargetType="{x:Type Grid}">
+    <!--<Style x:Key="WindowContentGrid" TargetType="{x:Type Grid}">
         <Setter Property="Margin" Value="5" />
-    </Style>
+    </Style>-->
 
     <!--<Style x:Key="Button" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="12pt" />
